@@ -332,7 +332,7 @@ async def giveaway(ctx):
 
 
 @client.command(name="reroll", description="Rerolls Giveaway in your server.")
-@commands.has_role("Giveaway Host")
+@commands.has_role("🎉Giveaway Host")
 async def reroll(ctx, channel: nextcord.TextChannel, id_ : int):
     # Reroll command requires the user to have a "Giveaway Host" role to function properly
     try:
