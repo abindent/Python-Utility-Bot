@@ -1,6 +1,5 @@
 ﻿import asyncio
 import aiohttp
-import aiosqlite
 import datetime
 from io import BytesIO
 import humanfriendly
