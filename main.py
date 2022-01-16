@@ -195,15 +195,15 @@ async def suggest(ctx, *, suggestion):
 
 
 @client.command(name="approve", description="Approves a suggestion.")
-@commands.has_any_role('Admin', 'Moderator', 'Staff', 'Owner')
+@commands.has_any_role('🔥Administrator', '🌀Moderator', '⚙️Server Staff', 👑Co-Owner', '👑Owner', '✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
 async def approve(ctx, id: int = None):
     await ctx.channel.purge(limit=1)
     if id is None:
         return
-    staff = nextcord.utils.get(ctx.guild.roles, name="Staff")
+    staff = nextcord.utils.get(ctx.guild.roles, name="⚙️Server Staff")
     if staff is None:
-        staff = await ctx.guild.create_role(name="Staff", color=0x51f5e7)
-        await ctx.send('Created Role `Staff`. Apply it to start controlling the suggestions.')
+        staff = await ctx.guild.create_role(name="⚙️Server Staff", color=0x51f5e7)
+        await ctx.send('Created Role `⚙️Server Staff`. Apply it to start controlling the suggestions.')
     channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")
     achannel = nextcord.utils.get(
         ctx.guild.text_channels, name="✔️approved-suggestions")
@@ -228,15 +228,15 @@ async def approve(ctx, id: int = None):
 
 
 @client.command(name="deny", description="Declines a suggestion.")
-@commands.has_any_role('Admin', 'Moderator', 'Staff', 'Owner')
+@commands.has_any_role('🔥Administrator', '🌀Moderator', '⚙️Server Staff', '👑Co-Owner', '👑Owner', '✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
 async def deny(ctx, id: int = None):
     await ctx.channel.purge(limit=1)
     if id is None:
         return
-    staff = nextcord.utils.get(ctx.guild.roles, name="Staff")
+    staff = nextcord.utils.get(ctx.guild.roles, name="⚙️Server Staff")
     if staff is None:
-        staff = await ctx.guild.create_role(name="Staff", color=0x51f5e7)
-        await ctx.send('Created Role `Staff`. Apply it to start controlling the suggestions.')
+        staff = await ctx.guild.create_role(name="⚙️Server Staff", color=0x51f5e7)
+        await ctx.send('Created Role `⚙️Server Staff`. Apply it to start controlling the suggestions.')
     channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")
     dchannel = nextcord.utils.get(
         ctx.guild.text_channels, name="❌denied-suggestions")
