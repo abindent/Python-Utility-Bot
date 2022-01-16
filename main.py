@@ -195,7 +195,7 @@ async def suggest(ctx, *, suggestion):
 
 
 @client.command(name="approve", description="Approves a suggestion.")
-@commands.has_any_role('🔥Administrator', '🌀Moderator', '⚙️Server Staff', 👑Co-Owner', '👑Owner', '✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
+@commands.has_any_role('🔥Administrator', '🌀Moderator', '⚙️Server Staff', '👑Co-Owner', '👑Owner', '✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
 async def approve(ctx, id: int = None):
     await ctx.channel.purge(limit=1)
     if id is None:
