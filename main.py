@@ -204,17 +204,18 @@ async def approve(ctx, id: int = None):
     if staff is None:
         staff = await ctx.guild.create_role(name="⚙️Server Staff", color=0x51f5e7)
         await ctx.send('Created Role `⚙️Server Staff`. Apply it to start controlling the suggestions.')
-    channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")      
+    channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")
     if channel is None:
         return
-    achannel = nextcord.utils.get(ctx.guild.text_channels, name="✔️approved-suggestions")
+    achannel = nextcord.utils.get(
+        ctx.guild.text_channels, name="✔approved-suggestions")
     if achannel is None:
-        achannel = await ctx.guild.create_text_channel('✔️approved-suggestions')
-        await ctx.send("Created `✔️approved-suggestions` channel.Change the channel permission to get started.")
-      
+        achannel = await ctx.guild.create_text_channel('✔approved-suggestions')
+        await ctx.send("Created `✔approved-suggestions` channel.Change the channel permission to get started.")
+ 
     suggestionMsg = await channel.fetch_message(id)
-    embed = nextcord.Embed(title=f'Your suggestion has been approved.',
-                           description=f'The suggestion id of `{suggestionMsg.id}` has been approved by {ctx.author.name}', color=0xf20c0c)
+    embed = nextcord.Embed(title=f'Your suggestion has been denied.',
+                           description=f'The suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name}', color=0xf20c0c)
     embed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     embed.add_field(name="Link to the embed.",
