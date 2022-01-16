@@ -258,7 +258,7 @@ async def deny(ctx, id: int = None):
 
 
 # GIVEAWAY COMMAND
-@client.command()
+@client.command(name="giveaway", description="Hosts Giveaway in your server.")
 @commands.has_role("🎉Giveaway Host")
 async def giveaway(ctx):
     # Giveaway command requires the user to have a "Giveaway Host" role to function properly
@@ -331,7 +331,7 @@ async def giveaway(ctx):
 
 
 
-@client.command()
+@client.command(name="reroll", description="Rerolls Giveaway in your server.")
 @commands.has_role("Giveaway Host")
 async def reroll(ctx, channel: nextcord.TextChannel, id_ : int):
     # Reroll command requires the user to have a "Giveaway Host" role to function properly
