@@ -204,15 +204,14 @@ async def approve(ctx, id: int = None):
     if staff is None:
         staff = await ctx.guild.create_role(name="⚙️Server Staff", color=0x51f5e7)
         await ctx.send('Created Role `⚙️Server Staff`. Apply it to start controlling the suggestions.')
-    channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")
-    achannel = nextcord.utils.get(
-        ctx.guild.text_channels, name="✔️approved-suggestions")
+    channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")      
+    if channel is None:
+        return
+    achannel = nextcord.utils.get(ctx.guild.text_channels, name="✔️approved-suggestions")
     if achannel is None:
         achannel = await ctx.guild.create_text_channel('✔️approved-suggestions')
         await ctx.send("Created `✔️approved-suggestions` channel.Change the channel permission to get started.")
-    channel = nextcord.utils.get(ctx.guild.text_channels, name="suggestion")
-    if channel is None:
-        return
+      
     suggestionMsg = await channel.fetch_message(id)
     embed = nextcord.Embed(title=f'Your suggestion has been approved.',
                            description=f'The suggestion id of `{suggestionMsg.id}` has been approved by {ctx.author.name}', color=0xf20c0c)
@@ -238,13 +237,14 @@ async def deny(ctx, id: int = None):
         staff = await ctx.guild.create_role(name="⚙️Server Staff", color=0x51f5e7)
         await ctx.send('Created Role `⚙️Server Staff`. Apply it to start controlling the suggestions.')
     channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")
+    if channel is None:
+        return
     dchannel = nextcord.utils.get(
         ctx.guild.text_channels, name="❌denied-suggestions")
     if dchannel is None:
         dchannel = await ctx.guild.create_text_channel('❌denied-suggestions')
         await ctx.send("Created `❌denied-suggestions` channel.Change the channel permission to get started.")
-    if channel is None:
-        return
+ 
     suggestionMsg = await channel.fetch_message(id)
     embed = nextcord.Embed(title=f'Your suggestion has been denied.',
                            description=f'The suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name}', color=0xf20c0c)
