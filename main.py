@@ -214,8 +214,8 @@ async def approve(ctx, id: int = None):
         await ctx.send("Created `✔approved-suggestions` channel.Change the channel permission to get started.")
  
     suggestionMsg = await channel.fetch_message(id)
-    embed = nextcord.Embed(title=f'Your suggestion has been denied.',
-                           description=f'The suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name}', color=0xf20c0c)
+    embed = nextcord.Embed(title=f'Your suggestion has been approved.',
+                           description=f'The suggestion id of `{suggestionMsg.id}` has been approved by {ctx.author.name}', color=0xf20c0c)
     embed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     embed.add_field(name="Link to the embed.",
