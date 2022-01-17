@@ -419,7 +419,7 @@ async def kick(ctx, member: nextcord.Member, *, reason=None):
 
 # MUTE  AND UNMUTE COMMAND
 @client.command(name="mute", aliases=["modmutecmd"], description="Mutes the mentioned user.")
-@commands.has_permissions(ban_members=True, kick_members=True)
+@commands.has_permissions(administrator=True)
 async def mute(ctx, member: nextcord.Member, time, *, reason):
     muteembed = nextcord.Embed(
         title=f"🔨 Muted {member.name}", description=f"**The {member.name} has been muted due to the following reason:**\n```{reason}```")
@@ -433,7 +433,7 @@ async def mute(ctx, member: nextcord.Member, time, *, reason):
 
 
 @client.command(name="unmute", aliases=["modunmutecmd"], description="Unmutes the mentioned user.")
-@commands.has_permissions(ban_members=True, kick_members=True)
+@commands.has_permissions(administrator=True)
 async def unmute(ctx, member: nextcord.Member, *, reason):
     unmuteembed = nextcord.Embed(
         title=f"🔨 Unmuted {member.name}", description=f"**The {member.name} has been unmuted due to the following reason:**\n```{reason}```")
