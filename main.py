@@ -181,7 +181,7 @@ async def suggest(ctx, *, suggestion):
         channel = nextcord.utils.get(
             ctx.guild.text_channels, name='📨｜suggestions')
     suggest = nextcord.Embed(title=f'📝 New Suggestion by {ctx.author.name} !',
-                             description=f'{ctx.author.name} has suggested\n ```{suggestion}```', color=0xf20c0c)
+                             description=f'{ctx.author.name} has suggested\n**{suggestion}**', color=0xf20c0c)
     suggest.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     suggest.set_footer(
@@ -373,7 +373,7 @@ async def clear(ctx, limit: int):
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member: nextcord.Member, *, reason=None):
     banembed = nextcord.Embed(
-        title=f"🔨 Banned {member.name}", description=f"**The {member.name} has been banned from the server due to the following reason:**\n```{reason}```")
+        title=f"🔨 Banned {member.name}", description=f"**The {member.name} has been banned from the server due to the following reason:**\n**{reason}**")
     banembed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     banembed.set_footer(
@@ -408,7 +408,7 @@ async def unban(ctx, *, member):
 @client.command(name="kick", aliases=["modkickcmd"], description="Kicks the mentioned user.")
 async def kick(ctx, member: nextcord.Member, *, reason=None):
     kickembed = nextcord.Embed(
-        title=f"🔨 Kicked {member.name}", description=f"**The {member.name} has been kicked from the server due to the following reason:**\n```{reason}```")
+        title=f"🔨 Kicked {member.name}", description=f"**The {member.name} has been kicked from the server due to the following reason:**\n**reason}**")
     kickembed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     kickembed.set_footer(
@@ -422,7 +422,7 @@ async def kick(ctx, member: nextcord.Member, *, reason=None):
 @commands.has_any_role('🔥Administrator', '🌀Moderator', '⚙️Server Staff', '👑Co-Owner', '👑Owner', '✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
 async def mute(ctx, member: nextcord.Member, time, *, reason):
     muteembed = nextcord.Embed(
-        title=f"🔨 Muted {member.name}", description=f"**The {member.name} has been muted due to the following reason:**\n```{reason}```")
+        title=f"🔨 Muted {member.name}", description=f"**The {member.name} has been muted due to the following reason:**\n**{reason}**")
     muteembed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     muteembed.set_footer(
@@ -436,7 +436,7 @@ async def mute(ctx, member: nextcord.Member, time, *, reason):
 @commands.has_any_role('🔥Administrator', '🌀Moderator', '⚙️Server Staff', '👑Co-Owner', '👑Owner', '✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
 async def unmute(ctx, member: nextcord.Member, *, reason):
     unmuteembed = nextcord.Embed(
-        title=f"🔨 Unmuted {member.name}", description=f"**The {member.name} has been unmuted due to the following reason:**\n```{reason}```")
+        title=f"🔨 Unmuted {member.name}", description=f"**The {member.name} has been unmuted due to the following reason:**\n**{reason}**")
     unmuteembed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     unmuteembed.set_footer(
