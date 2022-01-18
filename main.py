@@ -119,7 +119,7 @@ async def toggle(ctx, *, command):
     command = client.get_command(command)
 
     if command == None:
-        await ctx.send(f"**Requested command 😞 {command.name} not found.**")
+        await ctx.send(f"\Requested command 😞 {command.name} not found.**")
     elif ctx.command == command:
         await ctx.send(f"{command.name} cannot be disabled.")
     else:
@@ -408,7 +408,7 @@ async def unban(ctx, *, member):
 @client.command(name="kick", aliases=["modkickcmd"], description="Kicks the mentioned user.")
 async def kick(ctx, member: nextcord.Member, *, reason=None):
     kickembed = nextcord.Embed(
-        title=f"🔨 Kicked {member.name}", description=f"**The {member.name} has been kicked from the server due to the following reason:**\n**reason}**")
+        title=f"🔨 Kicked {member.name}", description=f"**The {member.name} has been kicked from the server due to the following reason:**\n**{reason}**")
     kickembed.set_author(
         name="TechTon Bot", icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7n64TqeEWHKbR76Ph-kNmE-fz7xlus6-dzQ&usqp=CAU")
     kickembed.set_footer(
