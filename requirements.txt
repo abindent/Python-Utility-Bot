@@ -40,7 +40,7 @@ msgpack==1.0.3
 multidict==6.0.2
 mypy-extensions==0.4.3
 natural==0.2.0
-nextcord==2.0.0a7
+nextcord==2.0.0a8
 nextcord-ext-ipc==2.2.1
 nextcord-ext-menus==1.5.0
 packaging==20.9
