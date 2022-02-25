@@ -33,7 +33,7 @@ async def get_prefix(bot, message):
         return commands.when_mentioned_or("t!")(bot, message)
 
 # OUR CLIENT 
-client = commands.AutoShardedClient(command_prefix=get_prefix, case_insensitive=True)
+client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True)
 client.config_token = os.getenv("BOT_TOKEN")
 client.connection_url = os.getenv("MONGO_URI")
 client.guild_id="932264473408966656"
