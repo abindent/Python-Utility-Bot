@@ -143,7 +143,7 @@ class Slash(commands.Cog):
         langembed = nextcord.Embed(
             title=f":wave: Hi {interaction.user.name}", description=f"**Please choose your language from the opion below.**")
         langembed.set_author(
-            name="TechTon Bot", icon_url=interaction.client.user.display_avatar)
+             name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar,)
         langembed.set_footer(
             text=f"Command requested by {interaction.user.name}")
         await interaction.response.send_message(embed=langembed, view=view, ephemeral=True)
