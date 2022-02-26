@@ -20,7 +20,7 @@ class DropDown(nextcord.ui.Select):
                title=f":wave: Hi {interaction.user.name}", description="**You have choosed <:python:935932879714779227> python.**")
            
              langembed.set_author(
-        name="TechTon Bot", icon_url=client.user.display_avatar, url="https://python.org")   
+        name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar, url="https://python.org")   
              langembed.add_field(name="__ABOUT__", value="***Python is an interpreted high-level general-purpose programming language. Its design philosophy emphasizes code readability with its use of significant indentation. Its language constructs as well as its object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects***") 
             
              await interaction.response.edit_message(embed=langembed)
@@ -30,7 +30,7 @@ class DropDown(nextcord.ui.Select):
                title=f":wave: Hi {interaction.user.name}", description="**You have choosed <:JS:935933057800757318> javascript.**")
  
              langembed.set_author(
-        name="TechTon Bot", icon_url=client.user.display_avatar, url="https://javascript.com")   
+         name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar, url="https://javascript.com")   
              langembed.add_field(name="__ABOUT__", value="***JavaScript, often abbreviated JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. Over 97% of websites use JavaScript on the client side for web page behavior, often incorporating third-party libraries.***") 
              await interaction.response.edit_message(embed=langembed)    
             
@@ -39,7 +39,7 @@ class DropDown(nextcord.ui.Select):
                title=f":wave: Hi {interaction.user.name}", description="**You have choosed <:html:935933258439483442> HTML.**")
  
              langembed.set_author(
-        name="TechTon Bot", icon_url=client.user.display_avatar, url="https://html.com")   
+          name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar, url="https://html.com")   
              langembed.add_field(name="__ABOUT__", value="***The HyperText Markup Language, or HTML is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript. ... HTML elements are the building blocks of HTML pages.***") 
              await interaction.response.edit_message(embed=langembed) 
         if self.values[0] == "CSS":
@@ -47,7 +47,7 @@ class DropDown(nextcord.ui.Select):
                title=f":wave: Hi {interaction.user.name}", description="**You have choosed <:css:935935867468533830> CSS.**")
  
              langembed.set_author(
-        name="TechTon Bot", icon_url=client.user.display_avatar, url="https://g.co/kgs/83EKjE")   
+          name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar, url="https://g.co/kgs/83EKjE")   
              langembed.add_field(name="__ABOUT__", value="***Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in a markup language such as HTML. CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaScripts.***") 
              await interaction.response.edit_message(embed=langembed) 
         if self.values[0] == "PHP":
@@ -55,7 +55,7 @@ class DropDown(nextcord.ui.Select):
                title=f":wave: Hi {interaction.user.name}", description="**You have choosed <:php:935937346799546408> PHP.**")
  
              langembed.set_author(
-        name="TechTon Bot", icon_url=client.user.display_avatar, url="https://php.net/")   
+        name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar, url="https://php.net/")   
              langembed.add_field(name="__ABOUT__", value="***PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.***") 
              await interaction.response.edit_message(embed=langembed) 
 
@@ -160,7 +160,7 @@ class Slash(commands.Cog):
     # Ping Slash Command
     @nextcord.slash_command(name="ping", description="Returns the latency of the bot")
     async def ping(self, interaction: nextcord.Interaction):
-        await interaction.response.send_message(f"Pong! Latency is {round(sefl.bot.latency)}ms", ephemeral=True)          
+        await interaction.response.send_message(f"Pong! Latency is {self.bot.latency}ms", ephemeral=True)          
 
 
 
