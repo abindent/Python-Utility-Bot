@@ -76,7 +76,7 @@ class Slash(commands.Cog):
 
     # 8ball Slash Command
     @nextcord.slash_command(name="8ball", description="Let the 8 Ball Predict!\nthe future")
-    async def eightball(interaction: nextcord.Interaction, *, question):
+    async def eightball(self, interaction: nextcord.Interaction, *, question):
         responses = [
             'It is certain.',
             'It is decidedly so.',
@@ -119,7 +119,7 @@ class Slash(commands.Cog):
     # TOGGLE COMMANDS SLASH COMMAND
     @nextcord.slash_command(name="toggle", description="Enables a Disabled Command and Disables an Enabled Command.")
     @commands.has_guild_permissions(administrator=True)
-    async def toggle(interaction: nextcord.Interaction, *, command):
+    async def toggle(self, interaction: nextcord.Interaction, *, command):
         command = client.get_command(command)
 
         if command == None:
@@ -138,7 +138,7 @@ class Slash(commands.Cog):
             await interaction.response.send_message(embed=togglembed, ephemeral=True)
     # Lang Slash Command
     @nextcord.slash_command(name="lang", description="Choose your language and learn about it.")
-    async def _lang(interaction: nextcord.Interaction):
+    async def _lang(self, interaction: nextcord.Interaction):
         view = DropDownView()
         langembed = nextcord.Embed(
             title=f":wave: Hi {interaction.user.name}", description=f"**Please choose your language from the opion below.**")
@@ -151,7 +151,7 @@ class Slash(commands.Cog):
     # Clear Slash Command
     @nextcord.slash_command(name="clear",description="Clears messages")
     @commands.has_permissions(administrator=True)
-    async def clear(interaction: nextcord.Interaction, limit: int):
+    async def clear(self, interaction: nextcord.Interaction, limit: int):
             if limit > 500:
                 await interaction.response.send_message('Cannot delete more than 500 messages.', ephemeral=True)
             else:
@@ -159,7 +159,7 @@ class Slash(commands.Cog):
                 await interaction.response.send_message(f'Cleared `{limit}` Messages', ephemeral=True) 
     # Ping Slash Command
     @nextcord.slash_command(name="ping", description="Returns the latency of the bot")
-    async def ping(interaction: nextcord.Interaction):
+    async def ping(self, interaction: nextcord.Interaction):
         await interaction.response.send_message(f"Pong! Latency is {round(client.latency)}ms", ephemeral=True)          
 
 
