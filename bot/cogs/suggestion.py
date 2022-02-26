@@ -24,7 +24,7 @@ class Suggestion(commands.Cog):
         suggest = nextcord.Embed(title=f'📝 New Suggestion by {ctx.author.name} !',
                                 description=f'{ctx.author.name} has suggested\n{suggestion}', color=0xf20c0c)
         suggest.set_author(
-            name="TechTon Bot", icon_url=self.bot.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=self.bot.user.display_avatar)
         suggest.set_footer(
             text=f"Command requested by {ctx.author.name} | 📝 BOT Kernel: 487#G7")
         suggesting = await channel.send(embed=suggest)
@@ -56,7 +56,7 @@ class Suggestion(commands.Cog):
         embed = nextcord.Embed(title=f'Suggestion has been approved.',
                             description=f'The suggestion id of `{suggestionMsg.id}` has been approved by {ctx.author.name}', color=0xf20c0c)
         embed.set_author(
-            name="TechTon Bot", icon_url=self.bot.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=self.bot.user.display_avatar)
         embed.add_field(name="Link to the embed.",
                         value=f"[Click here ](https://discord.com/channels/{ctx.message.guild.id}/{channel.id}/{suggestionMsg.id}) to see the suggestion.")
         embed.set_footer(
@@ -87,7 +87,7 @@ class Suggestion(commands.Cog):
         embed = nextcord.Embed(title=f'Suggestion has been denied.',
                             description=f'The suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name}', color=0xf20c0c)
         embed.set_author(
-            name="TechTon Bot", icon_url=self.bot.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=self.bot.user.display_avatar)
         embed.add_field(name="Link to the embed.",
                         value=f"[Click here ](https://discord.com/channels/{ctx.message.guild.id}/{channel.id}/{suggestionMsg.id}) to see the suggestion.")
         embed.set_footer(
