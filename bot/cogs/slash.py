@@ -132,7 +132,7 @@ class Slash(commands.Cog):
             togglembed = nextcord.Embed(
                 title=f"Toggled {command.qualified_name}", description=f"**The {command.qualified_name} command has been {ternary}**")
             togglembed.set_author(
-                name="TechTon Bot", icon_url=client.user.display_avatar)
+                name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar)
             togglembed.set_footer(
                 text=f"Command requested by {interaction.user.name}")
             await interaction.response.send_message(embed=togglembed, ephemeral=True)
@@ -143,7 +143,7 @@ class Slash(commands.Cog):
         langembed = nextcord.Embed(
             title=f":wave: Hi {interaction.user.name}", description=f"**Please choose your language from the opion below.**")
         langembed.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="TechTon Bot", icon_url=interaction.client.user.display_avatar)
         langembed.set_footer(
             text=f"Command requested by {interaction.user.name}")
         await interaction.response.send_message(embed=langembed, view=view, ephemeral=True)
@@ -160,7 +160,7 @@ class Slash(commands.Cog):
     # Ping Slash Command
     @nextcord.slash_command(name="ping", description="Returns the latency of the bot")
     async def ping(self, interaction: nextcord.Interaction):
-        await interaction.response.send_message(f"Pong! Latency is {round(client.latency)}ms", ephemeral=True)          
+        await interaction.response.send_message(f"Pong! Latency is {round(sefl.bot.latency)}ms", ephemeral=True)          
 
 
 
