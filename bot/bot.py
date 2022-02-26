@@ -123,7 +123,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -135,7 +135,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -147,7 +147,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -159,7 +159,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -171,7 +171,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -183,7 +183,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -195,7 +195,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -207,7 +207,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
@@ -219,7 +219,7 @@ async def on_command_error(ctx, error):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
         notfounderror.set_author(
-            name="TechTon Bot", icon_url=client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
             name="Error is described below.", value=f"```\n{error}```")
         notfounderror.add_field(
