@@ -21,7 +21,7 @@ class MemeBtn(nextcord.ui.View):
 
         memeEmbed = nextcord.Embed(title=memeName, color=0x14cccc)
         memeEmbed.set_author(
-            name="Utility Bot", icon_url=interaction.client.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar)
         memeEmbed.set_image(url=memeUrl)
         memeEmbed.set_footer(
             text=f"Meme by: {memePoster} | Subreddit: {memeReddit} | Post: {memeLink}")
@@ -108,7 +108,7 @@ class Fun(commands.Cog):
 
         memeEmbed = nextcord.Embed(title=memeName, color=0x14cccc)
         memeEmbed.set_author(
-            name="Utility Bot", icon_url=self.bot.user.display_avatar)
+            name="OpenSourceGames Utility", icon_url=self.bot.user.display_avatar)
         memeEmbed.set_image(url=memeUrl)
         memeEmbed.set_footer(
             text=f"Meme by: {memePoster} | Subreddit: {memeReddit} | Post: {memeLink}")
