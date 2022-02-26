@@ -120,7 +120,7 @@ class Slash(commands.Cog):
     @nextcord.slash_command(name="toggle", description="Enables a Disabled Command and Disables an Enabled Command.")
     @commands.has_guild_permissions(administrator=True)
     async def toggle(self, interaction: nextcord.Interaction, *, command):
-        command = client.get_command(command)
+        command = self.bot.get_command(command)
 
         if command == None:
             await interaction.response.send_message(f"Requested command 😞 {command.name} not found.**", ephemeral=True)
