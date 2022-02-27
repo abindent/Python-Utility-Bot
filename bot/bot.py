@@ -125,7 +125,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -137,7 +137,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -149,7 +149,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -161,7 +161,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -173,7 +173,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -185,7 +185,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -197,7 +197,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -209,7 +209,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
@@ -221,7 +221,7 @@ async def on_command_error(ctx, error):
         notfounderror.set_author(
             name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
         notfounderror.add_field(
-            name="Error is described below.", value=f"```\n{error}```")
+            name="Error is described below.", value=f"```py \n{error}```")
         notfounderror.add_field(
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
