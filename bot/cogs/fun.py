@@ -30,8 +30,10 @@ class MemeBtn(nextcord.ui.View):
 
     @nextcord.ui.button(label="End Interaction", style=nextcord.ButtonStyle.secondary)
     async def end(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
-        await interaction.response.edit_message(view=None)
-        self.stop()
+         await interaction.response.send_message(f"{interaction.user.mention} we have closed the interaction.", ephermal=True) 
+         for child in self.children: 
+            child.disabled = True 
+            await interaction.message.edit(view=self)  
 
 
 class Fun(commands.Cog):
