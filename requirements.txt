@@ -43,6 +43,7 @@ natural==0.2.0
 nextcord==2.0.0a8
 nextcord-ext-ipc==2.2.1
 nextcord-ext-menus==1.5.0
+PyNaCl==1.5.0
 packaging==20.9
 parsedatetime==2.6
 pastel==0.2.1
@@ -82,4 +83,5 @@ virtualenv==20.13.1
 virtualenv-clone==0.5.7
 webencodings==0.5.1
 wrapt==1.12.1
+wavelink==1.1.1
 yarl==1.7.2
