@@ -68,6 +68,7 @@ class MusicController(nextcord.ui.View):
         for child in self.children: 
             child.disabled = True 
             await interaction.message.edit(view=self)  
+        await vc.stop()    
         await vc.disconnect()
         await interaction.response.send_message(f"{interaction.user.mention} we have closed the interaction.", ephemeral=True) 
         
