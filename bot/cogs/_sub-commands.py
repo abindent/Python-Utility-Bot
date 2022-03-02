@@ -12,14 +12,23 @@ class Groups(commands.Cog):
     async def on_ready(self):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----")
 
+""" The commmand group below is a group of commands having sub-commands.We often use [prefix][main_command] [subcommand(always optional)] [url] this type of things in bots.
+For maintainance and a lot of issues we usually split the funtionality of the parent command into different child subcommands.You can use or not but you can split them."""
+        
     @commands.group(invoke_without_command=True)
     async def first(self, ctx):
+        """ This code will be excecuted when running this parent command. """
         await ctx.send("This is the first command layer")
 
     @first.group(invoke_without_command=True)
-    async def second(self, ctx, channelId=None):
-        if channelId != None:
-            channel = self.bot.get_channel(int(channelId))
+    async def second(self, ctx, channel_id=None):
+         """ This code will be excecuted when using this child subcommand with parent command. """
+            
+        # Getiing the channel id if  provided 
+        if channel_id not None:
+            # Getting the channel from the id
+            channel = self.bot.get_channel(int(channel_id))
+            # Sending the message to that channek
             await channel.send(
                 "Hey! This is a message from me the bot. Bet you didn't see who ran the command?",
                 delete_after=15,
@@ -27,6 +36,8 @@ class Groups(commands.Cog):
 
     @second.command()
     async def third(self, ctx, channelId=None):
+         """ This code will be excecuted when using this child subcommand with the parent command. """
+         # Sending a message to the author
         await ctx.message.author.send("Hey! Did this come through clearly?")
 
 
