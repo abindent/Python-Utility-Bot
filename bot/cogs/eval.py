@@ -25,7 +25,7 @@ class Eval(commands.Cog):
         
         
     @commands.command(name="excecute", description="Evaluates the given python code", aliases=['eval', 'exec', 'evaluate'])
-    async def excecute(self, ctx: commands.Context, *, code=str):
+    async def excecute(self, ctx: commands.Context, *, code):
            code = self.prepare(code.replace("-s", ""))
            view = DelBtn()
            stdout = io.StringIO()
