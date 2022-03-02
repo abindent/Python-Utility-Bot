@@ -21,14 +21,13 @@ For maintainance and a lot of issues we usually split the funtionality of the pa
         await ctx.send("This is the first command layer")
 
     @first.group(invoke_without_command=True)
-    async def second(self, ctx, channel_id=None):
+    async def second(self, ctx, channel: nextcord.TextChannel=None):
          """ This code will be excecuted when using this child subcommand with parent command. """
             
         # Getiing the channel id if  provided 
         if channel_id not None:
-            # Getting the channel from the id
-            channel = self.bot.get_channel(int(channel_id))
-            # Sending the message to that channek
+     
+            # Sending the message to the mentioned channel
             await channel.send(
                 "Hey! This is a message from me the bot. Bet you didn't see who ran the command?",
                 delete_after=15,
