@@ -25,7 +25,7 @@ class Eval(commands.Cog):
            view = DelBtn()
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
-              if if code.findall("self.bot.config_token") :
+              if ( 'self.bot.config_token' in code) :
                  code = "|| Command is returning a confidential information so we can't share it with you. || "
               else:  
                  exec(code) 
