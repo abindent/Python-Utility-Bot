@@ -13,8 +13,7 @@ class DelBtn(nextcord.ui.View):
 class Eval(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.TOKEN = bot.config_token
-
+        
       
     @commands.Cog.listener()
     async def on_ready(self):
@@ -27,12 +26,14 @@ class Eval(commands.Cog):
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
                  exec(code) 
-           res = stdout.getvalue()
-           if res is self.TOKEN :
-                res = "None"  
+           res =  stdout.getvalue()
+           if res is not self.bot.config_token  :
+                output = stdout.getvalue()
+           else:
+                output = "None" 
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
-           embed.add_field(name="Evaluated Code", value=res, inline=False)     
+           embed.add_field(name="Evaluated Code", value=output, inline=False)     
            await ctx.send(embed=embed, view=view) 
   
         
