@@ -105,10 +105,7 @@ async def on_message(message):
         len(message.content) == len(f"<@!{client.user.id}>"
     ):
         data = await client.config.get_by_id(message.guild.id)
-        if not data or "prefix" not in data:
-            prefix = "t!"
-        else:
-            prefix = data["prefix"]
+        prefix = data.get("prefix", "t!")
         await message.channel.send(f"My prefix here is `{prefix}`", delete_after=15)
 
     await client.process_commands(message)
