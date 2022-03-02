@@ -28,7 +28,7 @@ class Eval(commands.Cog):
                  exec(code) 
            output =  stdout.getvalue()
            TOKEN = self.bot.config_token
-           if ouput is TOKEN :
+           if output is TOKEN :
                 output = "None" 
                 
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
