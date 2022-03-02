@@ -123,7 +123,7 @@ class Slash(commands.Cog):
         command = self.bot.get_command(command)
 
         if command == None:
-            await interaction.response.send_message(f"Requested command 😞 {command.name} not found.**", ephemeral=True)
+            return interaction.response.send_message(f"Requested command 😞 {command.name} not found.**", ephemeral=True)
         elif command == "toggle":
             await interaction.response.send_message(f"{command.name} cannot be disabled.", ephemeral=True)
         else:
