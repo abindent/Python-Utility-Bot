@@ -25,11 +25,12 @@ class Eval(commands.Cog):
            view = DelBtn()
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
-               exec(code) 
+              if code == self.bot.config_token :
+                 code = "|| Command is returning a confidential information so we can't share it with you. || "
+              else:  
+                 exec(code) 
            res = stdout.getvalue()
-           if res == self.bot.config_token :
-                res = "|| Credentials cannot be posted ||"
-                return res
+
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
            embed.add_field(name="Evaluated Code", value=res, inline=False)     
