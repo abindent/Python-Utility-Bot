@@ -28,8 +28,8 @@ class Eval(commands.Cog):
                exec(code)
            res = stdout.getvalue()   
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
-           embed.add_field(name="Input Code", value=f"```py\n{value}\n```", inline=False)
-           embed.add_field(name=key.capitalize(), value=res, inline=False)     
+           embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
+           embed.add_field(name="Evaluated Code", value=res, inline=False)     
            await ctx.send(embed=embed, view=view) 
   
         
