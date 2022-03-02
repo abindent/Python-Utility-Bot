@@ -1,6 +1,7 @@
 import nextcord, asyncio, os, io, contextlib
 from nextcord.ext import commands
 
+
 class DelBtn(nextcord.ui.View):
     def __init__(self):
         super().__init__()
@@ -12,7 +13,7 @@ class DelBtn(nextcord.ui.View):
 class Eval(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
+        self.TOKEN = bot.config_token
 
       
     @commands.Cog.listener()
@@ -27,7 +28,7 @@ class Eval(commands.Cog):
            with contextlib.redirect_stdout(stdout):
                  exec(code) 
            res = stdout.getvalue()
-           if res is  self.bot.config_token :
+           if res is self.TOKEN :
                 res = "None"  
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
