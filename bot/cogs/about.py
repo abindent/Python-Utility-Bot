@@ -122,7 +122,7 @@ class About(commands.Cog):
         embed.add_field(name='Shard ID:', value=shard_id)
         embed.add_field(name='Shard Ping:', value=shard_ping)
         embed.add_field(name='Shard Servers:', value=shard_servers)
-        embed.add_field(name='Bot Developers:', value=f"<@!{self.bot.owner_id}>")
+        embed.add_field(name='Bot Developers:', value=self.bot.owner_id)
 
         embed.set_footer(text=f"{ctx.author.guild.name} | {self.bot.user.name}")
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.display_avatar)
