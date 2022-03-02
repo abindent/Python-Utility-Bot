@@ -113,11 +113,19 @@ async def on_message(message):
     await client.process_commands(message)
 
 
-   
+# A new nextcord view
+class DelBtn(nextcord.ui.View):
+    def __init__(self):
+        super().__init__()
+
+    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.secondary, emoji="\N{WASTEBASKET}")  
+    async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+        await interaction.message.delete()   
 
 # Error Handling
 @client.event
 async def on_command_error(ctx, error):
+    view = DelBtn()
     if isinstance(error, commands.CommandNotFound):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -129,7 +137,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.MissingRequiredArgument):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -141,7 +149,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.MissingRole):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -153,7 +161,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderro, view=viewr)
     if isinstance(error, commands.MissingPermissions):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -165,7 +173,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.CommandInvokeError):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -177,7 +185,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.CommandOnCooldown):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -189,7 +197,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.ConversionError):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -201,7 +209,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.UserInputError):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -213,7 +221,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.DisabledCommand):
         notfounderror = nextcord.Embed(
             title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -225,7 +233,7 @@ async def on_command_error(ctx, error):
             name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
         notfounderror.set_footer(
             text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror)
+        await ctx.send(embed=notfounderror, view=view)
 
 
 # RUNNING OUR CLIENT
