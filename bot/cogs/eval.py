@@ -13,11 +13,7 @@ class Eval(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    async def prepare(self, string):
-        arr =  string.strip("```").replace("py\n", "").replace("python\n", "").split("\n")
-        if not arr[::-1][0].replace(" ", "").startswith("return"):
-            arr[len(arr) - 1] = "return " + arr[::-1][0]
-        return "".join(f"\n\t{i}" for i in arr)
+
       
     @commands.Cog.listener()
     async def on_ready(self):
@@ -26,7 +22,6 @@ class Eval(commands.Cog):
         
     @commands.command(name="excecute", description="Evaluates the given python code", aliases=['eval', 'exec', 'evaluate'])
     async def excecute(self, ctx: commands.Context, *, code):
-           code = await self.prepare(code)
            view = DelBtn()
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
