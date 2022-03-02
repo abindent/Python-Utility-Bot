@@ -36,8 +36,9 @@ class Eval(commands.Cog):
            embed.add_field(name="Input Code", value=f"```py\n{value}\n```", inline=False)
            embed.add_field(name=key.capitalize(), value=res, inline=False)     
            await ctx.send(embed=embed, view=view) 
+        
     @excecute.error
-    async def on_error(self, ctx, *, error: Exception):
+    async def on_error(self, ctx , error: Exception):
         view = DelBtn()
         embed = nextcord.Embed(title="Your code", description=":x: An error occurred.", color=0xFF0000)
         embed.add_field(name=":x: Error Occurred", value=f"```{error}```", inline=False)
