@@ -25,8 +25,10 @@ class Eval(commands.Cog):
            view = DelBtn()
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
-               exec(code)
-           res = stdout.getvalue()   
+               exec(code) 
+           res = stdout.getvalue()
+           if res == self.bot.config_token:
+                res = "Credentials cannot be posted." 
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
            embed.add_field(name="Evaluated Code", value=res, inline=False)     
