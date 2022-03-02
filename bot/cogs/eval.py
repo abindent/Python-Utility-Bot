@@ -26,11 +26,11 @@ class Eval(commands.Cog):
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
                  exec(code) 
-           res =  stdout.getvalue()
-           if res is not self.bot.config_token  :
-                output = stdout.getvalue()
-           else:
+           output =  stdout.getvalue()
+           TOKEN = self.bot.config_token
+           if ouput is TOKEN :
                 output = "None" 
+                
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
            embed.add_field(name="Evaluated Code", value=output, inline=False)     
