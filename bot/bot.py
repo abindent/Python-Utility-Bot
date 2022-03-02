@@ -34,7 +34,7 @@ async def get_prefix(bot, message):
 
 
 # Changing Bot Presense
- activity = nextcord.Game(name=f"Please interact with me!")
+activity = nextcord.Game(name="Please interact with me!")
     
 # OUR CLIENT     
 client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True, activity=activity)
