@@ -32,8 +32,13 @@ async def get_prefix(bot, message):
     except:
         return commands.when_mentioned_or("t!")(bot, message)
 
-# OUR CLIENT 
-client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True)
+
+# Changing Bot Presense
+ activity = nextcord.Game(name=f"Please interact with me!")
+    
+# OUR CLIENT     
+client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True, activity=activity)
+
 client.config_token = os.getenv("BOT_TOKEN")
 client.connection_url = os.getenv("MONGO_URI")
 client.guild_id="932264473408966656"
@@ -76,10 +81,7 @@ async def on_ready():
     print(
         f"-----\nLogged in as: {client.user.name} : {client.user.id}\n-----\nMy current prefix is: t!\n-----"
     )    
-    # Changing Bot Presense
-    await client.change_presence(
-        activity=nextcord.Game(name=f"Hi I am {client.user.name}.\nPlease interact with me!")
-    )
+
 
     # Adding MongoDB to our bot
     client.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(client.connection_url))
