@@ -21,15 +21,15 @@ class Eval(commands.Cog):
         
         
     @commands.command(name="excecute", description="Evaluates the given python code", aliases=['eval', 'exec', 'evaluate'])
+    @commands.is_owner()
     async def excecute(self, ctx: commands.Context, *, code):
            view = DelBtn()
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
                  exec(code) 
            output =  stdout.getvalue()
-           TOKEN = self.bot.config_token
-           if output is TOKEN :
-                output = "None" 
+           
+           
                 
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
