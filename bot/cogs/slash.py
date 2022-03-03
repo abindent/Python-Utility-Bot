@@ -156,7 +156,7 @@ class Slash(commands.Cog):
           await interaction.response.send_message('Cannot delete more than 500 messages.', ephemeral=True)
       else:
           new_count = {}
-          messages = await ctx.channel.history(limit=amount).flatten()
+          messages = await interaction.channel.history(limit=amount).flatten()
           for message in messages:
               if str(message.author) in new_count:
                   new_count[str(message.author)] += 1
@@ -164,7 +164,7 @@ class Slash(commands.Cog):
                   new_count[str(message.author)] = 1
           for message_deleted in list(new_count.items()):
               new_message = f"Successfully cleared `{message_deleted} messages`"        
-          await ctx.channel.purge(limit=amount+1)
+          await interaction.channel.purge(limit=amount)
           await interaction.response.send_message(new_message, ephemeral=True)     
 
 
