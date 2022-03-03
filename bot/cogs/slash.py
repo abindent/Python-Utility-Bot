@@ -163,8 +163,10 @@ class Slash(commands.Cog):
                   new_count[str(message.author)] += 1
               else:
                   new_count[str(message.author)] = 1
+          messages_deleted = 0          
           for author, message_deleted in list(new_count.items()):
-              new_message = f"Successfully cleared `{message_deleted} messages`"        
+                messages_deleted += message_deleted
+                new_message = f"Successfully cleared `{messages_deleted} messages`"        
           await interaction.channel.purge(limit=amount)
           await interaction.response.send_message(new_message, ephemeral=True)   
     # Ping Slash Command
