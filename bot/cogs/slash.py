@@ -151,16 +151,21 @@ class Slash(commands.Cog):
     # Clear Slash Command
     @nextcord.slash_command(name="clear",description="Clears messages")
     @commands.has_permissions(administrator=True)
-    async def clear(self, interaction: nextcord.Interaction, limit: int):
-            if limit > 500:
-                await interaction.response.send_message('Cannot delete more than 500 messages.', ephemeral=True)
-            else:
-                await interaction.channel.purge(limit=limit) 
-                await interaction.response.send_message(f'Cleared `{limit}` Messages', ephemeral=True) 
-    # Ping Slash Command
-    @nextcord.slash_command(name="ping", description="Returns the latency of the bot")
-    async def ping(self, interaction: nextcord.Interaction):
-        await interaction.response.send_message(f"Pong! Latency is {self.bot.latency}ms", ephemeral=True)          
+    async def clear(self, interaction: nextcord.Interaction, amount: int):
+      if amount > 1000 :
+          await interaction.response.send_message('Cannot delete more than 500 messages.', ephemeral=True)
+      else:
+          new_count = {}
+          messages = await ctx.channel.history(limit=amount).flatten()
+          for message in messages:
+              if str(message.author) in new_count:
+                  new_count[str(message.author)] += 1
+              else:
+                  new_count[str(message.author)] = 1
+          for message_deleted in list(new_count.items()):
+              new_message = f"Successfully cleared `{message_deleted} messages`"        
+          await ctx.channel.purge(limit=amount+1)
+          await interaction.response.send_message(new_message, ephemeral=True)     
 
 
 
