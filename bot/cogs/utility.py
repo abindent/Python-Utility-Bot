@@ -16,17 +16,25 @@ class Utility(commands.Cog):
 
     @commands.command(name="clear",description="Clears messages",pass_context=True)
     @commands.has_permissions(administrator=True)
-    async def clear(self, ctx, limit: int):
-            if limit > 500:
-                message = await ctx.send('Cannot delete more than 500 messages.')
-                await asyncio.sleep(5)
-                await message.delete()
-            else:
-                amount = limit + 1
-                await ctx.channel.purge(limit=amount) 
-                message =  await ctx.send(f'Cleared `{limit} Messages`')   
-                await asyncio.sleep(5)
-                await message.delete()
+    async def clear(self, ctx, amount: int):        
+      if amount > 1000 :
+          message = await ctx.send('Cannot delete more than 500 messages.')
+          await asyncio.sleep(5)
+          await message.delete()
+      else:
+          new_count = {}
+          messages = await ctx.channel.history(limit=amount).flatten()
+          for message in messages:
+              if str(message.author) in new_count:
+                  new_count[str(message.author)] += 1
+              else:
+                  new_count[str(message.author)] = 1
+          for message_deleted in list(new_count.items()):
+              new_message = f"Successfully cleared `{message_deleted} messages`"        
+          await ctx.channel.purge(limit=amount+1)
+          message = await ctx.send(new_message)
+          await asyncio.sleep(5)
+          await message.delete()
 
     @commands.command(name="toggle", aliases=["togglecmd", "editcmd"], description="Enables a Disabled Command and Disables an Enabled Command.")
     @commands.has_guild_permissions(administrator=True)
