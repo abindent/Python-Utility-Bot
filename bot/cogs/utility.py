@@ -32,7 +32,7 @@ class Utility(commands.Cog):
           messages_deleted = 0          
           for message_deleted in list(new_count.items()):
                 messages_deleted += message_deleted
-              new_message = f"Successfully cleared `{messages_deleted} messages`"        
+                new_message = f"Successfully cleared `{messages_deleted} messages`"        
           await ctx.channel.purge(limit=amount+1)
           message = await ctx.send(new_message)
           await asyncio.sleep(5)
