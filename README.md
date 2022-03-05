@@ -32,3 +32,6 @@ This project is under prgress so you have to wait for some time to get your want
 
 ## To do
 - [x] To add custom prefix.
+- [x] To add eval command.
+- [ ] To format code and enhance it.
+- [ ] To add new discord modal here.
