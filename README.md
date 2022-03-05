@@ -1,9 +1,9 @@
-# Nextcord Bot Template
+# 🤖 Nextcord Bot Template
 A simple template for building a beautiful discord bot with nextcord.Here 
 I have also implemented the buttons and select menus along with slash commands.
 This project is under prgress so you have to wait for some time to get your wanted features.
 
-## Features 
+## 💻 Features 
 1. Added MongoDB databse for saving bot data (eg:- bot prefix).
 2. Added Listeners and added a ot of custome bot customization.
 3. Dynamic help command with buttons.
@@ -19,7 +19,7 @@ This project is under prgress so you have to wait for some time to get your want
 13. Added suggestion cog.
 14. Added slash commands. 
 
-## How to setup
+## 💻 How to setup
 ### Step 1
  Run ```https://github.com/abindent/Nextcord-Utility-Bot.git``` this comamnd to our termianl for cloning this repo.
  
@@ -30,7 +30,7 @@ This project is under prgress so you have to wait for some time to get your want
  Install dependencies using ```pip install -r requirements.txt``` and run `python bot/bot.py` in your local machine.
 
 
-## To do
+## 📝 Task list
 - [x] To add custom prefix.
 - [x] To add eval command.
 - [ ] To format code and enhance it.
