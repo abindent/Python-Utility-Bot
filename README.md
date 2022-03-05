@@ -37,4 +37,4 @@ This project is under prgress so you have to wait for some time to get your want
 - [ ] To add new discord modal here.
 
 ## Dependencies 
-![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/nextcord/nextcord/dev/nextcord?style=for-the-badge)
+![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/nextcord/nextcord/nextcord?style=for-the-badge)
