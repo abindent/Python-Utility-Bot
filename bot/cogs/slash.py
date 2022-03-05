@@ -163,12 +163,12 @@ class Slash(commands.Cog):
                   new_count[str(message.author)] += 1
               else:
                   new_count[str(message.author)] = 1
-          messages_deleted = 0          
-          for author, message_deleted in list(new_count.items()):
-                messages_deleted += message_deleted
-                new_message = f"Successfully cleared `{messages_deleted} messages`"        
+          deleted_messages = 0          
+          for author, message_deleted in list(new_count.items()):                
+                new_message = f"**{author}**: {message_deleted}" 
+                deleted_messages += message_deleted       
           await interaction.channel.purge(limit=amount)
-          await interaction.response.send_message(new_message, ephemeral=True)   
+          await interaction.response.send_message(f"Successfully cleared `{deleted_messages} messages`\n\n{new_message}", ephemeral=True)   
     # Ping Slash Command
     @nextcord.slash_command(name="ping", description="Returns the latency of the bot")
     async def ping(self, interaction: nextcord.Interaction):
