@@ -31,5 +31,4 @@ This project is under prgress so you have to wait for some time to get your want
 
 
 ## To do
-☑️ - Done, ❌ - Not done yet, -[ ] neutral
-- [✅] To add custom prefix.
+- [x] To add custom prefix.
