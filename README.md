@@ -27,4 +27,4 @@ This project is under prgress so you have to wait for some time to get your want
  Add environment variable file (eg:- `.env`, `.env.local`, `.env.developement`) and add `BOT_TOKEN=<add your bot token>` & `MONGO_URI=<mongodb connection string>` to that file.
 
 ### Step 3
- Install dependencies using `pip install -r requirements.txt` and run `python bot/bot.py` in your local machine.
+ Install dependencies using ```pip install -r requirements.txt``` and run `python bot/bot.py` in your local machine.
