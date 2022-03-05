@@ -29,10 +29,12 @@ class Utility(commands.Cog):
                   new_count[str(message.author)] += 1
               else:
                   new_count[str(message.author)] = 1
-          deleted_messages = 0          
-          for author, message_deleted in list(new_count.items()):
-                new_message = f"**{author}**: {message_deleted}"   
-                deleted_messages += message_deleted
+          deleted_messages = 0  
+          new_string = []
+          for author, message_deleted in list(new_count.items()):                
+                new_string.append(f"**{author}**: {message_deleted}")
+                deleted_messages += message_deleted    
+          new_message = '\n'.join(new_string)  
           await ctx.channel.purge(limit=amount+1)
           message = await ctx.send(f"Successfully cleared `{deleted_messages} messages`\n\n{new_message}")
           await asyncio.sleep(3)
