@@ -4,7 +4,7 @@ I have also implemented the buttons and select menus along with slash commands.
 This project is under prgress so you have to wait for some time to get your wanted features.
 
 ## Features 
-1. Added MongoDB databse.
+1. Added MongoDB databse for saving bot data (eg:- bot prefix).
 2. Added Listeners and added a ot of custome bot customization.
 3. Dynamic help command with buttons.
 4. Added sub-commands examples in `__sub-command.py`.
