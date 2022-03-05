@@ -28,3 +28,8 @@ This project is under prgress so you have to wait for some time to get your want
 
 ### Step 3
  Install dependencies using ```pip install -r requirements.txt``` and run `python bot/bot.py` in your local machine.
+
+
+## To do
+☑️ - Done, ❌ - Not done yet, -[] neutral
+- [☑️] To add custom prefix.
