@@ -18,7 +18,7 @@ class Utility(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount: int):        
       if amount > 1000 :
-          message = await ctx.send('Cannot delete more than 500 messages.')
+          message = await ctx.send('Cannot delete more than 1000 messages.')
           await asyncio.sleep(5)
           await message.delete()
       else:
