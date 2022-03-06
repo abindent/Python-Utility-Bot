@@ -122,7 +122,7 @@ class Channels(commands.Cog):
     async def _channel(self, ctx, channel: nextcord.TextChannel = None, *, reason=None):
         channel = channel or ctx.channel
         await channel.delete(reason=reason)
-        await ctx.send(f"hey! I deleted {category.name} for you")
+        await ctx.send(f"hey! I deleted {channel.name} for you")
 
     @commands.command(
         name="lockdown",
