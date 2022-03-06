@@ -154,7 +154,7 @@ class Slash(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def clear(self, interaction: nextcord.Interaction, amount: int):
       if amount > 1000 :
-          await interaction.response.send_message('Cannot delete more than 500 messages.', ephemeral=True)
+          await interaction.response.send_message('Cannot delete more than 1000 messages.', ephemeral=True)
       else:
           new_count = {}
           messages = await interaction.channel.history(limit=amount).flatten()
