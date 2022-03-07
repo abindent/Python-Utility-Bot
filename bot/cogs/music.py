@@ -184,10 +184,11 @@ class Music(commands.Cog):
 
         elif not ctx.author.voice.channel == ctx.me.voice.channel:
             embed = nextcord.Embed(
-                title="▶️ Play Music", description="📢 | Joining you voice channel...", color=0x91cd0e)
+                title="▶️ Play Music", description="📢 | Joining your voice channel...", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
                              url=self.bot.user.display_avatar)
             msg = await ctx.send(embed=embed)
+            await vc.move_to(ctx.author.voice.channel)
             return msg
             await asyncio.sleep(7)
             msg.delete()
