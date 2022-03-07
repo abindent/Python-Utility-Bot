@@ -153,6 +153,7 @@ class Music(commands.Cog):
 
         if vc.queue.is_empty:
             return await vc.stop()
+            return await songplayembed.edit(view=None)
 
         next_song = vc.queue.get()
 
@@ -462,10 +463,7 @@ class Music(commands.Cog):
         await asyncio.sleep(5)
         await message.delete()
 
-    @commands.command(name="setvolume", aliases=["volume"], description="Sets the volume of the song.")
-    async def setvolume(self, ctx: commands.Context, *, volume=100):
-        await wavelink.Player.set_volume(self, volume=volume)
-        await ctx.send(f"Volume is set to `{volume}%` successfully.")
+
 
     @commands.command(name="lyrics", description="Sends the lyrics of the song.")
     async def lyrics(self, ctx,*, name: str):
