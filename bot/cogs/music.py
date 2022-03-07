@@ -188,6 +188,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              url=self.bot.user.display_avatar)
             msg = await ctx.send(embed=embed)
+            vc: wavelink.Player = ctx.voice_client
             await vc.move_to(ctx.author.voice.channel)
             return msg
             await asyncio.sleep(7)
