@@ -85,7 +85,7 @@ class Configuration(commands.Cog):
         If the user running the command owns the bot then this will disconnect the bot from nextcord.
         """
         await ctx.send(f"Hey {ctx.author.mention}, I am now logging out :wave:")
-        await self.bot.logout()
+        await self.bot.close()
 
 
 def setup(bot):
