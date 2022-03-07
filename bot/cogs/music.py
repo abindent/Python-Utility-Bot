@@ -153,7 +153,8 @@ class Music(commands.Cog):
 
         if vc.queue.is_empty:
             return await vc.stop()
-            return await songplayembed.edit(view=None)
+            edited_stuff = await songplayembed.edit(view=None)
+            return edited_stuff
 
         next_song = vc.queue.get()
 
