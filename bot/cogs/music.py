@@ -3,7 +3,7 @@ from nextcord.ext import commands
 
 
 class MessageDelete(nextcord.ui.View):
-    def __init__(self):
+    def __init__(self, ctx):
         super().__init__()
 
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary,emoji="<:dustbin:949602736633167882>")
