@@ -177,13 +177,6 @@ class Slash(commands.Cog):
     async def ping(self, interaction: nextcord.Interaction):
         await interaction.response.send_message(f"Pong! Latency is {self.bot.latency}ms", ephemeral=True)          
 
-           messages_deleted = 0          
-          for message_deleted in list(new_count.items()):
-                messages_deleted += message_deleted
-                new_message = f"Successfully cleared `{messages_deleted} messages`"        
-          await interaction.channel.purge(limit=amount)
-          await interaction.response.send_message(new_message, ephemeral=True)     
-
 
 
 
