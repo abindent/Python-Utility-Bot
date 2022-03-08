@@ -16,10 +16,10 @@ class MusicController(nextcord.ui.View):
         super().__init__()
                         
   
-    async def on_timeout(self, interaction: nextcord.Interaction):
+    async def on_timeout(self):
         for child in self.children:
             child.disabled = True
-        await interaction.message.edit(view=self)                                          
+        await self.message.edit(view=self)                                          
                                                            
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
     async def pause(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
