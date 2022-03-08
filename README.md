@@ -38,14 +38,18 @@ This project is under prgress so you have to wait for some time to get your want
 
 ## Dependencies 
 1) **NEXTCORD** 
+2) 
 ![PyPI](https://img.shields.io/pypi/v/nextcord?style=for-the-badge)
 
 2) **NEXTCORD-EXT-MENUS**
+3) 
 ![PyPI](https://img.shields.io/pypi/v/nextcord-ext-menus?style=for-the-badge)
 
 3) **NEXTCORD-EXT-IPC**
+4) 
 ![PyPI](https://img.shields.io/pypi/v/nextcord-ext-ipc?style=for-the-badge)
 
 4) **PYMONGO**
-https://img.shields.io/pypi/v/PyMongo?style=for-the-badge
+5) 
+![PyPI](https://img.shields.io/pypi/v/PyMongo?style=for-the-badge)
 
