@@ -53,3 +53,10 @@ This project is under prgress so you have to wait for some time to get your want
 
 ![PyPI](https://img.shields.io/pypi/v/PyMongo?style=for-the-badge)
 
+5) **MOTOR**
+
+![PyPI](https://img.shields.io/pypi/v/motor?style=for-the-badge)
+
+6) **HAMANFRIENDLY
+
+![PyPI](https://img.shields.io/pypi/v/humanfriendly?style=for-the-badge)
