@@ -14,12 +14,7 @@ class MessageDelete(nextcord.ui.View):
 class MusicController(nextcord.ui.View):
     def __init__(self):
         super().__init__()
-
-    async def interaction_check(self, interaction):
-        if self.ctx.author !=interaction.user:
-           await interaction.response.send_message("You haven't run the command.So you are not my author for this controller.", ephemeral=True)
-           return False
-        return True                                           
+                        
   
     async def on_timeout(self):
         for child in self.children:
