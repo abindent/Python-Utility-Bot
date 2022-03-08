@@ -16,10 +16,10 @@ class MusicController(nextcord.ui.View):
         super().__init__()
                         
   
-    async def on_timeout(self):
+    async def on_timeout(self, interaction: nextcord.Interaction):
         for child in self.children:
             child.disabled = True
-        await self.message.edit(view=self)                                          
+        await interaction.message.edit(view=self)                                          
                                                            
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
     async def pause(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
@@ -147,7 +147,7 @@ class Music(commands.Cog):
 
     @commands.Cog.listener()
     async def on_waveink_node_ready(self, node: wavelink.Node):
-        print(f"Node <{node.id}> is ready!")
+        print(f"Node <{node.identifier}> is ready!")
 
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, player: wavelink.Player, track: wavelink.Track, reason):
