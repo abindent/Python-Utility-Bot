@@ -163,7 +163,7 @@ class Music(commands.Cog):
 
         next_song = vc.queue.get()
 
-        view = MusicController()
+        view = MusicController(ctx)
         embed = nextcord.Embed(title="▶️ Playing Music..",
                                description=f"📢 | Now Playing `{next_song.title}` by {next_song.author} \n **LINK:** {next_song.uri}", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
@@ -205,7 +205,7 @@ class Music(commands.Cog):
 
         if vc.queue.is_empty and not vc.is_playing():
 
-            view = MusicController()
+            view = MusicController(ctx)
             embed = nextcord.Embed(title="▶️ Playing Music..",
                                 description=f"📢 | Now Playing `{search.title}` by {search.author} \n **LINK:** {search.uri}", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
