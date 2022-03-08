@@ -152,11 +152,8 @@ class Music(commands.Cog):
             return await vc.play(track)
 
         if vc.queue.is_empty:
-            async def epyt(self, vc: vc):
-              await vc.stop()
-              await vc.disconnect()
-              await songplayembed.edit("No more song to play", view=MessageDelete())
-            return epty()    
+            return await vc.stop() , await vc.disconnect() , await songplayembed.edit("No more song to play", view=MessageDelete())
+             
 
         next_song = vc.queue.get()
 
