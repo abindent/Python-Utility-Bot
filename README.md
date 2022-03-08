@@ -36,7 +36,7 @@ This project is under progress so you have to wait for some time to get your wan
 - [ ] To format code and enhance it.
 - [ ] To add new discord modal here.
 
-## Dependencies 
+## Main Dependencies 
 1) **NEXTCORD** 
  
 ![PyPI](https://img.shields.io/pypi/v/nextcord?style=for-the-badge)
