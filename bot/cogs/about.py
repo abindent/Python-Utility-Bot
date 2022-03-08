@@ -71,7 +71,7 @@ class AboutButtonMenu(menus.ButtonMenu):
         embed.set_footer(text="By OpenSourceGames Utility ▶️ About Me")
         await self.message.edit(content=f"Thanks {interaction.user.mention} for voting 👎",embed=embed)
 
-    @nextcord.ui.button(emoji="\N{WASTEBASKET}")
+    @nextcord.ui.button(emoji="<:dustbin:949602736633167882>")
     async def on_stop(self, button, interaction):
         await self.message.delete()
 
@@ -79,7 +79,7 @@ class DelBtn(nextcord.ui.View):
     def __init__(self):
         super().__init__()
 
-    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.red, emoji="\N{WASTEBASKET}")  
+    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.red, emoji="<:dustbin:949602736633167882>")  
     async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
         await interaction.message.delete()
  
