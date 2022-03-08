@@ -13,7 +13,7 @@ class MessageDelete(nextcord.ui.View):
 
 class MusicController(nextcord.ui.View):
     def __init__(self, ctx):
-        super().__init__(timeout=3600000)
+        super().__init__()
                         
   
                                      
