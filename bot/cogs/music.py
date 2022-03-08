@@ -17,7 +17,7 @@ class MusicController(nextcord.ui.View):
 
     async def interaction_check(self, interaction):
         if self.ctx.author !=interaction.user:
-           await interaction.response.send_message("You haven't run the command.So you are not my author for this controller.",ephemeral=True
+           await interaction.response.send_message("You haven't run the command.So you are not my author for this controller.", ephemeral=True)
            return False
         return True                                           
   
