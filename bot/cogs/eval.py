@@ -27,10 +27,12 @@ class Eval(commands.Cog):
            stdout = io.StringIO()
            with contextlib.redirect_stdout(stdout):
                  exec(code) 
+
            output =  stdout.getvalue()
-           
-           
-                
+    
+
+           res = stdout.getvalue()
+
            embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
            embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
            embed.add_field(name="Evaluated Code", value=output, inline=False)     
