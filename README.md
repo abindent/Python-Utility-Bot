@@ -39,28 +39,28 @@ This project is under progress so you have to wait for some time to get your wan
 ## Main Dependencies 
 1) **NEXTCORD** 
  
-![PyPI](https://img.shields.io/pypi/v/nextcord?style=for-the-badge)
+     ![PyPI](https://img.shields.io/pypi/v/nextcord?style=for-the-badge)
 
 2) **NEXTCORD-EXT-MENUS**
  
-![PyPI](https://img.shields.io/pypi/v/nextcord-ext-menus?style=for-the-badge)
+    ![PyPI](https://img.shields.io/pypi/v/nextcord-ext-menus?style=for-the-badge)
 
 3) **NEXTCORD-EXT-IPC**
-
-![PyPI](https://img.shields.io/pypi/v/nextcord-ext-ipc?style=for-the-badge)
+ 
+    ![PyPI](https://img.shields.io/pypi/v/nextcord-ext-ipc?style=for-the-badge)
 
 4) **PYMONGO**
 
-![PyPI](https://img.shields.io/pypi/v/PyMongo?style=for-the-badge)
+    ![PyPI](https://img.shields.io/pypi/v/PyMongo?style=for-the-badge)
 
 5) **MOTOR**
 
-![PyPI](https://img.shields.io/pypi/v/motor?style=for-the-badge)
+    ![PyPI](https://img.shields.io/pypi/v/motor?style=for-the-badge)
 
 6) **HAMANFRIENDLY**
 
-![PyPI](https://img.shields.io/pypi/v/humanfriendly?style=for-the-badge)
+    ![PyPI](https://img.shields.io/pypi/v/humanfriendly?style=for-the-badge)
 
 7) **WAVELINK**
 
-![PyPI](https://img.shields.io/pypi/v/wavelink?style=for-the-badge)
+    ![PyPI](https://img.shields.io/pypi/v/wavelink?style=for-the-badge)

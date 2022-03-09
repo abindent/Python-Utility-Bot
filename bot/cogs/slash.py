@@ -178,7 +178,6 @@ class Slash(commands.Cog):
     async def ping(self, interaction: nextcord.Interaction):
         await interaction.response.send_message(f"Pong! Latency is {self.bot.latency}ms", ephemeral=True)          
 
-
     
 def setup(bot):
     bot.add_cog(Slash(bot))          
