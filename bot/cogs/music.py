@@ -25,14 +25,14 @@ class MusicController(nextcord.ui.View):
             embed = nextcord.Embed(
                 title="⏸️ Pause Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                            url=interaction.client.user.display_avatar)
+                            icon_url=interaction.client.user.display_avatar)
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         elif not getattr(interaction.user.voice, "channel", None):
             embed = nextcord.Embed(
                 title="⏸️ Pause Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                            url=interaction.client.user.display_avatar)
+                            icon_url=interaction.client.user.display_avatar)
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
@@ -41,7 +41,7 @@ class MusicController(nextcord.ui.View):
         embed = nextcord.Embed(title="⏸️ Pausing Music..",
                             description=f"📢 | ⏸️ Paused the player.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                        url=interaction.client.user.display_avatar)
+                        icon_url=interaction.client.user.display_avatar)
         await vc.pause()
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
@@ -51,14 +51,14 @@ class MusicController(nextcord.ui.View):
             embed = nextcord.Embed(
                 title="⏯️ Resume Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=interaction.client.user.display_avatar)
+                             icon_url=interaction.client.user.display_avatar)
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         elif not getattr(interaction.user.voice, "channel", None):
             embed = nextcord.Embed(
                 title="⏯️ Resume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=interaction.client.user.display_avatar)
+                             icon_url=interaction.client.user.display_avatar)
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
@@ -67,7 +67,7 @@ class MusicController(nextcord.ui.View):
         embed = nextcord.Embed(title="⏯️ Resuming Music..",
                                description=f"📢 |⏯️ Resumed the player.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=interaction.client.user.display_avatar)
+                         icon_url=interaction.client.user.display_avatar)
         await vc.resume()
         await interaction.response.send_message(embed=embed, ephemeral=True)
     
@@ -77,14 +77,14 @@ class MusicController(nextcord.ui.View):
             embed = nextcord.Embed(
                 title="<:loop:950322712805507104> Loop Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                                url=interaction.client.user.display_avatar)
+                                icon_url=interaction.client.user.display_avatar)
             return await interaction.response.send_message(embed=embed, ephemeral=True)
 
         elif not getattr(interaction.user.voice, "channel", None):
             embed = nextcord.Embed(
                 title="<:loop:950322712805507104> Loop Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                                url=interaction.client.user.display_avatar)
+                                icon_url=interaction.client.user.display_avatar)
             return await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
@@ -107,14 +107,14 @@ class MusicController(nextcord.ui.View):
             embed = nextcord.Embed(
                 title="⏸ Stop Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=interaction.client.user.display_avatar)
+                             icon_url=interaction.client.user.display_avatar)
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         elif not getattr(interaction.user.voice, "channel", None):
             embed = nextcord.Embed(
                 title="⏸ Stop Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=interaction.client.user.display_avatar)
+                             icon_url=interaction.client.user.display_avatar)
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
@@ -155,7 +155,7 @@ class Music(commands.Cog):
             return await vc.play(track)
 
         if vc.queue.is_empty:
-            return await vc.stop() , await songplayembed.edit(view=MessageDelete())
+            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
              
 
         next_song = vc.queue.get()
@@ -164,7 +164,7 @@ class Music(commands.Cog):
         embed = nextcord.Embed(title="▶️ Playing Music..",
                                description=f"📢 | Now Playing `{next_song.title}` by {next_song.author} \n **LINK:** {next_song.uri}", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=self.bot.user.display_avatar)
+                         icon_url=self.bot.user.display_avatar)
         embed.add_field(
             name="Duration", value=humanfriendly.format_timespan(next_song.duration))
         embed.set_image(url=next_song.thumbnail)
@@ -181,14 +181,14 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="▶️ Play Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             return await ctx.send(embed=embed)
 
         elif not ctx.author.voice.channel == ctx.me.voice.channel:
             embed = nextcord.Embed(
                 title="▶️ Play Music", description="📢 | Joining your voice channel...", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             msg = await ctx.send(embed=embed)
             vc: wavelink.Player = ctx.voice_client
             await vc.move_to(ctx.author.voice.channel)
@@ -206,7 +206,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(title="▶️ Playing Music..",
                                 description=f"📢 | Now Playing `{search.title}` by {search.author} \n **LINK:** {search.uri}", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                            url=self.bot.user.display_avatar)
+                            icon_url=self.bot.user.display_avatar)
             embed.add_field(name="Duration",
                             value=humanfriendly.format_timespan(search.duration))
             embed.set_image(url=search.thumbnail)
@@ -219,7 +219,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(title="▶️ Added Music to the queue.",
                                 description=f"📢 | Now Playing `{search.title}` by {search.author} \n **LINK:** {search.uri}", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                            url=self.bot.user.display_avatar)
+                            icon_url=self.bot.user.display_avatar)
             embed.add_field(name="Duration",
                             value=humanfriendly.format_timespan(search.duration))
             msg = await ctx.send(embed=embed)
@@ -235,7 +235,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏸️ Pause Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -245,7 +245,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏸️ Pause Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -257,7 +257,7 @@ class Music(commands.Cog):
         embed = nextcord.Embed(title="⏸️ Pausing Music..",
                                description=f"📢 | ⏸️ Paused the player.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=self.bot.user.display_avatar)
+                         icon_url=self.bot.user.display_avatar)
         await vc.pause()
         message = await ctx.send(embed=embed, view=None)
         await asyncio.sleep(5)
@@ -269,7 +269,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏯️ Resume Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -279,7 +279,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏯️ Resume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -291,7 +291,7 @@ class Music(commands.Cog):
         embed = nextcord.Embed(title="⏸️ Resuming Music..",
                                description=f"📢 | ⏯️ Resumed the player.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=self.bot.user.display_avatar)
+                         icon_url=self.bot.user.display_avatar)
         await vc.resume()
         message = await ctx.send(embed=embed)
         await asyncio.sleep(5)
@@ -303,7 +303,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="<:loop:950322712805507104> Loop Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -313,7 +313,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="<:loop:950322712805507104> Loop Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -339,7 +339,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏯️ Resume Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -349,7 +349,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏯️ Resume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -362,7 +362,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="➕ Queue Music..", description=f"📢 | The queue is empty.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed, view=MessageDelete())
             await asyncio.sleep(7)
             await message.delete()    
@@ -383,7 +383,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏸ Stop Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -392,7 +392,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="⏸ Stop Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -404,19 +404,19 @@ class Music(commands.Cog):
         embed = nextcord.Embed(title="⏸ Stopping Music..",
                                description=f"📢 | ⏸️ Stoped the player.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=self.bot.user.display_avatar)
+                         icon_url=self.bot.user.display_avatar)
         await vc.stop()
         message = await ctx.send(embed=embed)
         await asyncio.sleep(5)
         await message.delete()
 
-    @commands.command(name="vcdisconnect", description="🔌 Disconnects from the vc.")
-    async def disconnect(self, ctx: commands.Context):
+    @commands.command(name="disconnect", aliases=["vcdisconnect"], description="🔌 Disconnects from the vc.")
+    async def vcdisconnect(self, ctx: commands.Context):
         if not ctx.voice_client:
             embed = nextcord.Embed(
                 title="🔌 Disconnect Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -426,7 +426,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="🔌 Disconnect Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
             return message
             await asyncio.sleep(5)
@@ -438,7 +438,7 @@ class Music(commands.Cog):
         embed = nextcord.Embed(title="🔌 Disconnecting Music..",
                                description=f"📢 |🔌 Disconnected Successfully.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=self.bot.user.display_avatar)
+                         icon_url=self.bot.user.display_avatar)
         await vc.disconnect()
         message = await ctx.send(embed=embed)
         await asyncio.sleep(5)
@@ -453,7 +453,7 @@ class Music(commands.Cog):
             embed = nextcord.Embed(
                 title="🔌 Connect Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
-                             url=self.bot.user.display_avatar)
+                             icon_url=self.bot.user.display_avatar)
             return await ctx.send(embed=embed)
 
         else:
@@ -462,7 +462,7 @@ class Music(commands.Cog):
         embed = nextcord.Embed(title="🔌 Connecting Music..",
                                description=f"📢 |🔌 Connected Successfully.", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
-                         url=self.bot.user.display_avatar)
+                         icon_url=self.bot.user.display_avatar)
         await vc.connect(timeout=14, reconnect=True)
         message = await ctx.send(embed=embed)
         await asyncio.sleep(5)
@@ -492,7 +492,7 @@ class Music(commands.Cog):
 
                     view = MessageDelete()
                     embed = nextcord.Embed(title=data["title"], description=data["lyrics"], color=nextcord.Color.blue(), timestamp=datetime.datetime.utcnow()) 
-                    embed.set_author(name=data["author"], url=self.bot.user.display_avatar)
+                    embed.set_author(name=data["author"], icon_url=self.bot.user.display_avatar)
                     embed.set_thumbnail(url=data["thumbnail"]["genius"])  
                     await ctx.send(embed=embed, view=view) 
 

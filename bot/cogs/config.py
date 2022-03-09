@@ -76,7 +76,7 @@ class Configuration(commands.Cog):
 
     @commands.command(
         name="logout",
-        aliases=["disconnect", "close", "stopbot"],
+        aliases=["close", "stopbot"],
         description="Log the bot out of nextcord!",
     )
     @commands.is_owner()
