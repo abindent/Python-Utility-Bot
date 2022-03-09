@@ -17,10 +17,7 @@ class MusicController(nextcord.ui.View):
         self.ctx = ctx
         
   
-    async def on_timeout(self):
-        for child in self.children:
-             child.disabled = True
-        await self.ctx.message.edit(view=self)        
+    
                 
                                                            
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
@@ -132,6 +129,12 @@ class MusicController(nextcord.ui.View):
         await vc.disconnect()
 
 
+    async def on_timeout(self):
+        for child in self.children:
+             child.disabled = True
+        await self.ctx.message.edit(view=self)           
+        
+        
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -149,7 +152,7 @@ class Music(commands.Cog):
 
     @commands.Cog.listener()
     async def on_waveink_node_ready(self, node: wavelink.Node):
-        print(f"Node <{node.identifier}> is ready!")
+        print(f"Node <{node.id}> is ready!")
 
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, player: wavelink.Player, track: wavelink.Track, reason):
@@ -159,8 +162,8 @@ class Music(commands.Cog):
         if vc.loop:
             return await vc.play(track)
 
-        if vc.queue.is_empty:
-            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
+        if vc.queue.is_empty and not vc.is_playing():
+            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete()) ;
              
 
         next_song = vc.queue.get()
