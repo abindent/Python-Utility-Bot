@@ -155,7 +155,7 @@ class Music(commands.Cog):
             return await vc.play(track)
 
         if vc.queue.is_empty:
-            return await vc.stop() , await songplayembed.edit(view=MessageDelete())
+            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
              
 
         next_song = vc.queue.get()
