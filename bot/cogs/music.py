@@ -410,8 +410,8 @@ class Music(commands.Cog):
         await asyncio.sleep(5)
         await message.delete()
 
-    @commands.command(name="vcdisconnect", description="🔌 Disconnects from the vc.")
-    async def disconnect(self, ctx: commands.Context):
+    @commands.command(name="disconnect", aliases=["vcdisconnect"], description="🔌 Disconnects from the vc.")
+    async def vcdisconnect(self, ctx: commands.Context):
         if not ctx.voice_client:
             embed = nextcord.Embed(
                 title="🔌 Disconnect Music..", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
