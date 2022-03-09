@@ -129,10 +129,7 @@ class MusicController(nextcord.ui.View):
         await vc.disconnect()
 
 
-    async def on_timeout(self):
-        for child in self.children:
-             child.disabled = True
-        await songplayembed.edit(view=self)           
+         
         
         
 class Music(commands.Cog):
@@ -162,8 +159,8 @@ class Music(commands.Cog):
         if vc.loop:
             return await vc.play(track)
 
-        if vc.queue.is_empty and not vc.is_playing():
-            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete()) ;
+        if vc.queue.is_empty:
+            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
              
 
         next_song = vc.queue.get()
