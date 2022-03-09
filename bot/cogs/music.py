@@ -15,12 +15,7 @@ class MusicController(nextcord.ui.View):
     def __init__(self, ctx):
         super().__init__() # timeout=86400000
         self.ctx = ctx
-     
-    
-    async def interaction_check(self, interaction: nextcord.Interaction):
-        if interaction.user != self.ctx.author:
-            await interaction.response.send_message(":angry: Hey this song haven't played by you.", ephemeral=True)
-    
+        
   
     async def on_timout(self):
         for child in self.children:
