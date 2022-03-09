@@ -13,7 +13,7 @@ class Suggestion(commands.Cog):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----") 
 
 
-    @commands.command(name="suggest", description="You member suggest us something.")
+    @commands.command(name="suggest", description="You member suggest us something.", usage="<suggestion>")
     async def suggest(self, ctx, *, suggestion):
         await ctx.channel.purge(limit=1)
         channel = nextcord.utils.get(ctx.guild.text_channels, name='📨｜suggestions')
@@ -33,7 +33,7 @@ class Suggestion(commands.Cog):
         await suggesting.add_reaction("❌")
 
     """ Making an approve command for suggesion command"""
-    @commands.command(name="approve", description="Approves a suggestion.")
+    @commands.command(name="approve", description="Approves a suggestion.", usage="<suggestion id>")
     @commands.has_role('✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
     async def approve(self, ctx, id: int = None):
         await ctx.channel.purge(limit=1)
@@ -64,7 +64,7 @@ class Suggestion(commands.Cog):
         await achannel.send(embed=embed)
 
     """ Making an deny command for suggesion command"""
-    @commands.command(name="deny", description="Declines a suggestion.")
+    @commands.command(name="deny", description="Declines a suggestion.", usage="<suggestion id>")
     @commands.has_role('✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
     async def deny(self, ctx, id: int = None):
         await ctx.channel.purge(limit=1)

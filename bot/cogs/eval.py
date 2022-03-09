@@ -20,7 +20,7 @@ class Eval(commands.Cog):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----")  
         
         
-    @commands.command(name="excecute", description="Evaluates the given python code", aliases=['eval', 'exec', 'evaluate'])
+    @commands.command(name="excecute", description="Evaluates the given python code", aliases=['eval', 'exec', 'evaluate'], usage="<code> (without **```** format)")
     @commands.is_owner()
     async def excecute(self, ctx: commands.Context, *, code):
            view = DelBtn()
