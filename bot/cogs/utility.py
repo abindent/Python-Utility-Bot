@@ -103,7 +103,7 @@ class Utility(commands.Cog):
                     text=f"Command requested by {ctx.author.name}")
                 await ctx.send(embed=unbanembed)
                 return
-    @commands.command(name="kick", aliases=["modkickcmd"], description="Kicks the mentioned user.", , usage="<member> <reason (optional)>")
+    @commands.command(name="kick", aliases=["modkickcmd"], description="Kicks the mentioned user.", usage="<member> <reason (optional)>")
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: nextcord.Member, *, reason=None):
         kickembed = nextcord.Embed(
@@ -115,7 +115,7 @@ class Utility(commands.Cog):
         await member.kick(reason=reason)
         await ctx.send(embed=kickembed)
 
-    @commands.command(name="mute", aliases=["modmutecmd"], description="Mutes the mentioned user.", , usage="<member> <time> <reason (optional)>")
+    @commands.command(name="mute", aliases=["modmutecmd"], description="Mutes the mentioned user.", usage="<member> <time> <reason (optional)>")
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, member: nextcord.Member, time, *, reason):
         muteembed = nextcord.Embed(
