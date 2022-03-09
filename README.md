@@ -39,7 +39,7 @@ This project is under progress so you have to wait for some time to get your wan
 ## Main Dependencies 
 1) **NEXTCORD** 
  
-![PyPI](https://img.shields.io/pypi/v/nextcord?style=for-the-badge)
+     ![PyPI](https://img.shields.io/pypi/v/nextcord?style=for-the-badge)
 
 2) **NEXTCORD-EXT-MENUS**
  
