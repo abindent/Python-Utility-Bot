@@ -13,12 +13,12 @@ class MessageDelete(nextcord.ui.View):
 
 class MusicController(nextcord.ui.View):
     def __init__(self, ctx):
-        super().__init__(timeout=86400000)
+        super().__init__() # timeout=86400000
         self.ctx = ctx
      
     
     async def interaction_check(self, interaction: nextcord.Interaction):
-        if self.ctx.author is not interaction.user:
+        if interaction.user is not self.ctx.author:
             await interaction.response.send_message(":angry: Hey this song haven't played by you.", ephemeral=True)
     
   
