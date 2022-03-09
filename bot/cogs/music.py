@@ -132,7 +132,7 @@ class MusicController(nextcord.ui.View):
     async def on_timeout(self):
         for child in self.children:
              child.disabled = True
-        await self.ctx.message.edit(view=self)           
+        await songplayembed.edit(view=self)           
         
         
 class Music(commands.Cog):
