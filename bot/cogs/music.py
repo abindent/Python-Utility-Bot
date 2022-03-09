@@ -16,9 +16,7 @@ class MusicController(nextcord.ui.View):
         super().__init__()
         self.ctx = ctx
         
-  
-    
-                
+           
                                                            
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
     async def pause(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
@@ -129,7 +127,11 @@ class MusicController(nextcord.ui.View):
         await vc.disconnect()
 
 
-         
+    async def on_timeout(self):
+      for child in self.children:
+          child.disable = True
+      await songplayembed.edit(view=self)      
+            
         
         
 class Music(commands.Cog):
