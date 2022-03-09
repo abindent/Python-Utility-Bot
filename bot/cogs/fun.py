@@ -46,7 +46,7 @@ class Fun(commands.Cog):
     async def on_ready(self):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----") 
     
-    @commands.command()
+    @commands.command(name="echo", description=" A simple command that repeats the users input back to them.", usage="<message>")
     async def echo(self, ctx, *, message=None):
         """
         A simple command that repeats the users input back to them.
@@ -55,7 +55,7 @@ class Fun(commands.Cog):
         await ctx.message.delete()
         await ctx.send(message)
         
-    @commands.command(name="8ball", aliases=["eightball", "8b"], description="Let the 8 Ball Predict!\n")
+    @commands.command(name="8ball", aliases=["eightball", "8b"], description="Let the 8 Ball Predict!\n", usage="<question>")
     async def eightball(self, ctx, *, question):
         responses = [
             'It is certain.',
@@ -117,7 +117,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=memeEmbed, view=view)
    
 
-    @commands.command(name="emoji", aliases=["eadd"], description="Adds an external img (through the link of the img provided) as gif in your server.")
+    @commands.command(name="emoji", aliases=["eadd"], description="Adds an external img (through the link of the img provided) as gif in your server." usage="<url of the emoji or emote> <name you want to give>")
     async def emoji(self, ctx, url: str, *, name):
         guild = ctx.guild
         async with aiohttp.ClientSession() as ses:
@@ -135,7 +135,7 @@ class Fun(commands.Cog):
                     await ctx.send("📁 Your file size is too big.")
 
 
-    @commands.command(name="emojify", description="Emojify your text here.") 
+    @commands.command(name="emojify", description="Emojify your text here.", usage="<text>") 
     @commands.cooldown(2, 30, commands.BucketType.user)
     async def emojify(self, ctx, *, text):
         emojis = []
