@@ -13,10 +13,15 @@ class MessageDelete(nextcord.ui.View):
 
 class MusicController(nextcord.ui.View):
     def __init__(self, ctx):
-        super().__init__()
-                        
+        super().__init__() # timeout=86400000
+        self.ctx = ctx
+        
   
-                                     
+    async def on_timout(self):
+        for child in self.children:
+             child.disabled = True
+        await self.ctx.message.edit(view=self)        
+                
                                                            
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
     async def pause(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
