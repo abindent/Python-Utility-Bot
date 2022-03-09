@@ -16,13 +16,8 @@ class MusicController(nextcord.ui.View):
         super().__init__()
         self.ctx = ctx
         
-  
-    async def on_timeout(self):
-        for child in self.children:
-             child.disabled = True
-        await self.ctx.message.edit(view=self)        
-                
-                                                           
+
+                                       
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
     async def pause(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
        
@@ -132,6 +127,13 @@ class MusicController(nextcord.ui.View):
         await vc.disconnect()
 
 
+    async def on_timeout(self):
+      for child in self.children:
+          child.disable = True
+      await songplayembed.edit(view=self)      
+            
+        
+        
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -149,7 +151,7 @@ class Music(commands.Cog):
 
     @commands.Cog.listener()
     async def on_waveink_node_ready(self, node: wavelink.Node):
-        print(f"Node <{node.identifier}> is ready!")
+        print(f"Node <{node.id}> is ready!")
 
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, player: wavelink.Player, track: wavelink.Track, reason):
@@ -176,6 +178,7 @@ class Music(commands.Cog):
         await vc.stop()
         await vc.play(next_song)
         await songplayembed.edit(embed=embed, view=view)
+
 
     @commands.command(name="play", description="▶️ Plays a song for you that you want.", usage="<song name>")
     async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
