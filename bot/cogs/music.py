@@ -18,7 +18,7 @@ class MusicController(nextcord.ui.View):
      
     
     async def interaction_check(self, interaction: nextcord.Interaction):
-        if interaction.user is not self.ctx.author:
+        if interaction.user != self.ctx.author:
             await interaction.response.send_message(":angry: Hey this song haven't played by you.", ephemeral=True)
     
   
