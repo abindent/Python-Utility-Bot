@@ -91,11 +91,11 @@ class About(commands.Cog):
     async def on_ready(self):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----")  
 
-    @commands.command(name="about", description="About me.")  
+    @commands.command(name="about", description="About me.", usage="<prefix>about will send you an embed with some info about the bot.")  
     async def button_menu_example(self, ctx):
         await AboutButtonMenu().start(ctx)    
 
-    @commands.command(name="stats", description="Shows the stats of the bot.",aliases=["botstats"])
+    @commands.command(name="stats", description="Shows the stats of the bot.",aliases=["botstats"], usage="<prefix>about will send you an embed with the stats of the bot.")
     async def stats(self, ctx):
         """
         A usefull command that displays bot statistics.
