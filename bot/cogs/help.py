@@ -134,9 +134,10 @@ class NewHelpCommand(commands.MinimalHelpCommand):
     # Use the same function as group help for command help
     async def send_command_help(self, command: commands.command):
         """implements group help page and command help page"""
+        aliase = str(",").join(aliases for aliases in command.aliases)
         embed = nextcord.Embed(title=f"{command.qualified_name}", description=f"{command.description}", colour=self.COLOUR)
         embed.set_author(name="OpenSourceGames Utility", icon_url="https://cdn.discordapp.com/avatars/932265924541681727/b5b498a84d5f8783d732b7b63aa4fe69.png?size=128")
-        embed.add_field(name="Aliases", value=" ".join(aliases for aliases in command.aliases), inline=False)
+        embed.add_field(name="Aliases", value=f"`{aliase}`", inline=False)
         embed.add_field(name="Format of the command", value=f"`{self.context.clean_prefix}{command.qualified_name} {command.signature}`")
         embed.set_footer(text=f"OpenSourceGames Utility ▶️ {command.qualified_name}", icon_url="https://cdn.discordapp.com/avatars/932265924541681727/b5b498a84d5f8783d732b7b63aa4fe69.png?size=128") 
 
