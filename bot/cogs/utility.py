@@ -14,7 +14,7 @@ class Utility(commands.Cog):
     async def on_ready(self):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----")  
 
-    @commands.command(name="clear",description="Clears messages",pass_context=True)
+    @commands.command(name="clear",description="Clears messages",pass_context=True, usage="<amount of message to be purged>")
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount: int):        
       if amount > 1000 :
@@ -50,7 +50,7 @@ class Utility(commands.Cog):
 
           await message.delete()
 
-    @commands.command(name="toggle", aliases=["togglecmd", "editcmd"], description="Enables a Disabled Command and Disables an Enabled Command.")
+    @commands.command(name="toggle", aliases=["togglecmd", "editcmd"], description="Enables a Disabled Command and Disables an Enabled Command.", usage="<command name>")
     @commands.has_guild_permissions(administrator=True)
     async def toggle(self, ctx, *, command):
         command = self.bot.get_command(command)
@@ -71,7 +71,7 @@ class Utility(commands.Cog):
             await ctx.send(embed=togglembed)
 
     
-    @commands.command(name="ban", aliases=["modbancmd"], description="Bans the mentioned user.")
+    @commands.command(name="ban", aliases=["modbancmd"], description="Bans the mentioned user.", usage="<member> <reason (optional)>")
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: nextcord.Member, *, reason=None):
         banembed = nextcord.Embed(
@@ -83,7 +83,7 @@ class Utility(commands.Cog):
         await member.ban(reason=reason)
         await ctx.send(embed=banembed)
 
-    @commands.command(name="unban", aliases=["modunban", "removeban"], description="Unbans the mentioned user.")
+    @commands.command(name="unban", aliases=["modunban", "removeban"], description="Unbans the mentioned user.", usage="<member discriminator (eg: Abindent#9038)> <reason (optional)>")
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, *, member):
         
@@ -103,7 +103,7 @@ class Utility(commands.Cog):
                     text=f"Command requested by {ctx.author.name}")
                 await ctx.send(embed=unbanembed)
                 return
-    @commands.command(name="kick", aliases=["modkickcmd"], description="Kicks the mentioned user.")
+    @commands.command(name="kick", aliases=["modkickcmd"], description="Kicks the mentioned user.", , usage="<member> <reason (optional)>")
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: nextcord.Member, *, reason=None):
         kickembed = nextcord.Embed(
@@ -115,7 +115,7 @@ class Utility(commands.Cog):
         await member.kick(reason=reason)
         await ctx.send(embed=kickembed)
 
-    @commands.command(name="mute", aliases=["modmutecmd"], description="Mutes the mentioned user.")
+    @commands.command(name="mute", aliases=["modmutecmd"], description="Mutes the mentioned user.", , usage="<member> <time> <reason (optional)>")
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, member: nextcord.Member, time, *, reason):
         muteembed = nextcord.Embed(
@@ -128,7 +128,7 @@ class Utility(commands.Cog):
         await member.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=time), reason=reason)
         await ctx.send(embed=muteembed)        
 
-    @commands.command(name="unmute", aliases=["modunmutecmd"], description="Unmutes the mentioned user.")
+    @commands.command(name="unmute", aliases=["modunmutecmd"], description="Unmutes the mentioned user.", usage="<member> <reason (optional)>")
     @commands.has_permissions(kick_members=True)
     async def unmute(self, ctx, member: nextcord.Member, *, reason):
         unmuteembed = nextcord.Embed(
