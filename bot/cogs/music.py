@@ -173,7 +173,7 @@ class Music(commands.Cog):
         await songplayembed.edit(embed=embed, view=view)
 
     @commands.command(name="play", description="▶️ Plays a song for you that you want.")
-    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
+    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack, usage="<song name>"):
         if not ctx.voice_client:
             vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
 
@@ -470,7 +470,7 @@ class Music(commands.Cog):
 
 
 
-    @commands.command(name="lyrics", description="Sends the lyrics of the song.")
+    @commands.command(name="lyrics", description="Sends the lyrics of the song.", usage="<song name>")
     async def lyrics(self, ctx,*, name: str):
         url = f"https://some-random-api.ml/lyrics?title="
         player = wavelink.Player 
