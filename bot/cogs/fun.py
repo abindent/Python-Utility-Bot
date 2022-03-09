@@ -117,7 +117,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=memeEmbed, view=view)
    
 
-    @commands.command(name="emoji", aliases=["eadd"], description="Adds an external img (through the link of the img provided) as gif in your server." usage="<url of the emoji or emote> <name you want to give>")
+    @commands.command(name="emoji", aliases=["eadd"], description="Adds an external img (through the link of the img provided) as gif in your server.", usage="<url of the emoji or emote> <name you want to give>")
     async def emoji(self, ctx, url: str, *, name):
         guild = ctx.guild
         async with aiohttp.ClientSession() as ses:
