@@ -177,8 +177,8 @@ class Music(commands.Cog):
         await vc.play(next_song)
         await songplayembed.edit(embed=embed, view=view)
 
-    @commands.command(name="play", description="▶️ Plays a song for you that you want.")
-    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack, usage="<song name>"):
+    @commands.command(name="play", description="▶️ Plays a song for you that you want." usage="<song name>")
+    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
         if not ctx.voice_client:
             vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
 
