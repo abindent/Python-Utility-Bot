@@ -36,7 +36,11 @@ class HelpPageSource(menus.ListPageSource):
 
 class HelpButtonMenuPages(menus.ButtonMenuPages):
     """Subclass of ButtonMenuPages to add an interaction_check"""
-
+    FIRST_PAGE = "⏮️"  
+    LAST_PAGE = "⏭️"
+    PREVIOUS_PAGE = "⬅️"
+    NEXT_PAGE = "➡️"
+    STOP = "<:dustbin:949602736633167882>"
     def __init__(self, ctx: commands.Context, **kwargs):
         super().__init__(**kwargs)
         self._ctx = ctx
