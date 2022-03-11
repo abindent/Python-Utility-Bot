@@ -13,7 +13,7 @@ class CogSetup(commands.Cog):
     # Load Command
      @commands.command(name="load", description="Load the cogs.", usage="<cog_name or extension_name>")
      async def load(self, ctx, extensions):
-        self.bot.reload_extension(f"cogs.{extensions}") 
+        self.bot.load_extension(f"cogs.{extensions}") 
         await ctx.send("Loaded Cogs")
 
     # Unload Comamnd
