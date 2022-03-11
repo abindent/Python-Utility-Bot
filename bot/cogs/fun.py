@@ -170,7 +170,7 @@ class Fun(commands.Cog):
             else:
                 emojis.append(beans)
 
-        await ctx.send(''.join(emojis))
+        await ctx.send(' '.join(emojis))
 
     
 def setup(bot):
