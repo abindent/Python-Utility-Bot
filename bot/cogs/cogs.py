@@ -19,7 +19,7 @@ class CogSetup(commands.Cog):
     # Unload Comamnd
      @commands.command(name="unload", description="Unload the cogs.", usage="<cog_name or extension_name>")
      async def unload(self, ctx, extensions):
-        self.bot.reload_extension(f"cogs.{extensions}")
+        self.bot.unload_extension(f"cogs.{extensions}")
         await ctx.send("Unloaded Cogs")
 
     # Reload Command
