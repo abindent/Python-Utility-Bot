@@ -38,16 +38,7 @@ class Utility(commands.Cog):
           new_message = '\n'.join(new_string)  
           await ctx.channel.purge(limit=amount+1)
           message = await ctx.send(f"Successfully cleared `{deleted_messages} messages`\n\n{new_message}")
-          await asyncio.sleep(3)
-
-          messages_deleted = 0          
-          for message_deleted in list(new_count.items()):
-                messages_deleted += message_deleted
-                new_message = f"Successfully cleared `{messages_deleted} messages`"        
-          await ctx.channel.purge(limit=amount+1)
-          message = await ctx.send(new_message)
           await asyncio.sleep(5)
-
           await message.delete()
 
     @commands.command(name="toggle", aliases=["togglecmd", "editcmd"], description="Enables a Disabled Command and Disables an Enabled Command.", usage="<command name>")
