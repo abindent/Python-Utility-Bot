@@ -25,7 +25,7 @@ class Games(commands.Cog):
         """Starts a tic-tac-toe game with yourself."""
         await ctx.send('Tic Tac Toe: X goes first', view=TicTacToe())
 
-    @nextcord.slash_command(name="wordle", description="Play wordle with me.")
+    @nextcord.slash_command(name="playwordle", description="Play wordle with me.")
     async def wordle(self, interaction: nextcord.Interaction):
        pass
 

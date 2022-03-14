@@ -57,7 +57,7 @@ This project is under progress so you have to wait for some time to get your wan
 
     ![PyPI](https://img.shields.io/pypi/v/motor?style=for-the-badge)
 
-6) **HAMANFRIENDLY**
+6) **HUMANFRIENDLY**
 
     ![PyPI](https://img.shields.io/pypi/v/humanfriendly?style=for-the-badge)
 

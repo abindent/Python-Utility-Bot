@@ -1,7 +1,15 @@
 from typing import List, Tuple
-
 import nextcord
 from nextcord.ext import commands, menus
+
+
+class DelBtn(nextcord.ui.View):
+    def __init__(self):
+        super().__init__()
+
+    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.secondary, emoji="<:dustbin:949602736633167882>")  
+    async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+        await interaction.message.delete()
 
 
 class HelpPageSource(menus.ListPageSource):
@@ -53,12 +61,14 @@ class HelpButtonMenuPages(menus.ButtonMenuPages):
 class NewHelpCommand(commands.MinimalHelpCommand):
     """Custom help command override using embeds and button pagination"""
 
+
     # embed colour
     COLOUR = nextcord.Colour.blurple()
 
     def get_command_signature(self, command: commands.core.Command):
         """Retrieves the signature portion of the help page."""
         return f"{self.context.clean_prefix}{command.qualified_name} {command.signature}"
+
 
     async def send_bot_help(self, mapping: dict):
         """implements bot command help page"""
@@ -114,7 +124,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         embed.set_footer(
             text=f"Use {self.context.clean_prefix}help [command] for more info on a command."
         )
-        await self.get_destination().send(embed=embed)
+        await self.get_destination().send(embed=embed, view=DelBtn())
 
     async def send_group_help(self, group: commands.Group):
         """implements group help help page"""
@@ -133,7 +143,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
                     inline=False,
                 )
 
-        await self.get_destination().send(embed=embed)
+        await self.get_destination().send(embed=embed, view=DelBtn())
 
     # Use the same function as group help for command help
     async def send_command_help(self, command: commands.command):
@@ -141,12 +151,17 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         aliase = str(", ").join(aliases for aliases in command.aliases)
         embed = nextcord.Embed(title=f"{command.qualified_name}", description=f"{command.description}", colour=self.COLOUR)
         embed.set_author(name="OpenSourceGames Utility", icon_url="https://cdn.discordapp.com/avatars/932265924541681727/b5b498a84d5f8783d732b7b63aa4fe69.png?size=128")
-        embed.add_field(name="Aliases", value=f"`{aliase}`", inline=False)
+        
+        for aliases in command.aliases:
+            if aliases is not None:
+               embed.add_field(name="Aliases", value=f"`{aliase}`", inline=False)
+               
+
         embed.add_field(name="Format of the command", value=f"`{self.get_command_signature(command)}`", inline=False)
 
         embed.set_footer(text=f"OpenSourceGames Utility ▶️ {command.qualified_name}", icon_url="https://cdn.discordapp.com/avatars/932265924541681727/b5b498a84d5f8783d732b7b63aa4fe69.png?size=128") 
 
-        await self.get_destination().send(embed=embed)    
+        await self.get_destination().send(embed=embed, view=DelBtn())    
 
 
 
