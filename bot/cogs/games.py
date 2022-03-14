@@ -16,9 +16,12 @@ class Games(commands.Cog):
         When a message is sent, process it as a guess.
         Then, process any commands in the message if it's not a guess.
         """
-        processed_as_guess = await process_message_as_guess(self.bot, message)
-        if not processed_as_guess:
-            await self.bot.process_commands(message)
+        ref = message.reference
+        if not ref or not isinstance(ref.resolved, nextcord.Message):
+                return False
+
+        else:        
+           processed_as_guess = await process_message_as_guess(self.bot, message)
 
     @commands.command(name="tictactoe", description="Playing TicTacToe.....")
     async def tic(self, ctx: commands.Context):
