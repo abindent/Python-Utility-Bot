@@ -40,6 +40,7 @@ This project is under progress so you have to wait for some time to get your wan
 ## 📝 Task list
 - [x] To add custom prefix.
 - [x] To add eval command.
+- [x] To add games and activity commands in bot. 
 - [ ] To format code and enhance it.
 - [ ] To add new discord modal here.
 
