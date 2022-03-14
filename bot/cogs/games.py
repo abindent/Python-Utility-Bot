@@ -1,124 +1,59 @@
-import nextcord, random
+import nextcord
 from nextcord.ext import commands
-from typing import List
-
-class TicTacToeButton(nextcord.ui.Button):
-    def __init__(self, x: int, y: int):
-        super().__init__(style=nextcord.ButtonStyle.secondary, label='\u200b', row=y)
-        self.x = x
-        self.y = y
-
-    async def callback(self, interaction: nextcord.Interaction):
-       assert self.view is not None
-       view: TicTacToe = self.view
-       state = view.board[self.y][self.x]
-       if state in (view.X, view.O):
-           return   
-       if view.current_player == view.X:
-            self.style = nextcord.ButtonStyle.danger
-            self.label = 'X'
-            self.disabled = True
-            view.board[self.y][self.x] = view.X
-            view.current_player = view.O
-            content = "It is now O's turn"
-       else:
-            self.style = nextcord.ButtonStyle.success
-            self.label = 'O'
-            self.disabled = True
-            view.board[self.y][self.x] = view.O
-            view.current_player = view.X
-            content = "It is now X's turn"
-
-       winner = view.check_board_winner()
-       if winner is not None:
-            if winner == view.X:
-                content = 'X won!'
-            elif winner == view.O:
-                content = 'O won!'
-            else:
-                content = "It's a tie!"
-
-            for child in view.children:
-                child.disabled = True
-
-            view.stop()
-
-       await interaction.response.edit_message(content=content, view=view)    
+from utils.game_utils import  daily_puzzle_id, generate_info_embed, generate_puzzle_embed, process_message_as_guess, random_puzzle_id, TicTacToe
 
 
-class TicTacToe(nextcord.ui.View):
-    # This tells the IDE or linter that all our children will be TicTacToeButtons
-    # This is not required
-    children: List[TicTacToeButton]
-    X = -1
-    O = 1
-    Tie = 2
-
-    def __init__(self):
-        super().__init__()
-        self.current_player = self.X
-        self.board = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0],
-        ]
-
-        # Our board is made up of 3 by 3 TicTacToeButtons
-        # The TicTacToeButton maintains the callbacks and helps steer
-        # the actual game.
-        for x in range(3):
-            for y in range(3):
-                self.add_item(TicTacToeButton(x, y))
-
-    # This method checks for the board winner -- it is used by the TicTacToeButton
-    def check_board_winner(self):
-        for across in self.board:
-            value = sum(across)
-            if value == 3:
-                return self.O
-            elif value == -3:
-                return self.X
-
-        # Check vertical
-        for line in range(3):
-            value = self.board[0][line] + self.board[1][line] + self.board[2][line]
-            if value == 3:
-                return self.O
-            elif value == -3:
-                return self.X
-
-        # Check diagonals
-        diag = self.board[0][2] + self.board[1][1] + self.board[2][0]
-        if diag == 3:
-            return self.O
-        elif diag == -3:
-            return self.X
-
-        diag = self.board[0][0] + self.board[1][1] + self.board[2][2]
-        if diag == 3:
-            return self.O
-        elif diag == -3:
-            return self.X
-
-        # If we're here, we need to check if a tie was made
-        if all(i != 0 for row in self.board for i in row):
-            return self.Tie
-
-        return None
+from typing import Optional
 
 
 class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-
+    @commands.Cog.listener()
+    async def on_message(self, message: nextcord.Message):
+        """
+        When a message is sent, process it as a guess.
+        Then, process any commands in the message if it's not a guess.
+        """
+        processed_as_guess = await process_message_as_guess(self.bot, message)
+        if not processed_as_guess:
+            await self.bot.process_commands(message)
 
     @commands.command(name="tictactoe", description="Playing TicTacToe.....")
     async def tic(self, ctx: commands.Context):
         """Starts a tic-tac-toe game with yourself."""
         await ctx.send('Tic Tac Toe: X goes first', view=TicTacToe())
-       
+
+    @nextcord.slash_command(name="wordle", description="Play wordle with me.")
+    async def wordle(self, interaction: nextcord.Interaction):
+       pass
+
+    @wordle.subcommand(name="random", description="Play a random game of Wordle")
+    async def slash_play_random(self, interaction: nextcord.Interaction):
+        embed = generate_puzzle_embed(self.bot, interaction.user, random_puzzle_id())
+        await interaction.send(embed=embed)
+
+    @wordle.subcommand(name="id", description="Play a game of Wordle by its ID")
+    async def slash_play_id(
+        self,
+        interaction: nextcord.Interaction,
+        puzzle_id: int = nextcord.SlashOption(
+            description="Puzzle ID of the word to guess"),
+    ):
+        embed = generate_puzzle_embed(self.bot, interaction.user, puzzle_id)
+        await interaction.send(embed=embed)
+
+    @wordle.subcommand(name="daily", description="Play the daily game of Wordle")
+    async def slash_play_daily(self, interaction: nextcord.Interaction):
+        embed = generate_puzzle_embed(self.bot, interaction.user, daily_puzzle_id())
+        await interaction.send(embed=embed)
+
+    @wordle.subcommand(name="info", description="Wordle Info")
+    async def slash_info(self, interaction: nextcord.Interaction):
+        await interaction.send(embed=generate_info_embed())
+    
+
 
 def setup(bot):
     bot.add_cog(Games(bot))
