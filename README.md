@@ -27,10 +27,10 @@ This project is under progress so you have to wait for some time to get your wan
  Add environment variable file (eg:- `.env`, `.env.local`, `.env.developement`) and add `BOT_TOKEN=<add your bot token>` & `MONGO_URI=<mongodb connection string>` to that file.
  Like:
  After creating a .env file add the following lines
- `
-    BOT_TOKEN=<Your bot's token>
-    MONGO_URI=<connection string to your mongodb collection>
- `
+     
+                         BOT_TOKEN=<Your bot's token>
+                         MONGO_URI=<connection string to your mongodb collection>
+ 
 
 ### Step 3
  Install dependencies using ```pip install -r requirements.txt``` and run `python bot/bot.py` in your local machine.
