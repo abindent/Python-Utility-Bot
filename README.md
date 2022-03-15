@@ -21,7 +21,7 @@ This project is under progress so you have to wait for some time to get your wan
 
 ## 💻 How to setup
 ### Step 1
- Run ```https://github.com/abindent/Nextcord-Utility-Bot.git``` this comamnd to our termianl for cloning this repo.
+ Run ```git clone https://github.com/abindent/Nextcord-Utility-Bot.git``` this command to our terminal for cloning this repo.
  
 ### Step 2
  Add environment variable file (eg:- `.env`, `.env.local`, `.env.developement`) and add `BOT_TOKEN=<add your bot token>` & `MONGO_URI=<mongodb connection string>` to that file.
