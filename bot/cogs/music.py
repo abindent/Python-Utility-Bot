@@ -142,12 +142,7 @@ class Music(commands.Cog):
     async def node_connect(self):
         await self.bot.wait_until_ready()
         await wavelink.NodePool.create_node(bot=self.bot, host="lava.link", port=80, password="dismusic")
-    
 
-
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----")
 
     @commands.Cog.listener()
     async def on_waveink_node_ready(self, node: wavelink.Node):
@@ -159,7 +154,7 @@ class Music(commands.Cog):
         vc: player = ctx.voice_client
 
         if vc.loop:
-            return await vc.play(track)
+            return await vc.stop(), await vc.play(track), await songplayembed.edit(view=MusicController(ctx))
 
         if vc.queue.is_empty:
             return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
@@ -396,6 +391,7 @@ class Music(commands.Cog):
             return message
             await asyncio.sleep(5)
             await message.delete()
+
         elif not getattr(ctx.author.voice, "channel", None):
             embed = nextcord.Embed(
                 title="⏸ Stop Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
@@ -462,7 +458,10 @@ class Music(commands.Cog):
                 title="🔌 Connect Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
-            return await ctx.send(embed=embed)
+            message = await ctx.send(embed=embed)
+            return message
+            await asyncio.sleep(5)
+            await message.delete()
 
         else:
             vc: wavelink.Player = ctx.voice_client
@@ -480,7 +479,7 @@ class Music(commands.Cog):
 
     @commands.command(name="lyrics", description="Sends the lyrics of the song.", usage="<song name>")
     async def lyrics(self, ctx,*, name: str):
-        url = f"https://some-random-api.ml/lyrics?title="
+        url = "https://some-random-api.ml/lyrics?title="
         player = wavelink.Player 
         lyrics = name or player.queue.current_track.title
 
