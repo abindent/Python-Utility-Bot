@@ -12,9 +12,8 @@ class MessageDelete(nextcord.ui.View):
 
 
 class MusicController(nextcord.ui.View):
-    def __init__(self, ctx):
+    def __init__(self):
         super().__init__()
-        self.ctx = ctx
         
 
                                        
@@ -154,7 +153,7 @@ class Music(commands.Cog):
         vc: player = ctx.voice_client
 
         if vc.loop:
-            return await vc.stop(), await vc.play(track), await songplayembed.edit(view=MusicController(ctx))
+            return await vc.stop(), await vc.play(track), await songplayembed.edit(view=MusicController())
 
         if vc.queue.is_empty:
             return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
@@ -162,7 +161,7 @@ class Music(commands.Cog):
 
         next_song = vc.queue.get()
 
-        view = MusicController(ctx)
+        view = MusicController()
         embed = nextcord.Embed(title="▶️ Playing Music..",
                                description=f"📢 | Now Playing `{next_song.title}` by {next_song.author} \n **LINK:** {next_song.uri}", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
@@ -205,7 +204,7 @@ class Music(commands.Cog):
 
         if vc.queue.is_empty and not vc.is_playing():
 
-            view = MusicController(ctx)
+            view = MusicController()
             embed = nextcord.Embed(title="▶️ Playing Music..",
                                 description=f"📢 | Now Playing `{search.title}` by {search.author} \n **LINK:** {search.uri}", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
