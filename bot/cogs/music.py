@@ -15,7 +15,29 @@ class MusicController(nextcord.ui.View):
     def __init__(self):
         super().__init__()
         
+    @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="🔈")
+    async def mute(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+              
+        if not interaction.guild.voice_client:
+            embed = nextcord.Embed(
+                title="🔊 Set Volume Music", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=interaction.client.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
 
+        elif not getattr(interaction.user.voice, "channel", None):
+            embed = nextcord.Embed(
+                title="🔊 Set Volume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=interaction.client.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+        else:
+            vc: wavelink.Player = interaction.guild.voice_client
+
+    
+        await vc.set_volume(volume=0)
+        await interaction.response.send_message("Successfully muted the player.", ephemeral=True)   
                                        
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_2:900445202899140648>")
     async def pause(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
@@ -69,7 +91,55 @@ class MusicController(nextcord.ui.View):
                          icon_url=interaction.client.user.display_avatar)
         await vc.resume()
         await interaction.response.send_message(embed=embed, ephemeral=True)
+
+    @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="🔉")
+    async def halfvolume(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+              
+        if not interaction.guild.voice_client:
+            embed = nextcord.Embed(
+                title="🔊 Set Volume Music", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=interaction.client.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+        elif not getattr(interaction.user.voice, "channel", None):
+            embed = nextcord.Embed(
+                title="🔊 Set Volume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=interaction.client.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+        else:
+            vc: wavelink.Player = interaction.guild.voice_client
+
     
+        await vc.set_volume(volume=50)
+        await interaction.response.send_message("Successfully set you volume to `50%`", ephemeral=True)    
+    
+    @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="🔊")
+    async def fullvolume(self, button: nextcord.ui.Button, interaction= nextcord.Interaction):
+              
+        if not interaction.guild.voice_client:
+            embed = nextcord.Embed(
+                title="🔊 Set Volume Music", description=f"📢 | Your are not playing a song.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=interaction.client.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+        elif not getattr(interaction.user.voice, "channel", None):
+            embed = nextcord.Embed(
+                title="🔊 Set Volume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=interaction.client.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+        else:
+            vc: wavelink.Player = interaction.guild.voice_client
+
+    
+        await vc.set_volume(volume=100)
+        await interaction.response.send_message("Successfully set you volume to `100%`", ephemeral=True)   
+
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="<:emoji_7:900445329982369802>")
     async def loop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
         if not interaction.guild.voice_client:
@@ -343,9 +413,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
-            return message
-            await asyncio.sleep(5)
-            await message.delete()
+            return message, await asyncio.sleep(5), await message.delete()
 
         elif not getattr(ctx.author.voice, "channel", None):
             embed = nextcord.Embed(
@@ -353,9 +421,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
-            return message
-            await asyncio.sleep(5)
-            await message.delete()
+            return message,await asyncio.sleep(5),await message.delete()
 
         else:
             vc: wavelink.Player = ctx.voice_client    
@@ -387,9 +453,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
-            return message
-            await asyncio.sleep(5)
-            await message.delete()
+            return message, await asyncio.sleep(5), await message.delete()
 
         elif not getattr(ctx.author.voice, "channel", None):
             embed = nextcord.Embed(
@@ -397,9 +461,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
-            return message
-            await asyncio.sleep(5)
-            await message.delete()
+            return message, await asyncio.sleep(5), await message.delete()
 
         else:
             vc: wavelink.Player = ctx.voice_client
@@ -458,9 +520,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
             message = await ctx.send(embed=embed)
-            return message
-            await asyncio.sleep(5)
-            await message.delete()
+            return message, await asyncio.sleep(5), await message.delete()
 
         else:
             vc: wavelink.Player = ctx.voice_client
@@ -473,6 +533,83 @@ class Music(commands.Cog):
         message = await ctx.send(embed=embed)
         await asyncio.sleep(5)
         await message.delete()
+
+    @commands.command(name="volume", aliases=["setvolume", "changevolume"], descrtiption="Sets the volume of the player.")
+    async def setvolume(self, ctx: commands.Context, *, volume: int):
+        if not ctx.voice_client:
+            embed = nextcord.Embed(
+                title="🔊 Volume Music", description="📢 | I am not in a voice channel.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                             icon_url=self.bot.user.display_avatar)
+            message = await ctx.send(embed=embed)
+            return message, await asyncio.sleep(4), message.delete()
+
+        elif not ctx.author.voice:
+            embed = nextcord.Embed(
+                title="🔊 Volume Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                             icon_url=self.bot.user.display_avatar)
+            message = await ctx.send(embed=embed)
+            return message, await asyncio.sleep(4), message.delete()
+
+            
+        else:
+            vc: wavelink.Player = ctx.voice_client
+
+        if volume > 100:
+            msg = await ctx.send(":angry: It's too much high.")    
+            await asyncio.sleep(4)
+            await msg.delete()
+
+        elif volume < 0:
+            msg = await ctx.send(":angry: It's too low.")    
+            await asyncio.sleep(4)
+            await msg.delete()
+           
+        else:   
+
+            msg = await ctx.send(f"Set your 🔊 volume to `{volume}%`")   
+            return await vc.set_volume(volume), msg,  await asyncio.sleep(3), await msg.delete()
+
+
+
+    @commands.command(name="nowplaying", aliases=["np", "songinfo"], description="Shows the info about the currently playing song.")
+    async def nowplaying(self, ctx: commands.Context):
+        if not ctx.voice_client:
+            embed = nextcord.Embed(
+                title="🔊 Now Playing Music", description="📢 | I am not in a voice channel.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                             icon_url=self.bot.user.display_avatar)
+            message = await ctx.send(embed=embed)
+            return message, await asyncio.sleep(4), message.delete()
+
+        elif not ctx.author.voice:
+            embed = nextcord.Embed(
+                title="🔊 Now Playing Music", description="📢 | Join a voice channel please.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                             icon_url=self.bot.user.display_avatar)
+            message = await ctx.send(embed=embed)
+            return message, await asyncio.sleep(4), message.delete()
+
+            
+        else:
+            vc: wavelink.Player = ctx.voice_client
+
+        if not vc.is_playing():
+            embed = nextcord.Embed(
+                title="🔊 Now Playing Music", description="📢 | You are not even playing a music.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                             icon_url=self.bot.user.display_avatar)
+            message = await ctx.send(embed=embed)
+            return message, await asyncio.sleep(4), message.delete()
+
+        embed = nextcord.Embed(title="🎶 Now Playing", description=f"🎶 | I am playing `{vc.track.title}`` by {vc.track.author} \n **VIDEO LINK:** {vc.track.uri}", color=0x91cd0e)
+        embed.set_author(name="OpenSourceGames Utility",
+                        icon_url=self.bot.user.display_avatar)
+        embed.add_field(name="Duration",
+                        value=humanfriendly.format_timespan(vc.track.length))
+        embed.set_image(url=vc.track.thumbnail)
+        await ctx.send(embed=embed)    
 
 
 
