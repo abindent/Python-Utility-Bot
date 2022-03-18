@@ -3,6 +3,8 @@ from nextcord.ext import commands
 
 
 class DelBtn(nextcord.ui.View):
+
+
     def __init__(self):
         super().__init__()
 
@@ -11,6 +13,10 @@ class DelBtn(nextcord.ui.View):
         await interaction.message.delete()
         
 class Eval(commands.Cog):
+
+    
+    COG_EMOJI = "💻"
+
     def __init__(self, bot):
         self.bot = bot
         

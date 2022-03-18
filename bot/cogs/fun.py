@@ -5,6 +5,8 @@ from io import BytesIO
 import utils.json
 
 class MemeBtn(nextcord.ui.View):
+
+   
     def __init__(self):
         super().__init__()
 
@@ -37,6 +39,8 @@ class MemeBtn(nextcord.ui.View):
 
 
 class Fun(commands.Cog):
+
+    COG_EMOJI  = "😄"
 
     def __init__(self, bot):
         self.bot = bot

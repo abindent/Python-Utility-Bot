@@ -8,7 +8,9 @@ class MakeLink(nextcord.ui.View):
         self.add_item(nextcord.ui.Button(label="Join Game", url=f"{link}"))
 
 
-class Activities(commands.Cog):
+class Activities(commands.Cog, name="Discord Activities"):
+
+    COG_EMOJI = "🚀"
 
     def __init__(self, bot):
         self.bot = bot
@@ -128,7 +130,7 @@ class Activities(commands.Cog):
             return msg
 
         try:
-            invite_link = await channel.create_activity_invite(activities.Activity.ocho)
+            invite_link = await channel.create_activity_invite(activities.Activity.blazing)
 
         except nextcord.HTTPException:
             msg = await ctx.send("Please mention a channel to join/create the activity.", delete_after=45)
