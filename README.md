@@ -14,7 +14,7 @@ This project is under progress so you have to wait for some time to get your wan
 8. Added configuration cog.
 9. Added ping and eval command.
 10. Added fun commands.
-11. Added msuic cog.
+11. Added music cog.
 12. Added utility cog.
 13. Added suggestion cog.
 14. Added slash commands. 
