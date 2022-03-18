@@ -1,7 +1,7 @@
 import nextcord
 from nextcord.ext import commands
 
-class CogSetup(commands.Cog):
+class CogSetup(commands.Cog, name="Extension Setup"):
      def __init__(self, bot):
         self.bot = bot
 

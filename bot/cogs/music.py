@@ -204,6 +204,9 @@ class MusicController(nextcord.ui.View):
         
         
 class Music(commands.Cog):
+
+    COG_EMOJI = "🎶"
+    
     def __init__(self, bot):
         self.bot = bot
         bot.loop.create_task(self.node_connect())

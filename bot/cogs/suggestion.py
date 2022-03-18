@@ -2,7 +2,11 @@ import asyncio, nextcord, random
 from nextcord.ext import commands
 
 
+
 class Suggestion(commands.Cog):
+
+    COG_EMOJI = "💡"
+    
     def __init__(self, bot):
         self.bot = bot
 
@@ -15,34 +19,35 @@ class Suggestion(commands.Cog):
 
     @commands.command(name="suggest", description="You member suggest us something.", usage="<suggestion>")
     async def suggest(self, ctx, *, suggestion):
-        await ctx.channel.purge(limit=1)
+        await ctx.message.delete()
         channel = nextcord.utils.get(ctx.guild.text_channels, name='📨｜suggestions')
         if channel is None:
             await ctx.guild.create_text_channel('📨｜suggestions')
             channel = nextcord.utils.get(
                 ctx.guild.text_channels, name='📨｜suggestions')
         suggest = nextcord.Embed(title=f'📝 New Suggestion by {ctx.author.name} !',
-                                description=f'{ctx.author.name} has suggested\n{suggestion}', color=0xf20c0c)
+                                description=f'**__{ctx.author.name} has suggested__**\n\n{suggestion}', color=0xf20c0c)
         suggest.set_author(
             name="OpenSourceGames Utility", icon_url=self.bot.user.display_avatar)
         suggest.set_footer(
             text=f"Command requested by {ctx.author.name} | 📝 BOT Kernel: 487#G7")
         suggesting = await channel.send(embed=suggest)
-        await ctx.send(f"^^ Suggestion ID: {suggesting.id}")
-        await suggesting.add_reaction("☑️")
+        await ctx.author.send(f"^^ Suggestion ID: {suggesting.id}")
+        await suggesting.add_reaction("✅")
         await suggesting.add_reaction("❌")
 
     """ Making an approve command for suggesion command"""
     @commands.command(name="approve", description="Approves a suggestion.", usage="<suggestion id>")
-    @commands.has_role('✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
+    @commands.has_any_role('✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴', '⚙️Server Staff')
     async def approve(self, ctx, id: int = None):
-        await ctx.channel.purge(limit=1)
+        await ctx.message.delete()
         if id is None:
             return
         staff = nextcord.utils.get(ctx.guild.roles, name="⚙️Server Staff")
         if staff is None:
             staff = await ctx.guild.create_role(name="⚙️Server Staff", color=0x51f5e7)
             await ctx.send('Created Role `⚙️Server Staff`. Apply it to start controlling the suggestions.')
+
         channel = nextcord.utils.get(ctx.guild.text_channels, name="📨｜suggestions")
         if channel is None:
             return
@@ -65,9 +70,9 @@ class Suggestion(commands.Cog):
 
     """ Making an deny command for suggesion command"""
     @commands.command(name="deny", description="Declines a suggestion.", usage="<suggestion id>")
-    @commands.has_role('✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴')
+    @commands.has_any_role('✴ ⊶▬▬⊶▬Staff▬⊷▬▬⊷ ✴', '⚙️Server Staff')
     async def deny(self, ctx, id: int = None):
-        await ctx.channel.purge(limit=1)
+        await ctx.message.delete()
         if id is None:
             return
         staff = nextcord.utils.get(ctx.guild.roles, name="⚙️Server Staff")

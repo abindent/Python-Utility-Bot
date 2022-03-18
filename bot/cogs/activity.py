@@ -8,7 +8,9 @@ class MakeLink(nextcord.ui.View):
         self.add_item(nextcord.ui.Button(label="Join Game", url=f"{link}"))
 
 
-class Activities(commands.Cog):
+class Activities(commands.Cog, name="Discord Activities"):
+
+    COG_EMOJI = "🚀"
 
     def __init__(self, bot):
         self.bot = bot

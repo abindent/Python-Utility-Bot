@@ -5,6 +5,9 @@ from nextcord.ext import commands
 
 
 class Channels(commands.Cog):
+
+    COG_EMOJI = "📺"
+    
     def __init__(self, bot):
         self.bot = bot
 

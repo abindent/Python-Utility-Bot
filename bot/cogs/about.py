@@ -83,7 +83,10 @@ class DelBtn(nextcord.ui.View):
     async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
         await interaction.message.delete()
  
-class About(commands.Cog):
+class About(commands.Cog, name="Info about the Bot",):
+
+    COG_EMOJI = "👷"
+
     def __init__(self, bot):
         self.bot = bot
 
