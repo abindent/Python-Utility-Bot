@@ -43,7 +43,7 @@ multidict==6.0.2
 mypy-extensions==0.4.3
 natural==0.2.0
 nextcord==2.0.0a9
-nextcord-ext-activities==2022.2.26
+nextcord-ext-activities==2022.3.14
 nextcord-ext-ipc==2.2.1
 nextcord-ext-menus==1.5.2
 packaging==20.9
