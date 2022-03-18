@@ -128,7 +128,7 @@ class Activities(commands.Cog):
             return msg
 
         try:
-            invite_link = await channel.create_activity_invite(activities.Activity.ocho)
+            invite_link = await channel.create_activity_invite(activities.Activity.blazing)
 
         except nextcord.HTTPException:
             msg = await ctx.send("Please mention a channel to join/create the activity.", delete_after=45)
