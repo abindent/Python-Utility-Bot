@@ -1,4 +1,4 @@
-import datetime, platform, json, nextcord
+﻿import datetime, platform, json, nextcord
 from nextcord.ext import commands, menus
 
 
@@ -114,7 +114,6 @@ class About(commands.Cog, name="Info about the Bot"):
         shard = self.bot.get_shard(shard_id)
         shard_ping = shard.latency
         shard_servers = len([guild for guild in self.bot.guilds if guild.shard_id == shard_id])
-        bot_owner = " , ".join(self.bot.owner_ids) 
 
         embed = nextcord.Embed(title=f'{self.bot.user.name} Stats', description='\uFEFF', colour=ctx.author.colour, timestamp=ctx.message.created_at)
 
@@ -126,7 +125,7 @@ class About(commands.Cog, name="Info about the Bot"):
         embed.add_field(name='Shard ID:', value=shard_id)
         embed.add_field(name='Shard Ping:', value=shard_ping)
         embed.add_field(name='Shard Servers:', value=shard_servers)
-        embed.add_field(name='Bot Developers:', value=f"`{bot_owner}`")
+        embed.add_field(name='Bot Developers:', value=self.bot.owner_id)
 
         embed.set_footer(text=f"{ctx.author.guild.name} | {self.bot.user.name}")
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.display_avatar)

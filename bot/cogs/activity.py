@@ -167,6 +167,50 @@ class Activities(commands.Cog, name="Discord Activities"):
             url="https://www.youtube.com/s/desktop/6007d895/img/favicon_32x32.png")
         await ctx.send(embed=embed, view=MakeLink(invite_link))
 
+    @activity.command(name="word_snacks", description="Creates `Word Snacks` activity in your channel.")
+    async def word_snacks(self, ctx, channel: nextcord.VoiceChannel = None):
+        if channel is None:
+            msg = await ctx.send("Please specify a channel to join/create the activity.", delete_after=45)
+            return msg
+
+        try:
+            invite_link = await channel.create_activity_invite(activities.Activity.word_snacks)
+
+        except nextcord.HTTPException:
+            msg = await ctx.send("Please mention a channel to join/create the activity.", delete_after=45)
+            return msg
+
+        embed = nextcord.Embed(title="Word Snacks",
+                               description=f"{ctx.author.mention} has created game in {channel.name}.", color=nextcord.Color.green())
+        embed.add_field(name="What is it?", 
+                        value=
+                        "Word Snacks is an Activity that discord have developed in-house and is available on our official, public Discord Games Lab server. Word Snacks is a multiplayer word search game, where you and your friends try to make as many words as possible from a few letters. The more words you can spell before your opponents, the higher your score!")
+        embed.set_thumbnail(
+            url="https://support.discord.com/hc/article_attachments/4409234925463/word_snack_example.png")
+        await ctx.send(embed=embed, view=MakeLink(invite_link))
+
+    @activity.command(name="fishington", description="Creates `Fishington` activity in your channel.")
+    async def fishington(self, ctx, channel: nextcord.VoiceChannel = None):
+        if channel is None:
+            msg = await ctx.send("Please specify a channel to join/create the activity.", delete_after=45)
+            return msg
+
+        try:
+            invite_link = await channel.create_activity_invite(activities.Activity.fishington)
+
+        except nextcord.HTTPException:
+            msg = await ctx.send("Please mention a channel to join/create the activity.", delete_after=45)
+            return msg
+
+        embed = nextcord.Embed(title="Fishington",
+                               description=f"{ctx.author.mention} has created game in {channel.name}.", color=nextcord.Color.green())
+        embed.add_field(name="What is it?", 
+                        value=
+                        "An online fishing game where you can relax, chat and fish with up to 24 players!")
+        embed.set_thumbnail(
+            url="https://betrayal.io/asset/image/share-card-fishington.png")
+        await ctx.send(embed=embed, view=MakeLink(invite_link))
+
 
 def setup(bot):
     bot.add_cog(Activities(bot))
