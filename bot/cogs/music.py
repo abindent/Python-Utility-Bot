@@ -188,7 +188,7 @@ class MusicController(nextcord.ui.View):
 
         else:
             vc: wavelink.Player = interaction.guild.voice_client
-
+        
         for child in self.children:
             child.disabled = True
             await interaction.message.edit(view=self)
@@ -213,7 +213,7 @@ class Music(commands.Cog):
 
     async def node_connect(self):
         await self.bot.wait_until_ready()
-        await wavelink.NodePool.create_node(bot=self.bot, host="lava.link", port=80, password="dismusic")
+        await wavelink.NodePool.create_node(bot=self.bot, host="losingtime.dpaste.org", port=2124, password="SleepingOnTrains")
 
 
     @commands.Cog.listener()

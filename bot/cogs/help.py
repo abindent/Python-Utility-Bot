@@ -18,7 +18,7 @@ class HelpPageSource(menus.ListPageSource):
     def __init__(self, help_command: "NewHelpCommand", data: List[Tuple[str, str]]):
         self._help_command = help_command
         # you can set here how many items to display per page
-        super().__init__(data, per_page=2)
+        super().__init__(data, per_page=4)
 
     async def format_page(self, menu: menus.ButtonMenuPages, entries: List[Tuple[str, str, str]]):
         """
@@ -176,6 +176,8 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
 class Help(commands.Cog, name="Help"):
     """Displays help information for commands and cogs"""
+
+    COG_EMOJI = "<:help:955474363786878986>"
 
     def __init__(self, bot: commands.Bot):
         self.__bot = bot
