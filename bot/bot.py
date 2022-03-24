@@ -1,4 +1,4 @@
-﻿# IMPORTING THE PACKAGES
+# IMPORTING THE PACKAGES
 import os, json, nextcord, logging, datetime, random
 from pathlib import Path
 import motor.motor_asyncio
@@ -126,114 +126,43 @@ class DelBtn(nextcord.ui.View):
 @client.event
 async def on_command_error(ctx, error):
     view = DelBtn()
+    global notfounderror
+    notfounderror = nextcord.Embed(
+        title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
+    notfounderror.set_author(
+        name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
+    notfounderror.add_field(
+        name="Error is described below.", value=f"```py\n {error}\n```")
+    notfounderror.add_field(
+        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\nSource: [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
+    notfounderror.set_footer(
+        text=f"Command requested by {ctx.author.name}")
+   
     if isinstance(error, commands.CommandNotFound):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
         await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.MissingRequiredArgument):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
         await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.MissingRole):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderro, view=viewr)
+        await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.MissingPermissions):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
         await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.CommandInvokeError):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
         await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.CommandOnCooldown):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
         await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.ConversionError):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}\n```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
         await ctx.send(embed=notfounderror, view=view)
+
     if isinstance(error, commands.UserInputError):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror, view=view)
+       await ctx.send(embed=notfounderror, view=view)
     if isinstance(error, commands.DisabledCommand):
-        notfounderror = nextcord.Embed(
-            title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-        notfounderror.set_author(
-            name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-        notfounderror.add_field(
-            name="Error is described below.", value=f"```py\n {error}```")
-        notfounderror.add_field(
-            name="__**What To do?**__", value="Don't worry we will forward this message to the devs.", inline=False)
-        notfounderror.set_footer(
-            text=f"Command requested by {ctx.author.name}")
-        await ctx.send(embed=notfounderror, view=view)
+       await ctx.send(embed=notfounderror, view=view)
 
 
 # RUNNING OUR CLIENT
