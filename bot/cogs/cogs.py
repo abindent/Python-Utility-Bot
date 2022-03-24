@@ -4,6 +4,8 @@ from nextcord.ext import commands
 class CogSetup(commands.Cog, name="Extension Setup"):
      def __init__(self, bot):
         self.bot = bot
+     
+     COG_EMOJI = "⚙️"
 
     # Listener
      @commands.Cog.listener()

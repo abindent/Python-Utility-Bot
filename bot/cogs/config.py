@@ -8,7 +8,7 @@ import utils.json_loader
 
 class Configuration(commands.Cog):
 
-    COG_EMOJI = "⚙️"
+    COG_EMOJI = "<:config:956526378008846437>"
     
     def __init__(self, bot):
         self.bot = bot
