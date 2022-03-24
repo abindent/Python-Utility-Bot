@@ -16,6 +16,7 @@ A simple template for building a beautiful discord bot with nextcord.Here I have
 12. Added utility cog.
 13. Added suggestion cog.
 14. Added slash commands. 
+15. Added discord modals.
 
 ## 💻 How to setup
 ### Step 1
@@ -40,7 +41,7 @@ A simple template for building a beautiful discord bot with nextcord.Here I have
 - [x] To add eval command.
 - [x] To add games and activity commands in bot. 
 - [ ] To format code and enhance it.
-- [ ] To add new discord modal here.
+- [x] To add new discord modal here.
 
 ## Main Dependencies 
 1) **NEXTCORD** 
