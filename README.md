@@ -1,7 +1,5 @@
 # 🤖 Nextcord Bot Template
-A simple template for building a beautiful discord bot with nextcord.Here 
-I have also implemented the buttons and select menus along with slash commands.
-This project is under progress so you have to wait for some time to get your wanted features.
+A simple template for building a beautiful discord bot with nextcord.Here I have also implemented the buttons, discord modals and select menus along with slash commands. This project is under progress so you have to wait for some time to get your wanted features.
 
 ## 💻 Features 
 1. Added MongoDB databse for saving bot data (eg:- bot prefix).
@@ -18,6 +16,7 @@ This project is under progress so you have to wait for some time to get your wan
 12. Added utility cog.
 13. Added suggestion cog.
 14. Added slash commands. 
+15. Added discord modals.
 
 ## 💻 How to setup
 ### Step 1
@@ -42,7 +41,7 @@ This project is under progress so you have to wait for some time to get your wan
 - [x] To add eval command.
 - [x] To add games and activity commands in bot. 
 - [ ] To format code and enhance it.
-- [ ] To add new discord modal here.
+- [x] To add new discord modal here.
 
 ## Main Dependencies 
 1) **NEXTCORD** 
