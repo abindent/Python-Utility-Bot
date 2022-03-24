@@ -44,7 +44,6 @@ class SnekBox_Eval(nextcord.ui.Modal):
 
     async def on_error(self, error, interaction: nextcord.Interaction):
         view = DelBtn()
-        
         embed = nextcord.Embed(title="Code Status", description=":x: An error occurred.", color=0xFF0000)
         embed.add_field(name=":warning: The Error", value=f"```{error}```", inline=False)
         await interaction.response.send_message(embed=embed,view=view)
