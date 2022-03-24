@@ -47,7 +47,7 @@ logging.basicConfig(level=logging.INFO)
 client.blacklisted_users = []
 client.cwd = cwd
 
-client.version = "10"
+client.version = "3.4.2"
 
 client.colors = {
     "WHITE": 0xFFFFFF,
@@ -126,7 +126,7 @@ class DelBtn(nextcord.ui.View):
 @client.event
 async def on_command_error(ctx, error):
     view = DelBtn()
-    global notfounderror
+  
     notfounderror = nextcord.Embed(
         title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
     notfounderror.set_author(
@@ -138,31 +138,7 @@ async def on_command_error(ctx, error):
     notfounderror.set_footer(
         text=f"Command requested by {ctx.author.name}")
    
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.MissingRole):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.CommandInvokeError):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.ConversionError):
-        await ctx.send(embed=notfounderror, view=view)
-
-    if isinstance(error, commands.UserInputError):
-       await ctx.send(embed=notfounderror, view=view)
-    if isinstance(error, commands.DisabledCommand):
-       await ctx.send(embed=notfounderror, view=view)
+   await ctx.send(embed=notfounderror, view=view)
 
 
 # RUNNING OUR CLIENT
