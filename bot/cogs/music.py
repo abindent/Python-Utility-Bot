@@ -4,7 +4,7 @@ from nextcord.ext import commands
 
 class MessageDelete(nextcord.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
 
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary,emoji="<:dustbin:949602736633167882>")
     async def on_stop(self, button, interaction: nextcord.Interaction):
@@ -13,7 +13,7 @@ class MessageDelete(nextcord.ui.View):
 
 class MusicController(nextcord.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
         
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="🔈")
     async def mute(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
@@ -195,11 +195,6 @@ class MusicController(nextcord.ui.View):
         await vc.stop()
         await vc.disconnect()
 
-
-    async def on_timeout(self):
-      for child in self.children:
-          child.disabled = True
-      await songplayembed.edit(view=self)      
             
         
         
