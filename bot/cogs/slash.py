@@ -61,7 +61,7 @@ class DropDown(nextcord.ui.Select):
 
 class DropDownView(nextcord.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
         self.add_item(DropDown())
           
 class Slash(commands.Cog):
