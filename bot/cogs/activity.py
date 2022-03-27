@@ -19,8 +19,8 @@ class Activities(commands.Cog, name="Discord Activities"):
     async def activity(self, ctx):
         return
 
-    @activity.command(name="sketch", description="Creates `sketch` activity in your channel.")
-    async def sketch(self, ctx, channel: nextcord.VoiceChannel = None):
+    @activity.command(name="Skecth Heads", description="Creates `Skecth Heads crew` activity in your channel.")
+    async def skecth_heads(self, ctx, channel: nextcord.VoiceChannel = None):
         if channel is None:
             msg = await ctx.send("Please specify a channel to join/create the activity.", delete_after=45)
             return msg
@@ -33,7 +33,7 @@ class Activities(commands.Cog, name="Discord Activities"):
             return msg
 
         embed = nextcord.Embed(
-            title="Sketch Game", description=f"{ctx.author.mention} has created game in {channel.name}.", color=nextcord.Color.green())
+            title="Skecth Heads Crew Game", description=f"{ctx.author.mention} has created game in {channel.name}.", color=nextcord.Color.green())
         embed.add_field(
             name="What is it?", value="It's like skribble.io but in discord voice channel. Someone draws something and everyone else has to guess what is it.")
         embed.set_thumbnail(
@@ -140,7 +140,8 @@ class Activities(commands.Cog, name="Discord Activities"):
                                description=f"{ctx.author.mention} has created game in {channel.name}.", color=nextcord.Color.green())
         embed.add_field(name="What is it?", 
                         value=
-                        "Blazing 8s is an Activity that have been developed here at Discord. It is our Crazy Eights-inspired card game that you can play with your friends! The rules are simple — on your turn, discard a card from your hand with the same suit or number as the previous card. Playing special cards allows you to skip other players, reverse the direction of play, and even swap hands with other players. The first person to discard all their cards wins!")
+             "Blazing 8s is an Activity that have been developed here at Discord. It is our Crazy Eights-inspired card game that you can play with your friends! The rules are simple — on your turn, discard a card from your hand with the same suit or number as the previous card. Playing special cards allows you to skip other players, reverse the direction of play, and even swap hands with other players."
+             "The first person to discard all their cards wins!")
         embed.set_thumbnail(
             url="https://support.discord.com/hc/article_attachments/4487235506327/LoadingScreen.jpg")
         await ctx.send(embed=embed, view=MakeLink(invite_link))
