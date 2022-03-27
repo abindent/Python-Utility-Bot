@@ -14,7 +14,7 @@ class DelBtn(nextcord.ui.View):
 
 class SnekBox_Eval(nextcord.ui.Modal):
     def __init__(self) -> None:
-     super().__init__(title="Evaluate Your Code", custom_id="evaluate_code")
+     super().__init__(title="Evaluate Your Code", custom_id="evaluate_code", timeout=None)
      self.add_item(
             nextcord.ui.TextInput(
                 label="Your Eval Code",
