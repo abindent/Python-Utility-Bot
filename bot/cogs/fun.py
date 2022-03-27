@@ -8,7 +8,7 @@ class MemeBtn(nextcord.ui.View):
 
    
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
 
     @nextcord.ui.button(label="Next Meme", style=nextcord.ButtonStyle.green, emoji="⏩")
     async def nextmeme(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
