@@ -138,7 +138,7 @@ async def on_command_error(ctx, error):
     notfounderror.set_footer(
         text=f"Command requested by {ctx.author.name}")
    
-   await ctx.send(embed=notfounderror, view=view)
+    await ctx.send(embed=notfounderror, view=view)
 
 
 # RUNNING OUR CLIENT
