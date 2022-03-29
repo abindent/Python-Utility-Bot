@@ -11,7 +11,8 @@ class Poll(commands.Cog):
                       '5\u20e3', '6\u20e3',
                       '7\u20e3', '8\u20e3',
                       '9\u20e3', '\U00001F51F']
-
+    
+    
  
 def setup(bot):
     bot.add_cog(Poll(bot))
