@@ -83,6 +83,7 @@ toml==0.10.2
 tomli==2.0.1
 tomlkit==0.9.2
 typing_extensions==4.0.1
+TagScriptEngine==2.3.0
 urllib3==1.26.8
 uvloop==0.16.0
 virtualenv==20.13.1
