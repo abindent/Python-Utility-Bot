@@ -439,7 +439,7 @@ class Music(commands.Cog):
         song_count = 0
         for song in queue:
             song_count +=1
-            embed.add_field(name="‏‏‎ ", value=f"{song_count} - {song.title}", inline=False)
+            embed.add_field(name="‏‏‎ ", value=f"**{song_count})** {song.title}", inline=False)
 
         await ctx.send(embed=embed, view=MessageDelete())    
 
@@ -601,13 +601,13 @@ class Music(commands.Cog):
             message = await ctx.send(embed=embed)
             return message, await asyncio.sleep(4), message.delete()
 
-        embed = nextcord.Embed(title="🎶 Now Playing", description=f"🎶 | I am playing `{vc.track.title}`` by {vc.track.author} \n **VIDEO LINK:** {vc.track.uri}", color=0x91cd0e)
+        embed = nextcord.Embed(title="🎶 Now Playing", description=f"🎶 | I am playing `{vc.track.title}` by {vc.track.author} \n **VIDEO LINK:** {vc.track.uri}", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
                         icon_url=self.bot.user.display_avatar)
         embed.add_field(name="Duration",
                         value=humanfriendly.format_timespan(vc.track.length))
         embed.set_image(url=vc.track.thumbnail)
-        await ctx.send(embed=embed)    
+        await ctx.send(embed=embed, view=MessageDelete())    
 
 
 
