@@ -212,8 +212,8 @@ class About(commands.Cog, name="Info about the Bot"):
         embed.add_field(name='Shard Servers:', value=shard_servers, inline=False)
         embed.add_field(name="CPU Core Count:", value=os.cpu_count(), inline=False)
         embed.add_field(name="RAM Count:", value=convert_size(psutil.virtual_memory().total), inline=False)
-        embed.add_field(name="CPU Usage:", value=psutil.cpu_percent(interval=1), inline=False)
-        embed.add_field(name="RAM Usage:", value=psutil.virtual_memory().percent, inline=False)
+        embed.add_field(name="CPU Usage:", value=f"{psutil.cpu_percent(interval=1)}%", inline=False)
+        embed.add_field(name="RAM Usage:", value=f"{psutil.virtual_memory().percent}%", inline=False)
         embed.add_field(name='Bot Developers:', value=self.bot.owner_id, inline=False)
 
         embed.set_footer(
