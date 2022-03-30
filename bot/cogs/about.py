@@ -4,7 +4,7 @@ from nextcord.ext import commands, menus
 
 
 
-class AboutButtonMenu(menus.ButtonMenu):
+class VoteButtonMenu(menus.ButtonMenu):
     def __init__(self):
         super().__init__(disable_buttons_after=True)
 
@@ -38,7 +38,7 @@ class AboutButtonMenu(menus.ButtonMenu):
         embed.set_author(name="OpenSourceGames Utility ", icon_url=self.bot.user.display_avatar)
         embed.add_field(name="About Me", value=f"I am {self.bot.user} who is serving your commands.", inline=True)
         embed.add_field(name="My Prefix", value="My prefix is `t!`", inline=False)
-        embed.add_field(name="Status ", value="Thanks for voting 👍", inline=False)
+        embed.add_field(name="Vote Status ", value="Thanks for voting 👍", inline=False)
         embed.add_field(name="Help", value="Visit [https://osourcegames.herokuapp.com/contact](https://osourcegames.herokuapp.com/contact)", inline=True)
         embed.set_footer(text="By OpenSourceGames Utility ▶️ About Me")
         
@@ -66,7 +66,7 @@ class AboutButtonMenu(menus.ButtonMenu):
         embed.set_author(name="OpenSourceGames Utility ", icon_url=self.bot.user.display_avatar)
         embed.add_field(name="About Me", value=f"I am {self.bot.user} who is serving your commands.", inline=True)
         embed.add_field(name="My Prefix", value="My prefix is `t!`", inline=False)
-        embed.add_field(name="Status ", value="Thanks for voting 👎", inline=False)
+        embed.add_field(name="Vote Status ", value="Thanks for voting 👎", inline=False)
         embed.add_field(name="Help", value="Visit [https://osourcegames.herokuapp.com/contact](https://osourcegames.herokuapp.com/contact)", inline=True)
         embed.set_footer(text="By OpenSourceGames Utility ▶️ About Me")
         await self.message.edit(content=f"Thanks {interaction.user.mention} for voting 👎",embed=embed)
@@ -94,12 +94,12 @@ class About(commands.Cog, name="Info about the Bot"):
     async def on_ready(self):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----")  
 
-    @commands.command(name="about", description="About me.")  
-    async def button_menu_example(self, ctx):
-        await AboutButtonMenu().start(ctx)    
+    @commands.command(name="vote", description="Vote me.")  
+    async def vote_bot(self, ctx):
+        await VoteButtonMenu().start(ctx)    
 
-    @commands.command(name="stats", description="Shows the stats of the bot.",aliases=["botstats"])
-    async def stats(self, ctx):
+    @commands.command(name="about", description="Shows some info about of the bot.",aliases=["botstats", "stats"])
+    async def about(self, ctx):
         """
         A usefull command that displays bot statistics.
         """

@@ -213,6 +213,5 @@ class Slash(commands.Cog):
             url="https://i.ytimg.com/vi_webp/POMIDMK6WfM/maxresdefault.webp")
         await interaction.response.send_message(embed=embed, view=MakeLink(invite_link))
 
-
 def setup(bot):
     bot.add_cog(Slash(bot))

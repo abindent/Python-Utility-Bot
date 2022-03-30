@@ -34,7 +34,7 @@ async def get_prefix(bot, message):
 
 
 # Changing Bot Presense
-activity = nextcord.Game(name="Please interact with me!")
+activity = nextcord.Game(name=f"Please interact with  me!")
     
 # OUR CLIENT     
 client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True, activity=activity)
@@ -127,18 +127,18 @@ class DelBtn(nextcord.ui.View):
 async def on_command_error(ctx, error):
     view = DelBtn()
   
-    notfounderror = nextcord.Embed(
+    errorEmbed = nextcord.Embed(
         title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
-    notfounderror.set_author(
+    errorEmbed.set_author(
         name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-    notfounderror.add_field(
+    errorEmbed.add_field(
         name="Error is described below.", value=f"```py\n {error}\n```")
-    notfounderror.add_field(
+    errorEmbed.add_field(
         name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\nSource: [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
-    notfounderror.set_footer(
+    errorEmbed.set_footer(
         text=f"Command requested by {ctx.author.name}")
    
-    await ctx.send(embed=notfounderror, view=view)
+    await ctx.send(embed=errorEmbed, view=view)
 
 
 # RUNNING OUR CLIENT
