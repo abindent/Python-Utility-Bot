@@ -16,7 +16,7 @@ class Info(commands.Cog):
         
     @commands.command(name="ping", description="Returns the latency of the bot", aliases=["latency", "p", "pingpong"])
     async def ping(self, ctx):
-        await ctx.send(f"Pong! Latency is {round(self.bot.latency)}ws")    
+        await ctx.send(f"Pong! Latency is {self.bot.latency}ms")    
 
 
 def setup(bot):
