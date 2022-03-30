@@ -160,9 +160,9 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         embed = nextcord.Embed(title=f"{command.qualified_name}", description=f"{command.description}", colour=self.COLOUR)
         embed.set_author(name="OpenSourceGames Utility", icon_url="https://cdn.discordapp.com/avatars/932265924541681727/b5b498a84d5f8783d732b7b63aa4fe69.png?size=128")
         
-        for aliases in command.aliases:
-            if aliases is not None:
-               embed.add_field(name="Aliases", value=f"`{aliase}`", inline=False)
+        
+        if aliase:
+          embed.add_field(name="Aliases", value=f"`{aliase}`", inline=False)
                
 
         embed.add_field(name="Format of the command", value=f"`{self.get_command_signature(command)}`", inline=False)
