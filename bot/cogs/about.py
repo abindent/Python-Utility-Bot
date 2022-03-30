@@ -1,11 +1,7 @@
-import os
-import dotenv
-import datetime
-import platform
-import nextcord
-import quickchart
+import os, dotenv, datetime, platform, nextcord, quickchart, psutil
 from nextcord.ext import commands, menus
 from utils.vote_utils import VoteManage
+from utils.size_converter import convert_size
 
 dotenv.load_dotenv()
 
@@ -202,18 +198,23 @@ class About(commands.Cog, name="Info about the Bot"):
         shard_servers = len(
             [guild for guild in self.bot.guilds if guild.shard_id == shard_id])
 
+        
         embed = nextcord.Embed(title=f'{self.bot.user.name} Stats', description='\uFEFF',
                                colour=ctx.author.colour, timestamp=ctx.message.created_at)
 
-        embed.add_field(name='Bot Version:', value=self.bot.version)
-        embed.add_field(name='Python Version:', value=pythonVersion)
-        embed.add_field(name='nextcord.Py Version', value=npyVersion)
-        embed.add_field(name='Total Guilds:', value=serverCount)
-        embed.add_field(name='Total Users:', value=memberCount)
-        embed.add_field(name='Shard ID:', value=shard_id)
-        embed.add_field(name='Shard Ping:', value=shard_ping)
-        embed.add_field(name='Shard Servers:', value=shard_servers)
-        embed.add_field(name='Bot Developers:', value=self.bot.owner_id)
+        embed.add_field(name='Bot Version:', value=self.bot.version, inline=False)
+        embed.add_field(name='Python Version:', value=pythonVersion, inline=False)
+        embed.add_field(name='nextcord.Py Version', value=npyVersion, inline=False)
+        embed.add_field(name='Total Guilds:', value=serverCount, inline=False)
+        embed.add_field(name='Total Users (Members):', value=memberCount, inline=False)
+        embed.add_field(name='Shard ID:', value=shard_id, inline=False)
+        embed.add_field(name='Shard Ping:', value=shard_ping, inline=False)
+        embed.add_field(name='Shard Servers:', value=shard_servers, inline=False)
+        embed.add_field(name="CPU Core Count:", value=os.cpu_count(), inline=False)
+        embed.add_field(name="RAM Count:", value=convert_size(psutil.virtual_memory().total), inline=False)
+        embed.add_field(name="CPU Usage:", value=psutil.cpu_percent(interval=1), inline=False)
+        embed.add_field(name="RAM Usage:", value=psutil.virtual_memory().percent, inline=False)
+        embed.add_field(name='Bot Developers:', value=self.bot.owner_id, inline=False)
 
         embed.set_footer(
             text=f"{ctx.author.guild.name} | {self.bot.user.name}")
