@@ -70,6 +70,7 @@ pyparsing==3.0.7
 python-dateutil==2.8.2
 python-dotenv==0.19.2
 PyYAML==6.0
+quickchart.io==1.0.1
 rapidfuzz==2.0.6
 requests==2.27.1
 requests-toolbelt==0.9.1

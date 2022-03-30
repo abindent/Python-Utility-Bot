@@ -131,6 +131,9 @@ class Document:
         id = dict["_id"]
         dict.pop("_id")
         await self.db.update_one({"_id": id}, {"$set": dict})
+    
+    async def update_one(self, filter, update):
+        await self.db.update_one(filter, update)
 
     async def unset(self, dict):
         """
