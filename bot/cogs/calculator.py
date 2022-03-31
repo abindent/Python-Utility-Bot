@@ -1,12 +1,16 @@
-
 import time
 import nextcord
 from nextcord.ext import commands
 from TagScriptEngine import Interpreter, block
+from bot import DelBtn
 
 
-class Calculator(commands.Cog):
-   
+__red_end_user_data_statement__ = "This cog does not store any End User Data."
+
+class Calculator(commands.Cog, name="Calculator System"):
+
+    COG_EMOJI = "🧮"
+
     def __init__(self, bot):
         self.bot = bot
         blocks = [
@@ -33,10 +37,14 @@ class Calculator(commands.Cog):
             fmt_str = f"{float(output_string):,}"
         except ValueError:
             fmt_str = output_string
-        e = nextcord.Embed(
+        embed = nextcord.Embed(
             color=nextcord.Color.green(),
             title=f"Input: `{query}`",
             description=f"Output: `{fmt_str}`",
         )
-        e.set_footer(text=f"Calculated in {round((end - start) * 1000, 3)} ms")
-        await ctx.send(embed=e)
+        embed.set_footer(text=f"Calculated in {round((end - start) * 1000, 3)} ms")
+        await ctx.send(embed=embed, view=DelBtn())
+
+def setup(bot):
+    cog = Calculator(bot)
+    bot.add_cog(cog)

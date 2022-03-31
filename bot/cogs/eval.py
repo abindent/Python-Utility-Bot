@@ -21,7 +21,7 @@ class SnekBox_Eval(nextcord.ui.Modal):
                 placeholder="print('Hello')",
                 custom_id="evaluated code",
                 style=nextcord.TextInputStyle.paragraph,
-                min_length=3
+                min_length=10
             ),
      )
 
