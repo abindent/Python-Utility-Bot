@@ -134,7 +134,7 @@ async def on_command_error(ctx, error):
     errorEmbed.add_field(
         name="Error is described below.", value=f"```py\n {error}\n```")
     errorEmbed.add_field(
-        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\nSource: [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
+        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n**Bot Source Code:** [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
     errorEmbed.set_footer(
         text=f"Command requested by {ctx.author.name}")
    

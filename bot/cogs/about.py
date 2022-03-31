@@ -177,7 +177,8 @@ class About(commands.Cog, name="Info about the Bot"):
     async def on_ready(self):
         print(f"{self.__class__.__name__} Cog has been loaded\n-----")
 
-    @commands.command(name="vote", description="Vote me.")
+    @commands.command(name="vote", description="Vote me.")    
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def vote_bot(self, ctx):
         await VoteButtonMenu(self.bot).start(ctx)
 

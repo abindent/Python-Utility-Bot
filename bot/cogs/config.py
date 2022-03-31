@@ -23,7 +23,8 @@ class Configuration(commands.Cog):
         description="Change your guilds prefix!",
         usage="[prefix]",
     )
-    @commands.has_guild_permissions(manage_guild=True)
+    @commands.cooldown(1, 2, commands.BucketType.member)
+    @commands.has_guild_permissions(manage_guild=True)    
     async def prefix(self, ctx, *, prefix="t!"):
         await self.bot.config.upsert({"_id": ctx.guild.id, "prefix": prefix})
         await ctx.send(
@@ -89,6 +90,7 @@ class Configuration(commands.Cog):
         """
         await ctx.send(f"Hey {ctx.author.mention}, I am now logging out :wave:")
         await self.bot.close()
+
 
 
 def setup(bot):
