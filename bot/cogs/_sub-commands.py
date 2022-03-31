@@ -4,7 +4,10 @@ from nextcord.ext import commands
 # See channels.py for this being used on the bot
 
 
-class Groups(commands.Cog):
+class Groups(commands.Cog, name="A Simple Test Group For Sub Commands"):
+
+    COG_EMOJI  = "🧑‍🎓"
+    
     def __init__(self, bot):
         self.bot = bot
 

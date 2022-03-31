@@ -146,7 +146,8 @@ if __name__ == "__main__":
     # When running this file, if it is the 'main' file
     # I.E its not being imported from another python file run this
     for file in os.listdir(cwd + "/cogs"):
-        if file.endswith(".py") and not file.startswith("_"):
+        if file.endswith(".py") and not file.startswith("__"):
             client.load_extension(f"cogs.{file[:-3]}")
+           
 
     client.run(client.config_token)
