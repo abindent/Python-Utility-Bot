@@ -106,11 +106,8 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
     async def send_cog_help(self, cog: commands.Cog):
         """implements cog help page"""
-        if cog.COG_EMOJI is None:
-            emoji = ""
-
-        else:
-            emoji = cog.COG_EMOJI
+        
+        emoji = getattr(cog, "COG_EMOJI", "")
                 
         embed = nextcord.Embed(
             title=f"{emoji}{cog.qualified_name} Commands",
