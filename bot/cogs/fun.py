@@ -1,8 +1,10 @@
-import nextcord, asyncio, aiohttp, io,json, random, urllib
-from nextcord.ext import commands
+import os, nextcord, asyncio, aiohttp, io,json, random, urllib, dotenv
+from nextcord.ext import commands, tasks
 import platform
 from io import BytesIO
 import utils.json
+
+dotenv.load_dotenv()
 
 class MemeBtn(nextcord.ui.View):
 
@@ -44,6 +46,7 @@ class Fun(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.joke_api_key = os.getenv("JOKE_API")
 
      # Listener
     @commands.Cog.listener()
@@ -120,6 +123,24 @@ class Fun(commands.Cog):
             text=f"Meme by: {memePoster} | Subreddit: {memeReddit} | Post: {memeLink}")
         await ctx.send(embed=memeEmbed, view=view)
    
+    @commands.command(
+        name="dadjoke",
+        description="Send a dad joke!",
+        aliases=['dadjokes']
+    )
+    async def dadjoke(self, ctx):
+        url = "https://dad-jokes.p.rapidapi.com/random/jokes"
+
+        headers = {
+            'x-rapidapi-host': "dad-jokes.p.rapidapi.com",
+            'x-rapidapi-key': self.joke_api_key
+        }
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=headers) as response:
+                r = await response.json()
+                r = r["body"][0]
+                await ctx.send(f"**{r['setup']}**\n\n||{r['punchline']}||")
 
     @commands.command(name="emoji", aliases=["eadd"], description="Adds an external img (through the link of the img provided) as gif in your server.", usage="<url of the emoji or emote> <name you want to give>")
     async def emoji(self, ctx, url: str, *, name):
