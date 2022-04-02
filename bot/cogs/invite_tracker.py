@@ -37,7 +37,7 @@ class InviteTracker(commands.Cog, name="Tracker for the bot."):
         await self.tracker.remove_guild_cache(guild)
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
+    async def on_member_join(self, member: nextcord.Member):
         try:  
             inviter = await self.tracker.fetch_inviter(member)
             data = await self.invites.find_by_custom(
@@ -57,11 +57,11 @@ class InviteTracker(commands.Cog, name="Tracker for the bot."):
                 {"guild_id": member.guild.id, "inviter_id": inviter.id}, data
             )
 
-            channel = nextcord.utils.get(member.guild.text_channels, name="invite-logs")
+            channel = nextcord.utils.get(member.guild.channels, name="invite-logs")
         
             if channel is None:
                 await member.guild.create_text_channel("invite-logs")
-                channel = nextcord.utils.get(member.guild.text_channels, name="invite-logs")
+                channel = nextcord.utils.get(member.guild.channels, name="invite-logs")
               
             
             embed = nextcord.Embed(
