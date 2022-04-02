@@ -86,10 +86,7 @@ class Slash(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----")
-
+   
     # SLASH COMMAND
 
     # 8ball Slash Command

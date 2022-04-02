@@ -92,3 +92,4 @@ wavelink==1.1.1
 webencodings==0.5.1
 wrapt==1.12.1
 yarl==1.7.2
+nextcordUtils==1.0

@@ -48,10 +48,6 @@ class Fun(commands.Cog):
         self.bot = bot
         self.joke_api_key = os.getenv("JOKE_API")
 
-     # Listener
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----") 
     
     @commands.command(name="echo", description=" A simple command that repeats the users input back to them.", usage="<message>")
     async def echo(self, ctx, *, message=None):

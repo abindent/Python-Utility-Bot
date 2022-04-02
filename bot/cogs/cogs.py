@@ -7,11 +7,7 @@ class CogSetup(commands.Cog, name="Extension Setup"):
      
      COG_EMOJI = "⚙️"
 
-    # Listener
-     @commands.Cog.listener()
-     async def on_ready(self):
-            print(f"{self.__class__.__name__} Cog has been loaded\n-----") 
-        
+    
     # Load Command
      @commands.command(name="load", description="Load the cogs.", usage="<cog_name or extension_name>")
      async def load(self, ctx, extensions):

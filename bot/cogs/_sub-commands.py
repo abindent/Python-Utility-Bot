@@ -11,9 +11,6 @@ class Groups(commands.Cog, name="A Simple Test Group For Sub Commands"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----")
 
     """ The commmand group below is a group of commands having sub-commands.We often use [prefix][main_command] [subcommand(always optional)] [url] this type of things in bots.
      For maintainance and a lot of issues we usually split the funtionality of the parent command into different child subcommands.You can use or not but you can split them."""

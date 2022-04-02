@@ -57,10 +57,6 @@ class Eval(commands.Cog):
         self.bot = bot
         
       
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----")  
-        
         
     @nextcord.slash_command(name="eval", description="Evaluates the given python code")
     async def eval(self, interaction: nextcord.Interaction):

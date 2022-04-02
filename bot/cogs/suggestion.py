@@ -11,11 +11,7 @@ class Suggestion(commands.Cog):
         self.bot = bot
 
 
-     # Listener
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----") 
-
+ 
 
     @commands.command(name="suggest", description="You member suggest us something.", usage="<suggestion>")
     async def suggest(self, ctx, *, suggestion):
