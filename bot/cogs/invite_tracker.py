@@ -1,7 +1,6 @@
 import nextcord, NextcordUtils
 from nextcord.ext import commands
 from utils.mongo import Document
-from bot import DelBtn
 
 class InviteDB:
     def __init__(self, bot):
@@ -77,7 +76,7 @@ class InviteTracker(commands.Cog, name="Tracker for the bot."):
             embed.set_footer(text=member.guild.name,
                             icon_url=guild_url)
 
-            await channel.send(embed=embed, view=DelBtn())
+            await channel.send(embed=embed)
 
 
 def setup(bot):
