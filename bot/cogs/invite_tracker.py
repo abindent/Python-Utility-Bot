@@ -37,8 +37,8 @@ class InviteTracker(commands.Cog, name="Tracker for the bot."):
         await self.tracker.remove_guild_cache(guild)
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
-        try:  
+    async def on_member_join(self, member: nextcord.Member):
+        
             inviter = await self.tracker.fetch_inviter(member)
             data = await self.invites.find_by_custom(
                 {"guild_id": member.guild.id, "inviter_id": inviter.id}
@@ -66,14 +66,19 @@ class InviteTracker(commands.Cog, name="Tracker for the bot."):
             
             embed = nextcord.Embed(
                 title=f"Welcome {member.name}", description=f"Invited by: {inviter.mention}\nInvites: {data['count']}", timestamp=member.joined_at)
-            embed.set_thumbnail(url=member.display_avatar)
-            embed.set_footer(text=memebr.guild.name,
-                            icon_url=member.guild.icon.url)
+            embed.set_thumbnail(url=member.avatar.url)
+            
+            if member.guild.icon is not None:
+             guild_url = member.guild.icon.url
+            else:
+                guild_url = "https://discord.com/assets/c09a43a372ba81e3018c3151d4ed4773.png"
+                
+            
+            embed.set_footer(text=member.guild.name,
+                            icon_url=guild_url)
 
             await channel.send(embed=embed, view=DelBtn())
-        
-        except Exception as error:
-            print(error)
+
 
 def setup(bot):
     bot.add_cog(InviteTracker(bot))
