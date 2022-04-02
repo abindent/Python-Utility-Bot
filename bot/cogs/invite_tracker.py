@@ -57,11 +57,11 @@ class InviteTracker(commands.Cog, name="Tracker for the bot."):
                 {"guild_id": member.guild.id, "inviter_id": inviter.id}, data
             )
 
-            channel = nextcord.utils.get(member.guild.text_channels, name="invite-logs")
+            channel = nextcord.utils.get(member.guild.channels, name="invite-logs")
         
             if channel is None:
                 await member.guild.create_text_channel("invite-logs")
-                channel = nextcord.utils.get(member.guild.text_channels, name="invite-logs")
+                channel = nextcord.utils.get(member.guild.channels, name="invite-logs")
               
             
             embed = nextcord.Embed(
