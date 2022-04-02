@@ -11,9 +11,6 @@ class Channels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----")
 
     @commands.command(
         name="channelstats",
@@ -98,6 +95,7 @@ class Channels(commands.Cog):
             category=self.bot.get_channel(707945693582590005),
         )
         await ctx.send(f"Hey dude, I made {channel.name} for ya!")
+        await channel.send(f"Hey {ctx.author.mention}, I made {channel.name} for ya!")
 
     @commands.group(invoke_without_command=True, name="delete", aliases=["d"], description="Deletes the mentioned channel or category.")
     @commands.guild_only()

@@ -182,10 +182,6 @@ class Help(commands.Cog, name="Help"):
         bot.help_command = NewHelpCommand()
         bot.help_command.cog = self
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"{self.__class__.__name__} Cog has been loaded\n-----") 
-
     def cog_unload(self):
         self.__bot.help_command = self.__original_help_command
 
