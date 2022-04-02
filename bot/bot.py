@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from utils import json_loader
 from utils.mongo import Document
 
+
 # CONFIGURATIONS
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
@@ -35,9 +36,13 @@ async def get_prefix(bot, message):
 
 # Changing Bot Presense
 activity = nextcord.Game(name=f"Please interact with  me!")
+
+# Intents
+intents = nextcord.Intents.default()
+intents.members = True
     
 # OUR CLIENT     
-client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True, activity=activity)
+client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True, activity=activity, intents=intents)
 
 client.config_token = os.getenv("BOT_TOKEN")
 client.connection_url = os.getenv("MONGO_URI")
