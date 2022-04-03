@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 # LOADING EXTENSIONS FROM UTILS
 from utils import json_loader
 from utils.mongo import Document
+from utils.config_db import Blacklist_DB
 
 
 # CONFIGURATIONS
@@ -49,7 +50,8 @@ client.connection_url = os.getenv("MONGO_URI")
 client.guild_id="932264473408966656"
 logging.basicConfig(level=logging.INFO)
 
-client.blacklisted_users = []
+
+client.muted_users = {}
 client.cwd = cwd
 
 client.version = "3.4.2"
@@ -90,7 +92,8 @@ async def on_ready():
 
     # Adding MongoDB to our bot
     client.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(client.connection_url))
-    client.db = client.mongo["pythonbot"]
+    # client.db = client.mongo["pythonbot"]
+    client.db = client.mongo["testbot"] # For Testing Purpose
     client.config = Document(client.db, "config")   
     print("Initialized Database\n-----")
     for document in await client.config.get_all():
@@ -108,9 +111,11 @@ async def on_message(message):
 
     # A way to blacklist users from the bot by not processing commands
     # if the author is in the blacklisted_users list
-    if message.author.id in client.blacklisted_users:
-        return
-
+    if await Blacklist_DB(client).check_user_blacklisted_status(message.author.id):
+        embed = nextcord.Embed(title="🚫 Sorry! You are not allowed to use my command.", color=0x00FFFF)
+        msg = await message.author.send(embed=embed)
+        return None
+    
     # Whenever the bot is tagged, respond with its prefix
     if message.content.startswith(f"<@!{client.user.id}>") and \
         len(message.content) == len(f"<@!{client.user.id}>"
@@ -145,9 +150,26 @@ async def on_command_error(ctx, error):
     errorEmbed.add_field(
         name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n**Bot Source Code:** [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
     errorEmbed.set_footer(
-        text=f"Command requested by {ctx.author.name}")
+        text=f"Command requested by {ctx.author.name}", icon_url=ctx.author.avatar.url)
    
     await ctx.send(embed=errorEmbed, view=view)
+    
+@client.event
+async def on_application_command_error(interaction, error):
+    view = DelBtn()
+  
+    errorEmbed = nextcord.Embed(
+        title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
+    errorEmbed.set_author(
+        name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar)
+    errorEmbed.add_field(
+        name="Error is described below.", value=f"```py\n {error}\n```")
+    errorEmbed.add_field(
+        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n**Bot Source Code:** [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
+    errorEmbed.set_footer(
+        text=f"Command requested by {interaction.user.name}", icon_url=interaction.user.display_avatar)
+   
+    await interaction.response.send_message(embed=errorEmbed, ephemeral=True)
 
 
 # RUNNING OUR CLIENT
