@@ -1,7 +1,7 @@
 import os, json, nextcord, datetime, random
 from nextcord import ChannelType, SlashOption
 from nextcord.abc import GuildChannel
-from nextcord.ext import commands, activities
+from nextcord.ext import commands, activities, application_checks
 
 
 class MakeLink(nextcord.ui.View):
@@ -133,7 +133,7 @@ class Slash(commands.Cog):
 
     # TOGGLE COMMANDS SLASH COMMAND
     @nextcord.slash_command(name="toggle", description="Enables a Disabled Command and Disables an Enabled Command.")
-    @commands.has_guild_permissions(administrator=True)
+    @application_checks.has_guild_permissions(administrator=True)
     async def toggle(self, interaction: nextcord.Interaction, *, command):
         command = self.bot.get_command(command)
 
@@ -168,7 +168,7 @@ class Slash(commands.Cog):
     # Clear Slash Command
 
     @nextcord.slash_command(name="clear", description="Clears messages")
-    @commands.has_permissions(administrator=True)
+    @application_checks.has_guild_permissions(administrator=True)
     async def clear(self, interaction: nextcord.Interaction, amount: int):
         if amount > 1000:
             await interaction.response.send_message('Cannot delete more than 1000 messages.', ephemeral=True)

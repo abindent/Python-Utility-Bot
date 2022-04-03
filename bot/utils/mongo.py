@@ -56,7 +56,7 @@ class Document:
         if await self.find_by_custom(filter_dict) is None:
             return
 
-        # TODO Discuss this in ep 27.3
+       
         return await self.db.delete_many(filter_dict)
 
     async def insert(self, data):
