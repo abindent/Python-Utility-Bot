@@ -92,8 +92,7 @@ async def on_ready():
 
     # Adding MongoDB to our bot
     client.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(client.connection_url))
-    # client.db = client.mongo["pythonbot"]
-    client.db = client.mongo["testbot"] # For Testing Purpose
+    client.db = client.mongo["pythonbot"]
     client.config = Document(client.db, "config")   
     print("Initialized Database\n-----")
     for document in await client.config.get_all():
