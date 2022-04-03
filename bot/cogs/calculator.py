@@ -2,7 +2,7 @@ import time
 import nextcord
 from nextcord.ext import commands
 from TagScriptEngine import Interpreter, block
-from bot import DelBtn
+from utils.delbtn import DelBtn
 
 
 __red_end_user_data_statement__ = "This cog does not store any End User Data."

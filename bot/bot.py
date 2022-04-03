@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 # LOADING EXTENSIONS FROM UTILS
 from utils import json_loader
+from utils.delbtn import DelBtn
 from utils.mongo import Document
 from utils.config_db import Blacklist_DB
 
@@ -119,21 +120,14 @@ async def on_message(message):
     if message.content.startswith(f"<@!{client.user.id}>") and \
         len(message.content) == len(f"<@!{client.user.id}>"
     ):
-        data = await client.config.get_by_id(message.guild.id)
+        data = await client.config.find(message.guild.id)
         prefix = data.get("prefix", "t!")
         await message.channel.send(f"My prefix here is `{prefix}`", delete_after=15)
 
     await client.process_commands(message)
 
 
-# A new nextcord view
-class DelBtn(nextcord.ui.View):
-    def __init__(self):
-        super().__init__()
-
-    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.secondary, emoji="<:dustbin:949602736633167882>")  
-    async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
-        await interaction.message.delete()   
+ 
 
 # Error Handling
 @client.event

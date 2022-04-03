@@ -1,14 +1,6 @@
 import nextcord, json, wavelink, os, asyncio, humanfriendly, aiohttp, datetime
 from nextcord.ext import commands
-
-
-class MessageDelete(nextcord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-
-    @nextcord.ui.button(style=nextcord.ButtonStyle.secondary,emoji="<:dustbin:949602736633167882>")
-    async def on_stop(self, button, interaction: nextcord.Interaction):
-        await interaction.message.delete()
+from utils.delbtn import DelBtn as MessageDelete
 
 
 class MusicController(nextcord.ui.View):

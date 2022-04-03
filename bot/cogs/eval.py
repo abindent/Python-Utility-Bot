@@ -1,16 +1,7 @@
 import nextcord, asyncio, os, io, contextlib
 from nextcord.ext import commands
 from nextcord.ui import Modal, TextInput
-
-class DelBtn(nextcord.ui.View):
-
-
-    def __init__(self):
-        super().__init__(timeout=None)
-
-    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.secondary, emoji="<:dustbin:949602736633167882>")  
-    async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
-        await interaction.message.delete()
+from utils.delbtn import DelBtn
 
 class SnekBox_Eval(nextcord.ui.Modal):
     def __init__(self) -> None:
@@ -56,8 +47,7 @@ class Eval(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-      
-        
+              
     @nextcord.slash_command(name="eval", description="Evaluates the given python code")
     async def eval(self, interaction: nextcord.Interaction):
         await interaction.response.send_modal(modal=SnekBox_Eval())

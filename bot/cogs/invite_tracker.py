@@ -1,7 +1,7 @@
 import nextcord, NextcordUtils, asyncio
 from nextcord.ext import commands
 from utils.mongo import Document
-from bot import DelBtn
+from utils.delbtn import DelBtn
 
 class InviteDB:
     def __init__(self, bot):
