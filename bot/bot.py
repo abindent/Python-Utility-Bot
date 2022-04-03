@@ -122,7 +122,7 @@ async def on_message(message):
     ):
         data = await client.config.find(message.guild.id)
         prefix = data.get("prefix", "t!")
-        await message.channel.send(f"My prefix here is `{prefix}`", delete_after=15)
+        await message.channel.send(f"My prefix here is `{prefix}`", delete_after=20)
 
     await client.process_commands(message)
 
