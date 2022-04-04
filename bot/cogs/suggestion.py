@@ -194,17 +194,47 @@ class Suggestion(commands.Cog):
           await msg.delete()
           
         else:
-            await self.db.add_data(ctx.guild.id, channel_id=channel.id)  
+            await self.db.add_data(ctx.guild.id, channel_id=channel.id) 
+            msg = await ctx.send(f"Successfully set {channel.mention} for showing suggestions.") 
+            await asyncio.sleep(3)
+            await msg.delete()
   
     @suggestion_set_channel.command(name="approve", description="Sets the channel where the approved suggestions will be showed.")
     async def suggestion_approve_channel_set(self, ctx: commands.Context, channel: nextcord.TextChannel):
-        await self.db.update_approve_channel(ctx.guild.id, channel.id)
-        msg = await ctx.send(f"Successfuly set {channel.mention} for showing approved suggestions.")
-   
+        data = await self.db.get_data(ctx.guild.id)
+        
+        if data:
+         
+          await self.db.update_approve_channel(ctx.guild.id, channel.id)
+          msg = await ctx.send(f"Successfuly set {channel.mention} for showing approved suggestions.")
+          await asyncio.sleep(3)
+          await msg.delete()
+
+        else:
+            channel_id = data["channel_id"]                    
+            deny_channel_id = data["deny_channel_id"]   
+            await self.db.add_data(ctx.guild.id, channel_id=channel_id, approve_channel_id=channel.id, deny_channel_id=deny_channel_id) 
+            msg = await ctx.send(f"Successfully set {channel.mention} for showing approved suggestions.") 
+            await asyncio.sleep(3)
+            await msg.delete()
+            
     @suggestion_set_channel.command(name="deny", description="Sets the channel where the denied suggestions will be showed.")
     async def suggestion_deny_channel_set(self, ctx: commands.Context, channel: nextcord.TextChannel):
-        await self.db.update_deny_channel(ctx.guild.id, channel.id)
-        msg = await ctx.send(f"Successfuly set {channel.mention} for showing denied suggestions.")
+        data = await self.db.get_data(ctx.guild.id)
+        
+        if data:
+          await self.db.update_deny_channel(ctx.guild.id, channel.id)
+          msg = await ctx.send(f"Successfuly set {channel.mention} for showing denied suggestions.")
+          await asyncio.sleep(3)
+          await msg.delete()
+
+        else:
+            channel_id = data["channel_id"]                    
+            approve_channel_id = data["approve_channel_id"]   
+            await self.db.add_data(ctx.guild.id, channel_id=channel_id, approve_channel_id=approve_channel_id, deny_channel_id=channel.id) 
+            msg = await ctx.send(f"Successfully set {channel.mention} for showing denied suggestions.") 
+            await asyncio.sleep(3)
+            await msg.delete()
 
 def setup(bot):
     bot.add_cog(Suggestion(bot))
