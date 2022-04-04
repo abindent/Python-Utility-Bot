@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 # LOADING EXTENSIONS FROM UTILS
 from utils import json_loader
+from utils.delbtn import DelBtnNoInteractionCheck as DelBtn
 from utils.mongo import Document
 from utils.config_db import Blacklist_DB
 
@@ -45,6 +46,9 @@ intents.members = True
 # OUR CLIENT     
 client = commands.AutoShardedBot(command_prefix=get_prefix, case_insensitive=True, activity=activity, intents=intents)
 
+
+
+
 client.config_token = os.getenv("BOT_TOKEN")
 client.connection_url = os.getenv("MONGO_URI")
 client.guild_id="932264473408966656"
@@ -80,6 +84,7 @@ client.colors = {
 
 client.color_list = [c for c in client.colors.values()]
 
+
 # EVENTS
 @client.event
 async def on_ready():
@@ -102,6 +107,7 @@ async def on_ready():
     for cog in client.cogs:
         print(f"Loaded {cog} \n-----")    
 
+
 @client.event
 async def on_message(message):
     # Ignore messages sent by yourself
@@ -119,21 +125,14 @@ async def on_message(message):
     if message.content.startswith(f"<@!{client.user.id}>") and \
         len(message.content) == len(f"<@!{client.user.id}>"
     ):
-        data = await client.config.get_by_id(message.guild.id)
+        data = await client.config.find(message.guild.id)
         prefix = data.get("prefix", "t!")
-        await message.channel.send(f"My prefix here is `{prefix}`", delete_after=15)
+        await message.channel.send(f"My prefix here is `{prefix}`", delete_after=20)
 
     await client.process_commands(message)
 
 
-# A new nextcord view
-class DelBtn(nextcord.ui.View):
-    def __init__(self):
-        super().__init__()
-
-    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.secondary, emoji="<:dustbin:949602736633167882>")  
-    async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
-        await interaction.message.delete()   
+ 
 
 # Error Handling
 @client.event
@@ -147,7 +146,7 @@ async def on_command_error(ctx, error):
     errorEmbed.add_field(
         name="Error is described below.", value=f"```py\n {error}\n```")
     errorEmbed.add_field(
-        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n**Bot Source Code:** [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
+        name="__**What To do?**__", value="Don't worry we will forward this message to the devs.\n\n**Read the faqs for common errors at:** [click here](https://opensourcegames.gitbook.io/nextcord-bot-template/faqs)", inline=False)
     errorEmbed.set_footer(
         text=f"Command requested by {ctx.author.name}", icon_url=ctx.author.avatar.url)
    
@@ -164,7 +163,7 @@ async def on_application_command_error(interaction, error):
     errorEmbed.add_field(
         name="Error is described below.", value=f"```py\n {error}\n```")
     errorEmbed.add_field(
-        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n**Bot Source Code:** [click here](https://github.com/abindent/Nextcord-Utility-Bot)", inline=False)
+        name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n\n**Read the faqs for common errors at:** [click here](https://opensourcegames.gitbook.io/nextcord-bot-template/faqs)", inline=False)
     errorEmbed.set_footer(
         text=f"Command requested by {interaction.user.name}", icon_url=interaction.user.display_avatar)
    

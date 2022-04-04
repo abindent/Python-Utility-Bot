@@ -2,7 +2,7 @@ import time
 import nextcord
 from nextcord.ext import commands
 from TagScriptEngine import Interpreter, block
-from bot import DelBtn
+from utils.delbtn import DelBtn
 
 
 __red_end_user_data_statement__ = "This cog does not store any End User Data."
@@ -22,7 +22,8 @@ class Calculator(commands.Cog, name="Calculator System"):
 
     async def red_delete_data_for_user(self, **kwargs):
         return
-
+ 
+   
     @commands.command(aliases=["calc"])
     async def calculate(self, ctx, *, query):
         """Math"""
@@ -43,7 +44,7 @@ class Calculator(commands.Cog, name="Calculator System"):
             description=f"Output: `{fmt_str}`",
         )
         embed.set_footer(text=f"Calculated in {round((end - start) * 1000, 3)} ms")
-        await ctx.send(embed=embed, view=DelBtn())
+        await ctx.send(embed=embed, view=DelBtn(ctx))
 
 def setup(bot):
     cog = Calculator(bot)

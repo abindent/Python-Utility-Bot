@@ -28,7 +28,7 @@ class VoteManage:
         await self.vote_db.update_one({"_id": _id}, {'$set': {"Dislikes":dislikes}})
 
     async def get_data(self, _id):
-        data = await self.vote_db.get_by_id(_id)
+        data = await self.vote_db.find_by_id(_id)
                 
         Dislikes= data["Dislikes"] 
         Likes = data["Likes"]

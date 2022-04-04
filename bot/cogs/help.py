@@ -1,16 +1,7 @@
 from typing import List, Tuple
 import nextcord
 from nextcord.ext import commands, menus
-
-
-class DelBtn(nextcord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-
-    @nextcord.ui.button(label="Delete", style=nextcord.ButtonStyle.secondary, emoji="<:dustbin:949602736633167882>")  
-    async def stop(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
-        await interaction.message.delete()
-
+from utils.delbtn import DelBtn
 
 class HelpPageSource(menus.ListPageSource):
     """Page source for dividing the list of tuples into pages and displaying them in embeds"""
@@ -55,7 +46,11 @@ class HelpButtonMenuPages(menus.ButtonMenuPages):
 
     async def interaction_check(self, interaction: nextcord.Interaction) -> bool:
         """Ensure that the user of the button is the one who called the help command"""
-        return self._ctx.author == interaction.user
+        if self._ctx.author == interaction.user:
+            return True
+        else:
+            await interaction.response.send_message(":no_entry: This is not for you.", ephemeral=True)
+            return False
 
 
 class NewHelpCommand(commands.MinimalHelpCommand):
@@ -129,7 +124,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         embed.set_footer(
             text=f"Use {self.context.clean_prefix}help [command] for more info on a command."
         )
-        await self.get_destination().send(embed=embed, view=DelBtn())
+        await self.get_destination().send(embed=embed, view=DelBtn(self.context))
 
     async def send_group_help(self, group: commands.Group):
         """implements group help help page"""
@@ -148,7 +143,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
                     inline=False,
                 )
 
-        await self.get_destination().send(embed=embed, view=DelBtn())
+        await self.get_destination().send(embed=embed, view=DelBtn(self.context))
 
     # Use the same function as group help for command help
     async def send_command_help(self, command: commands.command):
