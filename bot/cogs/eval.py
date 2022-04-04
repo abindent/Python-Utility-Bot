@@ -1,7 +1,7 @@
 import nextcord, asyncio, os, io, contextlib
 from nextcord.ext import commands
 from nextcord.ui import Modal, TextInput
-from utils.delbtn import DelBtn
+from utils.delbtn import DelBtnSlashInteractionCheck as DelBtn
 
 class SnekBox_Eval(nextcord.ui.Modal):
     def __init__(self) -> None:
@@ -34,7 +34,7 @@ class SnekBox_Eval(nextcord.ui.Modal):
         await inter.response.send_message(embed=embed,view=view)
 
     async def on_error(self, error, interaction: nextcord.Interaction):
-        view = DelBtn()
+        view = DelBtn(interaction)
         embed = nextcord.Embed(title="Code Status", description=":x: An error occurred.", color=0xFF0000)
         embed.add_field(name=":warning: The Error", value=f"```{error}```", inline=False)
         await interaction.response.send_message(embed=embed,view=view)

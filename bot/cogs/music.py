@@ -4,9 +4,17 @@ from utils.delbtn import DelBtn as MessageDelete
 
 
 class MusicController(nextcord.ui.View):
-    def __init__(self):
+    def __init__(self, ctx):
         super().__init__(timeout=None)
-        
+        self.ctx = ctx
+    
+    async def interaction_check(self, interaction):
+        if interaction.user != self.ctx.author:
+            await interaction.response.send_message(":no_entry: This is not for you.", ephemeral=True)
+            return False
+        else:
+            return True
+    
     @nextcord.ui.button(style=nextcord.ButtonStyle.secondary, emoji="🔈")
     async def mute(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
               
@@ -181,11 +189,7 @@ class MusicController(nextcord.ui.View):
         else:
             vc: wavelink.Player = interaction.guild.voice_client
         
-        for child in self.children:
-            child.disabled = True
-            await interaction.message.edit(view=self)
         await vc.stop()
-        await vc.disconnect()
 
             
         
@@ -213,15 +217,15 @@ class Music(commands.Cog):
         vc: player = ctx.voice_client
 
         if vc.loop:
-            return await vc.stop(), await vc.play(track), await songplayembed.edit(view=MusicController())
+            return await vc.stop(), await vc.play(track), await songplayembed.edit(view=MusicController(self._global_ctx))
 
         if vc.queue.is_empty:
-            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete())
+            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete(self._global_ctx))
              
 
         next_song = vc.queue.get()
 
-        view = MusicController()
+        view = MusicController(self._global_ctx)
         embed = nextcord.Embed(title="▶️ Playing Music..",
                                description=f"📢 | Now Playing `{next_song.title}` by {next_song.author} \n **LINK:** {next_song.uri}", color=0x91cd0e)
         embed.set_author(name="OpenSourceGames Utility",
@@ -264,7 +268,7 @@ class Music(commands.Cog):
 
         if vc.queue.is_empty and not vc.is_playing():
 
-            view = MusicController()
+            view = MusicController(ctx)
             embed = nextcord.Embed(title="▶️ Playing Music..",
                                 description=f"📢 | Now Playing `{search.title}` by {search.author} \n **LINK:** {search.uri}", color=0x91cd0e)
             embed.set_author(name="OpenSourceGames Utility",
@@ -289,6 +293,7 @@ class Music(commands.Cog):
             await msg.delete()
   
         vc.ctx = ctx
+        self._global_ctx = ctx
         setattr(vc, "loop", False)
 
     @commands.command(name="pause", description="⏸️ Pauses playing song.")
@@ -316,14 +321,20 @@ class Music(commands.Cog):
         else:
             vc: wavelink.Player = ctx.voice_client
 
-        embed = nextcord.Embed(title="⏸️ Pausing Music..",
-                               description=f"📢 | ⏸️ Paused the player.", color=0x91cd0e)
-        embed.set_author(name="OpenSourceGames Utility",
-                         icon_url=self.bot.user.display_avatar)
-        await vc.pause()
-        message = await ctx.send(embed=embed, view=None)
-        await asyncio.sleep(5)
-        await message.delete()
+        if ctx.author is self._global_ctx.author:
+            embed = nextcord.Embed(title="⏸️ Pausing Music..",
+                                   description=f"📢 | ⏸️ Paused the player.", color=0x91cd0e)
+            embed.set_author(name="OpenSourceGames Utility",
+                             icon_url=self.bot.user.display_avatar)
+            await vc.pause()
+            message = await ctx.send(embed=embed, view=None)
+            await asyncio.sleep(5)
+            await message.delete()
+        
+        else:
+            msg = await ctx.send(":no_entry: This song is not yours, so you can't pause it.")
+            await asyncio.sleep(5)
+            await msg.delete         
 
     @commands.command(name="resume", description="⏯️ Resumes playing song.")
     async def resume(self, ctx: commands.Context):
@@ -349,15 +360,20 @@ class Music(commands.Cog):
 
         else:
             vc: wavelink.Player = ctx.voice_client
-
-        embed = nextcord.Embed(title="⏸️ Resuming Music..",
-                               description=f"📢 | ⏯️ Resumed the player.", color=0x91cd0e)
-        embed.set_author(name="OpenSourceGames Utility",
-                         icon_url=self.bot.user.display_avatar)
-        await vc.resume()
-        message = await ctx.send(embed=embed)
-        await asyncio.sleep(5)
-        await message.delete()
+          
+        if ctx.author is self._global_ctx.author:  
+           embed = nextcord.Embed(title="⏸️ Resuming Music..",
+                                  description=f"📢 | ⏯️ Resumed the player.", color=0x91cd0e)
+           embed.set_author(name="OpenSourceGames Utility",
+                            icon_url=self.bot.user.display_avatar)
+           await vc.resume()
+           message = await ctx.send(embed=embed)
+           await asyncio.sleep(5)
+           await message.delete()
+        else:
+            msg = await ctx.send(":no_entry: This song is not yours, so you can't resume it.")
+            await asyncio.sleep(5)
+            await msg.delete         
 
     @commands.command(name="loop", description="Enables Looping")
     async def loop(self, ctx: commands.Context):
@@ -383,17 +399,22 @@ class Music(commands.Cog):
 
         else:
             vc: wavelink.Player = ctx.voice_client
-
-        try:
-            vc.loop ^= True
-        except Exception:
-            setattr(vc, "loop", False)
-
-        if vc.loop:
-            return await ctx.send("Enabled <:loop:950322712805507104> Loop")        
+     
+        if ctx.author is self._global_ctx.author:
+         try:
+             vc.loop ^= True
+         except Exception:
+             setattr(vc, "loop", False)
+ 
+         if vc.loop:
+             return await ctx.send("Enabled <:loop:950322712805507104> Loop")        
+         else:
+             return await ctx.send("Disabled <:loop:950322712805507104> Loop")        
         else:
-            return await ctx.send("Disabled <:loop:950322712805507104> Loop")        
-      
+            msg = await ctx.send(":no_entry: This song is not yours, so you can't control the <:loop:950322712805507104> loop.")
+            await asyncio.sleep(5)
+            await msg.delete            
+        
 
     @commands.command(name="queue", description="Queues a song..")
     async def queue(self, ctx: commands.Context):
@@ -545,23 +566,28 @@ class Music(commands.Cog):
             
         else:
             vc: wavelink.Player = ctx.voice_client
+        
+        if ctx.author is self._global_ctx.author:
 
-        if volume > 100:
-            msg = await ctx.send(":angry: It's too much high.")    
-            await asyncio.sleep(4)
+            if volume > 100:
+                msg = await ctx.send(":angry: It's too much high.")    
+                await asyncio.sleep(4)
+                await msg.delete()
+
+            elif volume < 0:
+                msg = await ctx.send(":angry: It's too low.")    
+                await asyncio.sleep(4)
+                await msg.delete()
+            
+            else:   
+
+                msg = await ctx.send(f"Set your 🔊 volume to `{volume}%`")   
+                return await vc.set_volume(volume), msg,  await asyncio.sleep(3), await msg.delete()
+
+        else:
+            msg = await ctx.send(":no_entry: This song is not yours, so you can't control it's 🔊 volume.")
+            await asyncio.sleep(5)
             await msg.delete()
-
-        elif volume < 0:
-            msg = await ctx.send(":angry: It's too low.")    
-            await asyncio.sleep(4)
-            await msg.delete()
-           
-        else:   
-
-            msg = await ctx.send(f"Set your 🔊 volume to `{volume}%`")   
-            return await vc.set_volume(volume), msg,  await asyncio.sleep(3), await msg.delete()
-
-
 
     @commands.command(name="nowplaying", aliases=["np", "songinfo"], description="Shows the info about the currently playing song.")
     async def nowplaying(self, ctx: commands.Context):

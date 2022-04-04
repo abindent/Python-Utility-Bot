@@ -9,8 +9,17 @@ dotenv.load_dotenv()
 class MemeBtn(nextcord.ui.View):
 
    
-    def __init__(self):
+    def __init__(self, ctx):
         super().__init__(timeout=None)
+        self.ctx = ctx
+
+    async def interaction_check(self, interaction):
+     if interaction.user != self.ctx.author:
+         await interaction.response.send_message(":no_entry: This is not for you.", ephemeral=True)
+         return False
+     else:
+         return True
+        
 
     @nextcord.ui.button(label="Next Meme", style=nextcord.ButtonStyle.green, emoji="⏩")
     async def nextmeme(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
@@ -101,7 +110,7 @@ class Fun(commands.Cog):
 
     @commands.command(name="meme", description="Replies with a meme.")
     async def meme(self, ctx):
-        view = MemeBtn()
+        view = MemeBtn(ctx)
         memeApi = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme")
         memeData = json.load(memeApi)
 
