@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # LOADING EXTENSIONS FROM UTILS
 from utils import json_loader
-from utils.delbtn import DelBtnNoInteractionCheck as DelBtn
+from utils.delbtn import DelBtnSlashInteractionCheck, DelBtn
 from utils.mongo import Document
 from utils.config_db import Blacklist_DB
 
@@ -137,7 +137,7 @@ async def on_message(message):
 # Error Handling
 @client.event
 async def on_command_error(ctx, error):
-    view = DelBtn()
+    view = DelBtn(ctx)
   
     errorEmbed = nextcord.Embed(
         title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
@@ -159,7 +159,7 @@ async def on_command_error(ctx, error):
     
 @client.event
 async def on_application_command_error(interaction, error):
-    view = DelBtn()
+    view = DelBtnSlashInteractionCheck(interaction)
   
     errorEmbed = nextcord.Embed(
         title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
