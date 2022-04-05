@@ -356,9 +356,9 @@ def generate_info_embed() -> nextcord.Embed:
         description=(
             "Discord Wordle is a game of wordle-like puzzle solving.\n\n"
             "**You can start a game with**\n\n"
-            ":sunny: `/playwordle daily` - Play the puzzle of the day\n"
-            ":game_die: `/playwordle random` - Play a random puzzle\n"
-            ":boxing_glove: `/playwordle id <puzzle_id>` - Play a puzzle by ID\n\n"
+            ":sunny: `/playwordle <choose daily from the options>` - Play the puzzle of the day\n"
+            ":game_die: `/playwordle <choose random from the options>` - Play a random puzzle\n"
+            ":boxing_glove: `/playwordle <choose id from the options> <puzzle_id>` - Play a puzzle by ID\n\n"
             f"<:member_join:942985122846752798> [Add this bot to your server]({join_url})\n"
             f"<:discord:942984508586725417> [Join my Discord server]({discord_url})\n"
             f"<:youtube:942984508976795669> [YouTube tutorial on the making of this bot]({youtube_url})\n"

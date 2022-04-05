@@ -58,7 +58,7 @@ logging.basicConfig(level=logging.INFO)
 client.muted_users = {}
 client.cwd = cwd
 
-client.version = "3.4.2"
+client.version = "4.0.1alpha"
 
 client.colors = {
     "WHITE": 0xFFFFFF,
@@ -143,8 +143,13 @@ async def on_command_error(ctx, error):
         title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
     errorEmbed.set_author(
         name="OpenSourceGames Utility", icon_url=client.user.display_avatar)
-    errorEmbed.add_field(
-        name="Error is described below.", value=f"```py\n {error}\n```")
+    
+    if isinstance(error, commands.errors.MissingRequiredArgument):
+        errorEmbed.add_field(
+        name="Error is described below.", value=f"**Type:** {type(error)}\n\n```You're missing a required argument.```") 
+    else:    
+       errorEmbed.add_field(
+        name="Error is described below.", value=f"**Type:** {type(error)}\n\n```py\n {error}\n```")
     errorEmbed.add_field(
         name="__**What To do?**__", value="Don't worry we will forward this message to the devs.\n\n**Read the faqs for common errors at:** [click here](https://opensourcegames.gitbook.io/nextcord-bot-template/faqs)", inline=False)
     errorEmbed.set_footer(
@@ -160,8 +165,12 @@ async def on_application_command_error(interaction, error):
         title="❌ Error in the Bot", description="😞 Sorry we are facing an error while running this command.", color=0xFF5733)
     errorEmbed.set_author(
         name="OpenSourceGames Utility", icon_url=interaction.client.user.display_avatar)
-    errorEmbed.add_field(
-        name="Error is described below.", value=f"```py\n {error}\n```")
+    if isinstance(error, commands.errors.MissingRequiredArgument):
+        errorEmbed.add_field(
+        name="Error is described below.", value=f"**Type:** {type(error)}\n\n```You're missing a required argument.```") 
+    else:    
+       errorEmbed.add_field(
+        name="Error is described below.", value=f"**Type:** {type(error)}\n\n```py\n {error}\n```")
     errorEmbed.add_field(
         name="__**What To do?**__", value="Don't worry we will forward this message to the dev.\n\n**Read the faqs for common errors at:** [click here](https://opensourcegames.gitbook.io/nextcord-bot-template/faqs)", inline=False)
     errorEmbed.set_footer(
