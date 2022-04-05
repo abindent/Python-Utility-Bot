@@ -1,7 +1,7 @@
 import nextcord, asyncio, os, io, contextlib
 from nextcord.ext import commands
 from nextcord.ui import Modal, TextInput
-from utils.delbtn import DelBtnSlashInteractionCheck as DelBtn
+from utils.delbtn import DelBtnSlashInteractionCheck 
 
 class SnekBox_Eval(nextcord.ui.Modal):
     def __init__(self) -> None:
@@ -17,7 +17,7 @@ class SnekBox_Eval(nextcord.ui.Modal):
      )
 
     async def callback(self, inter: nextcord.Interaction) -> None:
-        view = DelBtn()
+        view = DelBtnSlashInteractionCheck(inter)
         embed = nextcord.Embed(title="Your code", description="✅ Your eval job has been completed and the result is provided below.", color=0x00FF00)
         code = self.children[0].value
         stdout = io.StringIO()
