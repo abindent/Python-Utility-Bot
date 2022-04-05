@@ -187,34 +187,33 @@ class Docs(commands.Cog, name="Documentation"):
     @commands.group(name='docs', aliases=["doc", "rtfm"], help="Finds the documentation related to <:discord:932504870701908068> discord api wrappers for python..", invoke_without_command=True)
     async def docs_group(self, ctx: commands.Context, *, query: str = None):
         await self.do_docs(ctx, "master", query)
-
+    # <!-- NEXTCORD DOCUMENTATION -->
     @docs_group.command(name="nextcord", description="Finds the documentation related to <:nextcord:960775252873457724> nextcord")
     async def docs_nextcord(self, ctx: commands.Context, *, query: str = None):
         await self.do_docs(ctx, "nextcord", query)
 
-    # <!-- NEXTCORD DOCUMENTATION -->
+    # <!-- DISNAKE DOCUMENTATION -->
     @docs_group.command(name="disnake", description="Finds the documentation related to <:disnake:960776137296994314> disnake")
     async def docs_disnake(self, ctx: commands.Context, *, query: str = None):
         await self.do_docs(ctx, "disnake", query)
-
-    # <!-- DISNAKE DOCUMENTATION -->
+    # <!-- PY-CORD DOCUMENTATION -->
     @docs_group.command(name="py-cord", description="Finds the documentation related to<:pycord:960776193701978122> py-cord")
     async def docs_pycord(self, ctx: commands.Context, *, query: str = None):
         await self.do_docs(ctx, "py-cord", query)
 
-    # <!-- PY-CORD DOCUMENTATION -->
-    @docs_group.command(name="ipc", description="Finds the documentation related to <:nextcord:960775252873457724> nextcord-ext-ipc")
-    async def docs_nextcord(self, ctx: commands.Context, *, query: str = None):
-        await self.do_docs(ctx, "ipc", query)
 
     # <!-- NEXTCORD EXTENSION DOCUMENTATION -->
+    @docs_group.command(name="ipc", description="Finds the documentation related to <:nextcord:960775252873457724> nextcord-ext-ipc")
+    async def docs_nextcord_ipc(self, ctx: commands.Context, *, query: str = None):
+        await self.do_docs(ctx, "ipc", query)
+
     @docs_group.command(name="menus", description="Finds the documentation related to <:nextcord:960775252873457724> nextcord-ext-menus")
-    async def docs_nextcord(self, ctx: commands.Context, *, query: str = None):
+    async def docs_nextcord_menus(self, ctx: commands.Context, *, query: str = None):
         await self.do_docs(ctx, "menus", query)
 
     # <!-- PYTHON DOCUMENTATION -->
     @docs_group.command(name="python", description="Finds the documentation related to <:python:935932879714779227> python")
-    async def docs_nextcord(self, ctx: commands.Context, *, query: str = None):
+    async def docs_python(self, ctx: commands.Context, *, query: str = None):
         await self.do_docs(ctx, "python", query)
 
     # <!-- DISCORD DOCUMENTATION -->
