@@ -1,7 +1,7 @@
 import nextcord
 from nextcord.ext import commands
 from utils.game_utils import  daily_puzzle_id, generate_info_embed, generate_puzzle_embed, process_message_as_guess, random_puzzle_id, TicTacToe
-
+from utils.delbtn import DelBtnSlashInteractionCheck
 
 from typing import Optional
 
@@ -62,32 +62,25 @@ class Games(commands.Cog):
 
     
     @nextcord.slash_command(name="playwordle", description="Play wordle with me.")
-    async def wordle(self, interaction: nextcord.Interaction):
-       pass
-
-    @wordle.subcommand(name="random", description="Play a random game of Wordle")
-    async def slash_play_random(self, interaction: nextcord.Interaction):
+    async def wordle(self, interaction: nextcord.Interaction, option: str= nextcord.SlashOption(name="option", description="Choose an option", choices={"info": "info","random": "random", "daily": "daily", "id": "id"}),  puzzle_id: int = nextcord.SlashOption(description="Puzzle ID of the word to guess", required=False, )):
+       if option == "random":   
         embed = generate_puzzle_embed(self.bot, interaction.user, random_puzzle_id())
-        await interaction.send(embed=embed)
-
-    @wordle.subcommand(name="id", description="Play a game of Wordle by its ID")
-    async def slash_play_id(
-        self,
-        interaction: nextcord.Interaction,
-        puzzle_id: int = nextcord.SlashOption(
-            description="Puzzle ID of the word to guess"),
-    ):
-        embed = generate_puzzle_embed(self.bot, interaction.user, puzzle_id)
-        await interaction.send(embed=embed)
-
-    @wordle.subcommand(name="daily", description="Play the daily game of Wordle")
-    async def slash_play_daily(self, interaction: nextcord.Interaction):
+        await interaction.send(embed=embed, view=DelBtnSlashInteractionCheck(interaction))
+       
+       elif option == "daily":
         embed = generate_puzzle_embed(self.bot, interaction.user, daily_puzzle_id())
-        await interaction.send(embed=embed)
+        await interaction.send(embed=embed, view=DelBtnSlashInteractionCheck(interaction))
+        
+       elif option == "info":
+           await interaction.send(embed=generate_info_embed(), view=DelBtnSlashInteractionCheck(interaction)) 
+           
+       else:
+           if option == "id":
+              embed = generate_puzzle_embed(self.bot, interaction.user, puzzle_id)
+              await interaction.send(embed=embed, view=DelBtnSlashInteractionCheck(interaction))
 
-    @wordle.subcommand(name="info", description="Wordle Info")
-    async def slash_info(self, interaction: nextcord.Interaction):
-        await interaction.send(embed=generate_info_embed())
+
+
     
 
 

@@ -4,6 +4,7 @@ astroid==2.5.1
 async-timeout==4.0.2
 attrs==21.4.0
 autopep8==1.6.0
+algoliasearch==2.6.1
 bandit==1.7.2
 black==22.1.0
 CacheControl==0.12.10

@@ -91,7 +91,7 @@ class Slash(commands.Cog):
 
     # 8ball Slash Command
     @nextcord.slash_command(name="8ball", description="Let the 8 Ball Predict!\nthe future")
-    async def eightball(self, interaction: nextcord.Interaction, *, question):
+    async def eightball(self, interaction: nextcord.Interaction, *, question=SlashOption(name="question", description="Enter your question")):
         responses = [
             'It is certain.',
             'It is decidedly so.',
@@ -134,7 +134,7 @@ class Slash(commands.Cog):
     # TOGGLE COMMANDS SLASH COMMAND
     @nextcord.slash_command(name="toggle", description="Enables a Disabled Command and Disables an Enabled Command.")
     @application_checks.has_guild_permissions(administrator=True)
-    async def toggle(self, interaction: nextcord.Interaction, *, command):
+    async def toggle(self, interaction: nextcord.Interaction, *, command=SlashOption(name="command", description="Enter the name of the command you want to diable.")):
         command = self.bot.get_command(command)
 
         if command == None:
@@ -169,7 +169,7 @@ class Slash(commands.Cog):
 
     @nextcord.slash_command(name="clear", description="Clears messages")
     @application_checks.has_guild_permissions(administrator=True)
-    async def clear(self, interaction: nextcord.Interaction, amount: int):
+    async def clear(self, interaction: nextcord.Interaction, amount: int = SlashOption(name="amount", description="Enter the amount of the messages.")):
         if amount > 1000:
             await interaction.response.send_message('Cannot delete more than 1000 messages.', ephemeral=True)
         else:
@@ -197,7 +197,7 @@ class Slash(commands.Cog):
   
     # Activity Slash Command
     @nextcord.slash_command(name="activity", description="Creates an activity in your channel.")
-    async def activity_slash(self, interaction: nextcord.Interaction, activity: str = nextcord.SlashOption(name="activity", description="Choose the activity", choices={"Poker Night (Requires Boost Level 1)": "755827207812677713", "Betrayal.io": "773336526917861400", "Fishington (broken)": "814288819477020702", "Chess In The Park (Requires Boost Level 1)": "832012774040141894", "Checkers In The Park (Requires Boost Level 1)": "832013003968348200", "Youtube Watch Together": "880218394199220334",  "Skecth Heads (new Doddle Crew)": "902271654783242291",  "Word Snacks": "879863976006127627", "SpellCast (Requires Boost Level 1)": "852509694341283871", "Letter League (formerly Letter Tile) (Requires Boost Level 1)": "879863686565621790", "Awkword (Requires Boost Level 1)": "879863881349087252", "Blazing 8s (New! Formerly Ocho) (Requires Boost Level 1)": "832025144389533716", "Sketch Artist": "879864070101172255", "Putt Party":"945737671223947305"}), channel: GuildChannel = SlashOption(channel_types=[ChannelType.voice])):
+    async def activity_slash(self, interaction: nextcord.Interaction, activity: str = SlashOption(name="activity", description="Choose the activity", choices={"Poker Night (Requires Boost Level 1)": "755827207812677713", "Betrayal.io": "773336526917861400", "Fishington (broken)": "814288819477020702", "Chess In The Park (Requires Boost Level 1)": "832012774040141894", "Checkers In The Park (Requires Boost Level 1)": "832013003968348200", "Youtube Watch Together": "880218394199220334",  "Skecth Heads (new Doddle Crew)": "902271654783242291",  "Word Snacks": "879863976006127627", "SpellCast (Requires Boost Level 1)": "852509694341283871", "Letter League (formerly Letter Tile) (Requires Boost Level 1)": "879863686565621790", "Awkword (Requires Boost Level 1)": "879863881349087252", "Blazing 8s (New! Formerly Ocho) (Requires Boost Level 1)": "832025144389533716", "Sketch Artist": "879864070101172255", "Putt Party":"945737671223947305"}), channel: GuildChannel = SlashOption(channel_types=[ChannelType.voice])):
         target_id = activity.replace('"', "")
        
         invite_link = await channel.create_activity_invite(activities.Activity.custom, activity_id=target_id)
