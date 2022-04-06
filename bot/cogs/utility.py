@@ -1,10 +1,6 @@
-import asyncio 
-import datetime
-import nextcord
-import humanfriendly
-import nextcord
+import asyncio, datetime, humanfriendly, nextcord
 from nextcord.ext import commands
-
+from utils.afk_utils import afk_utils
 
 class Utility(commands.Cog):
 
@@ -12,8 +8,34 @@ class Utility(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
-
-
+       
+    @commands.Cog.listener()
+    async def on_ready(self):
+         self.db = afk_utils(self.bot)
+          
+    @commands.Cog.listener()
+    async def on_message(self, message: nextcord.Message):
+        if message.author.bot:
+            return
+        
+        data = await self.db.fetch_afk(message.author.id)
+        
+        if data:
+            await self.db.delete_afk(message.author.id)
+            await message.author.edit(nick=data["name"])
+            msg = await message.channel.send(f"Welcome back from your afk : {message.author.mention}")
+            await asyncio.sleep(5)
+            await msg.delete()
+        
+        if message.mentions:
+            for mention in message.mentions:
+                data = await self.db.fetch_afk(mention.id)
+            
+                if data and mention.id != message.author.id:
+                    msg  =await message.channel.send(f"{mention.name} is currently afk! `Reason: {data['reason']}`")
+                    await asyncio.sleep(5)
+                    await msg.delete()               
+            
 
     @commands.command(name="clear",description="Clears messages",pass_context=True, usage="<amount of message to be purged>")
     @commands.has_permissions(administrator=True)
@@ -132,6 +154,36 @@ class Utility(commands.Cog):
         await member.edit(timeout=None, reason=reason)
         await ctx.send(embed=unmuteembed)    
 
+    @commands.group(name='afk', description='Set or remove an AFK status to display when a member is mentioned', usage='[reason]')
+    async def afk(self, ctx: commands.Context, *, user: nextcord.Member=None, reason: str="No reason provided"):
+        
+        if user:
+            user = user
+            id = user.id
+            
+        else:
+            user = ctx.author
+            id = ctx.author.id
+                
+        data = await self.db.fetch_afk(id)
+        
+        if not data: 
+          await self.db.create_afk(user, ctx.message.guild.id, reason)
+          await user.edit(nick=f'[AFK] {user.name}')
+          msg = await ctx.send(f'I have set your afk for || {reason} ||')
+          await asyncio.sleep(5)
+          await msg.delete()
+                  
+        else:
+            if data["reason"] == reason:
+               msg = await ctx.send(f"{user} is already an afk with the same reason")
+               await asyncio.sleep(5)
+               await msg.delete()          
+               
+        
+        
+        
+ 
  
 def setup(bot):
     bot.add_cog(Utility(bot))
