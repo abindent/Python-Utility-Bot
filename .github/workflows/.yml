@@ -1,2 +1,11 @@
 - name: discord-webhook
+  # You may pin to the exact commit or the version.
+  # uses: johnnyhuy/actions-discord-git-webhook@ba54912b26910da886c9095317d6da6182a87224
   uses: johnnyhuy/actions-discord-git-webhook@v1.0.0
+  with:
+    # Discord webhook URL
+    webhook_url: https://discord.com/api/webhooks/950656643140583475/hmBnc4RUueh5VRz1Vxl4uhFAME_4vaMFEImWelWxt-udHcGF6i3GlbLMFU-8Is8O9LMv/github
+    # Overwrite repository name with a custom one
+    repo_name: Nextcord-Utility-Bot
+    # Hide the full GitHub username
+    censor_username: Github
