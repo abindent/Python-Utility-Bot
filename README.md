@@ -3,7 +3,7 @@ A simple template for building a beautiful discord bot with nextcord.Here I have
 
 ## 💻 Features 
 1. Added MongoDB databse for saving bot data (eg:- bot prefix).
-2. Added Listeners and added a ot of custome bot customization.
+2. Added Listeners and added a lot of bot customization options.
 3. Dynamic help command with buttons.
 4. Added sub-commands examples in `__sub-command.py`.
 5. Added some commands related to the stats of the bot.
