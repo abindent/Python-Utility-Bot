@@ -3,7 +3,7 @@ import nextcord
 import random
 import datetime
 from nextcord.ext import commands, application_checks
-from utils.suggestion_utils import SuggestionBtn, MakeSuggesstionLink, SuggestionDB
+from utils.suggestion_utils import MakeStatusBtn, SuggestionBtn, MakeSuggesstionLink, SuggestionDB
 
 
 class Suggestion(commands.Cog):
@@ -17,7 +17,7 @@ class Suggestion(commands.Cog):
     async def on_ready(self):
         self.db = SuggestionDB(self.bot)
 
-    @commands.group(name="suggest", description="You member suggest us something.", usage="<suggestion>")
+    @commands.group(name="suggest", help="You member suggest us something.", usage="<suggestion>", invoke_without_command=True)
     async def suggest(self, ctx: commands.Context, *, suggestion):
         await ctx.message.delete()
 
@@ -105,6 +105,7 @@ class Suggestion(commands.Cog):
                 text=f"Auhtor ID: {suggestion_data['suggestor_id']}")
             
             await achannel.send(embed=embed, view=MakeSuggesstionLink(ctx.message.guild.id, channel.id, suggestionMsg.id))
+            await suggestionMsg.edit(view=MakeStatusBtn("Approved", nextcord.ButtonStyle.green, "✅"))
 
         else:
             data = await self.db.get_message_data(id)
@@ -163,6 +164,7 @@ class Suggestion(commands.Cog):
                 text=f"Auhtor ID: {suggestion_data['suggestor_id']}")
             
             await dchannel.send(embed=embed, view=MakeSuggesstionLink(ctx.message.guild.id, channel.id, suggestionMsg.id))
+            await suggestionMsg.edit(view=MakeStatusBtn("Denied", nextcord.ButtonStyle.red, "❌"))
             
             await ctx.send("The default channel got deleted so set a channel. For more run `[prefix]help suggestion setup channel`")
           

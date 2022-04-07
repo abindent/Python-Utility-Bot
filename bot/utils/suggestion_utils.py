@@ -10,6 +10,11 @@ class MakeSuggesstionLink(nextcord.ui.View):
                       url=f"https://discord.com/channels/{guild_id}/{channel_id}/{suggesion_id}"))
 
 
+class MakeStatusBtn(nextcord.ui.View):
+    def __init__(self, status, style, emoji):
+        super().__init__()
+        self.add_item(nextcord.ui.Button(label=status, style=style, emoji=emoji))
+
 class SuggestionBtn(nextcord.ui.View):
     def __init__(self, db):
         super().__init__(timeout=600000)
@@ -59,6 +64,7 @@ class SuggestionBtn(nextcord.ui.View):
             
             self._approve_btn.label = "Approved"
             self._approve_btn.disabled = True
+            self._approve_btn.style = nextcord.ButtonStyle.green
             self.remove_item(self._deny_btn)
             await interaction.message.edit(view=self)
             
@@ -114,6 +120,7 @@ class SuggestionBtn(nextcord.ui.View):
 
             self._deny_btn.label = "Denied"
             self._deny_btn.disabled = True
+            self._approve_btn.style = nextcord.ButtonStyle.red
             self.remove_item(self._approve_btn)
             await interaction.message.edit(view=self)
                
