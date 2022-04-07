@@ -13,7 +13,7 @@ class MakeSuggesstionLink(nextcord.ui.View):
 class MakeStatusBtn(nextcord.ui.View):
     def __init__(self, status, style, emoji):
         super().__init__()
-        self.add_item(nextcord.ui.Button(label=status, style=style, emoji=emoji))
+        self.add_item(nextcord.ui.Button(label=status, style=style, emoji=emoji, disabled=True))
 
 class SuggestionBtn(nextcord.ui.View):
     def __init__(self, db):
