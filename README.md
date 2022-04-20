@@ -30,6 +30,10 @@ A simple template for building a beautiful discord bot with nextcord.Here I have
      
         BOT_TOKEN=<Your bot's token>
         MONGO_URI=<connection string to your mongodb collection>
+        JOKE_API=<rapidapi key>
+        secret_id=<random hard to guess string>    
+        ALGOLIA_SEARCH_APP_ID=BH4D9OD16A
+        ALGOLIA_SEARCH_API_KEY=f37d91bd900bbb124c8210cca9efcc01
  
 
 ### Step 3
