@@ -23,7 +23,7 @@ A simple template for building a beautiful discord bot with nextcord.Here I have
  Run ```git clone https://github.com/abindent/Nextcord-Utility-Bot.git``` this command to our terminal for cloning this repo.
  
 ### Step 2
- Add environment variable file (eg:- `.env`, `.env.local`, `.env.developement`) and add `BOT_TOKEN=<add your bot token>` & `MONGO_URI=<mongodb connection string>` to that file.
+ Add environment variable file (eg:- `.env`, `.env.local`, `.env.developement`).
  
  
  After creating a .env file add the following lines
