@@ -2,6 +2,7 @@ import nextcord, asyncio, os, io, contextlib
 from nextcord.ext import commands
 from nextcord.ui import Modal, TextInput
 from util.messages import DeleteMessageSlash
+from util.constants import Client
 
 class SnekBox_Eval(nextcord.ui.Modal):
     def __init__(self) -> None:
@@ -26,7 +27,7 @@ class SnekBox_Eval(nextcord.ui.Modal):
 
         res = stdout.getvalue()
    
-        if inter.client.config_token in res:
+        if Client.token in res:
             res = ":warning: We can't reveal any sensitive info."
 
         embed.add_field(name="Input Code", value=f"```py\n{code}\n```", inline=False)
