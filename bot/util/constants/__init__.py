@@ -126,7 +126,7 @@ class Emojis:
     loop =  "<:emoji_7:900445329982369802>"
     closeConnection = "<a:closeimout:848156958834032650>"
 
-    mute = "🔊"
+    mute = "🔇"
     halfvolume = "🔉"
     fullvolume = "🔊"
 
