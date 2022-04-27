@@ -3,7 +3,6 @@ from nextcord.ext import commands, tasks
 import platform
 from io import BytesIO
 from util.constants import RapidApi
-from util.loaders import json
 
 dotenv.load_dotenv()
 
