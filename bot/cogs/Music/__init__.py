@@ -14,12 +14,12 @@ class Music(commands.Cog, description="Listen and Control that music which you w
 
     async def node_connect(self):
         await self.bot.wait_until_ready()
-        await wavelink.NodePool.create_node(bot=self.bot, host="lavalink-replit.thinkwithus.repl.co", port=443, password="SleepingOnTrains", https=True)
+        await wavelink.NodePool.create_node(bot=self.bot, host="<lavalink url>", port=<lavalink port>, password=<lavalink password>, https=<boolean>)
 
 
     @commands.Cog.listener()
-    async def on_waveink_node_ready(self, node: wavelink.Node):
-        print(f"Node <{node.id}> is ready!")
+    async def on_wavelink_node_ready(self, node: wavelink.Node):
+        print(f"Node <{node.identifier}> is ready!")
 
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, player: wavelink.Player, track: wavelink.Track, reason):
