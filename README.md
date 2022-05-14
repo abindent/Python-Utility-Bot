@@ -72,6 +72,6 @@ A simple template for building a beautiful discord bot with nextcord.Here I have
 
     ![PyPI](https://img.shields.io/pypi/v/humanfriendly?style=for-the-badge)
 
-7) **WAVELINK**
+7) **NEXTWAVE**
 
-    ![PyPI](https://img.shields.io/pypi/v/wavelink?style=for-the-badge)
+    ![PyPI](https://img.shields.io/pypi/v/nextwave?style=for-the-badge)
