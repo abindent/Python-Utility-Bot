@@ -1,0 +1,12 @@
+
+tasks:
+  - init: python install.py
+    command: pyhton bot/bot.py
+
+ports:
+  - port: 3000
+    visibility: public  
+
+vscode:
+  extensions:
+    - ms-python.python
