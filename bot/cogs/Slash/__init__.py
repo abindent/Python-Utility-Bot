@@ -199,7 +199,7 @@ class Slash(commands.Cog):
     # Activity Slash Command
     @nextcord.slash_command(name="activity", description="Creates an activity in your channel.")
     async def activity_slash(self, interaction: nextcord.Interaction, activity: str = SlashOption(name="activity", description="Choose the activity", choices={"Poker Night (Requires Boost Level 1)": "755827207812677713", "Betrayal.io": "773336526917861400", "Fishington (broken)": "814288819477020702", "Chess In The Park (Requires Boost Level 1)": "832012774040141894", "Checkers In The Park (Requires Boost Level 1)": "832013003968348200", "Youtube Watch Together": "880218394199220334",  "Skecth Heads (new Doddle Crew)": "902271654783242291",  "Word Snacks": "879863976006127627", "SpellCast (Requires Boost Level 1)": "852509694341283871", "Letter League (formerly Letter Tile) (Requires Boost Level 1)": "879863686565621790", "Awkword (Requires Boost Level 1)": "879863881349087252", "Blazing 8s (New! Formerly Ocho) (Requires Boost Level 1)": "832025144389533716", "Sketch Artist": "879864070101172255", "Putt Party":"945737671223947305"}), channel: GuildChannel = SlashOption(channel_types=[ChannelType.voice])):
-        target_id = activity.replace('"', "")
+        target_id = int(activity)
        
         invite_link = await channel.create_activity_invite(activities.Activity.custom, activity_id=target_id)
         embed = nextcord.Embed(
