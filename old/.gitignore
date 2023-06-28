@@ -1,0 +1,4 @@
+.env
+.env.developement
+__pycache__
+install_packages.py
