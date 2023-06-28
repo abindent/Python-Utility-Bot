@@ -1,4 +1,6 @@
-import nextcord, json, wavelink, os, asyncio, humanfriendly, aiohttp, datetime
+import nextcord, json, os, asyncio, humanfriendly, aiohttp, datetime
+import nextwave 
+
 from nextcord.ext import commands
 from utils.delbtn import DelBtn as MessageDelete
 
@@ -33,7 +35,7 @@ class MusicController(nextcord.ui.View):
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
 
     
         await vc.set_volume(volume=0)
@@ -57,7 +59,7 @@ class MusicController(nextcord.ui.View):
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
 
         embed = nextcord.Embed(title="⏸️ Pausing Music..",
                             description=f"📢 | ⏸️ Paused the player.", color=0x91cd0e)
@@ -83,7 +85,7 @@ class MusicController(nextcord.ui.View):
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
 
         embed = nextcord.Embed(title="⏯️ Resuming Music..",
                                description=f"📢 |⏯️ Resumed the player.", color=0x91cd0e)
@@ -110,7 +112,7 @@ class MusicController(nextcord.ui.View):
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
 
     
         await vc.set_volume(volume=50)
@@ -134,7 +136,7 @@ class MusicController(nextcord.ui.View):
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
 
     
         await vc.set_volume(volume=100)
@@ -157,7 +159,7 @@ class MusicController(nextcord.ui.View):
             return await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
 
         try:
             vc.loop ^= True
@@ -187,7 +189,7 @@ class MusicController(nextcord.ui.View):
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
         else:
-            vc: wavelink.Player = interaction.guild.voice_client
+            vc: nextwave.Player = interaction.guild.voice_client
         
         await vc.stop()
 
@@ -204,15 +206,15 @@ class Music(commands.Cog):
 
     async def node_connect(self):
         await self.bot.wait_until_ready()
-        await wavelink.NodePool.create_node(bot=self.bot, host="losingtime.dpaste.org", port=2124, password="SleepingOnTrains")
+        await nextwave.NodePool.create_node(bot=self.bot, host="connect.freelavalink.ga", port=443, password="www.freelavalink.ga", https=True)
 
 
     @commands.Cog.listener()
-    async def on_waveink_node_ready(self, node: wavelink.Node):
-        print(f"Node <{node.id}> is ready!")
+    async def on_wavelink_node_ready(self, node: nextwave.Node):
+        print(f"Node <{node.identifier}> is ready!")
 
     @commands.Cog.listener()
-    async def on_wavelink_track_end(self, player: wavelink.Player, track: wavelink.Track, reason):
+    async def on_wavelink_track_end(self, player: nextwave.Player, track: nextwave.Track, reason):
         ctx = player.ctx
         vc: player = ctx.voice_client
 
@@ -220,7 +222,7 @@ class Music(commands.Cog):
             return await vc.stop(), await vc.play(track), await songplayembed.edit(view=MusicController(self._global_ctx))
 
         if vc.queue.is_empty:
-            return await vc.stop() , await vc.disconnect() , await songplayembed.edit(view=MessageDelete(self._global_ctx))
+            return await vc.stop() , await songplayembed.edit(view=MessageDelete(self._global_ctx))
              
 
         next_song = vc.queue.get()
@@ -239,9 +241,9 @@ class Music(commands.Cog):
 
 
     @commands.command(name="play", description="▶️ Plays a song for you that you want.", usage="<song name>")
-    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
+    async def play(self, ctx: commands.Context, *, search: nextwave.YouTubeTrack):
         if not ctx.voice_client:
-            vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
+            vc: nextwave.Player = await ctx.author.voice.channel.connect(cls=nextwave.Player)
 
         elif not ctx.author.voice:
             embed = nextcord.Embed(
@@ -256,7 +258,7 @@ class Music(commands.Cog):
             embed.set_author(name="OpenSourceGames Utility",
                              icon_url=self.bot.user.display_avatar)
             msg = await ctx.send(embed=embed)
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
             await vc.move_to(ctx.author.voice.channel)
             return msg
             await asyncio.sleep(7)
@@ -264,7 +266,7 @@ class Music(commands.Cog):
 
             
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
 
         if vc.queue.is_empty and not vc.is_playing():
 
@@ -319,7 +321,7 @@ class Music(commands.Cog):
             await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
 
         if ctx.author is self._global_ctx.author:
             embed = nextcord.Embed(title="⏸️ Pausing Music..",
@@ -359,7 +361,7 @@ class Music(commands.Cog):
             await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
           
         if ctx.author is self._global_ctx.author:  
            embed = nextcord.Embed(title="⏸️ Resuming Music..",
@@ -398,7 +400,7 @@ class Music(commands.Cog):
             await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
      
         if ctx.author is self._global_ctx.author:
          try:
@@ -435,7 +437,7 @@ class Music(commands.Cog):
             return message,await asyncio.sleep(5),await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client    
+            vc: nextwave.Player = ctx.voice_client    
 
         if vc.queue.is_empty:
             embed = nextcord.Embed(
@@ -475,7 +477,7 @@ class Music(commands.Cog):
             return message, await asyncio.sleep(5), await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
 
         embed = nextcord.Embed(title="⏸ Stopping Music..",
                                description=f"📢 | ⏸️ Stoped the player.", color=0x91cd0e)
@@ -509,7 +511,7 @@ class Music(commands.Cog):
             await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
 
         embed = nextcord.Embed(title="🔌 Disconnecting Music..",
                                description=f"📢 |🔌 Disconnected Successfully.", color=0x91cd0e)
@@ -523,7 +525,7 @@ class Music(commands.Cog):
     @commands.command(name="connect", description="🔌 Connects from the vc.")
     async def connect(self, ctx: commands.Context):
         if not ctx.voice_client:
-            vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
+            vc: nextwave.Player = await ctx.author.voice.channel.connect(cls=nextwave.Player)
 
         elif not getattr(ctx.author.voice, "channel", None):
             embed = nextcord.Embed(
@@ -534,7 +536,7 @@ class Music(commands.Cog):
             return message, await asyncio.sleep(5), await message.delete()
 
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
 
         embed = nextcord.Embed(title="🔌 Connecting Music..",
                                description=f"📢 |🔌 Connected Successfully.", color=0x91cd0e)
@@ -565,7 +567,7 @@ class Music(commands.Cog):
 
             
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
         
         if ctx.author is self._global_ctx.author:
 
@@ -609,7 +611,7 @@ class Music(commands.Cog):
 
             
         else:
-            vc: wavelink.Player = ctx.voice_client
+            vc: nextwave.Player = ctx.voice_client
 
         if not vc.is_playing():
             embed = nextcord.Embed(
@@ -632,7 +634,7 @@ class Music(commands.Cog):
     @commands.command(name="lyrics", description="Sends the lyrics of the song.", usage="<song name>")
     async def lyrics(self, ctx,*, name: str):
         url = "https://some-random-api.ml/lyrics?title="
-        player = wavelink.Player 
+        player = nextwave.Player 
         lyrics = name or player.queue.current_track.title
 
         async with ctx.typing():

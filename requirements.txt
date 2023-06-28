@@ -89,7 +89,7 @@ urllib3==1.26.8
 uvloop==0.16.0
 virtualenv==20.13.1
 virtualenv-clone==0.5.7
-wavelink==1.1.1
+nextwave==1.0.1a0
 webencodings==0.5.1
 wrapt==1.12.1
 yarl==1.7.2
