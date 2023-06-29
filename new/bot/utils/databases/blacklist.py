@@ -25,6 +25,7 @@ class Blacklist_DB:
     async def check_user_blacklisted_status(self, user_id, guild_id) -> bool:
 
         data = await self.blacklisted_users.find_by_id(user_id)
-        if data.guild != guild_id:
-            data = None
+        d=await self.blacklisted_users.get_all()
+        for c in d:
+            print(d) 
         return True if data else False

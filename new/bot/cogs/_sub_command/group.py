@@ -44,7 +44,3 @@ class Groups(commands.Cog, name="A Simple Test Group For Sub Commands"):
          # Sending a message to the author
         else: 
             await ctx.message.author.send("Hey! Did this come through clearly?")
-
-
-def setup(bot):
-    bot.add_cog(Groups(bot))
