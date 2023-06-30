@@ -1,5 +1,5 @@
 # IMPORTING COGS
-from ._sub_command.group import Groups
+from .support.main import Support
 
 async def setup(bot):
-    await bot.add_cog(Groups(bot))
+    await bot.add_cog(Support(bot))

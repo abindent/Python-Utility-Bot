@@ -42,19 +42,22 @@ class Client(commands.AutoShardedBot):
         self.config = Document(self.db, "config")
 
     async def on_ready(self):
-        # On ready, print some details to standard out
+        # Load Cogs
         await self.load_extension("cogs.main")
+        
+        # Syncing app commands    
+        await self.tree.sync()
             
-        print(f"{self.cwd}\n-------")
+        # On ready, print some details to standard out
         print(
             f"-----\nLogged in as: {self.user.name} : {self.user.id}\n-----\nMy default prefix is: t!\n-----"
         )
         for document in await self.config.get_all():
             print(document)
        
-
         for cog in self.cogs:
             print(f"Loaded {cog} \n-----")
+        
 
     async def on_message(self, message: discord.Message):
         # Ignore messages sent by yourself
@@ -100,7 +103,7 @@ intent.members = True
 intent.message_content = True
 
 # Changing Bot Presense
-activity = discord.Game(name=f"Please interact with  me!")
+activity = discord.Game(name=f"Please interact with  me!", type=2)
 
 # BOT
 bot = Client(command_prefix=get_prefix,
