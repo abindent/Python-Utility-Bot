@@ -1,4 +1,4 @@
-aiohttp==3.8.1
+aiohttp==3.8.5
 algoliasearch==2.6.1
 base65536==0.1.1
 dnspython==2.2.0
