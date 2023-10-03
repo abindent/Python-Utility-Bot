@@ -21,7 +21,7 @@ requests==2.31.0
 requests-toolbelt==0.9.1
 typing_extensions==4.0.1
 TagScriptEngine==2.3.0
-urllib3==1.26.8
+urllib3==1.26.17
 nextwave==1.5
 webcolors==1.11.1
 nextcordUtils==1.0
