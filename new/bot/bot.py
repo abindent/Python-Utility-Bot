@@ -11,6 +11,7 @@ import discord
 from discord.ext import commands
 
 
+
 # LOADING EXTENSIONS FROM UTILS
 from utils import json_loader
 from utils.mongo import Document
@@ -35,6 +36,9 @@ class Client(commands.AutoShardedBot):
         self.cwd = cwd
         self.guild_id = "932264473408966656"
 
+        # Bot Status
+        self.activity = activity
+
         # DATABASE
         self.mongo = motor.motor_asyncio.AsyncIOMotorClient(
             str(os.getenv("MONGO_URI")))
@@ -44,20 +48,19 @@ class Client(commands.AutoShardedBot):
     async def on_ready(self):
         # Load Cogs
         await self.load_extension("cogs.main")
-        
-        # Syncing app commands    
+
+        # Syncing app commands
         await self.tree.sync()
-            
+
         # On ready, print some details to standard out
         print(
             f"-----\nLogged in as: {self.user.name} : {self.user.id}\n-----\nMy default prefix is: t!\n-----"
         )
         for document in await self.config.get_all():
             print(document)
-       
+
         for cog in self.cogs:
             print(f"Loaded {cog} \n-----")
-        
 
     async def on_message(self, message: discord.Message):
         # Ignore messages sent by yourself
@@ -80,8 +83,9 @@ class Client(commands.AutoShardedBot):
             await message.channel.send(f"My prefix here is `{prefix}`", delete_after=20)
 
         await self.process_commands(message)
-
-
+   
+       
+ 
 # GETTING PREFIX FROM DATABASE
 async def get_prefix(bot, message):
     if not message.guild:
@@ -103,7 +107,7 @@ intent.members = True
 intent.message_content = True
 
 # Changing Bot Presense
-activity = discord.Game(name=f"Please interact with  me!", type=2)
+activity = discord.Game(name="Please interact with  me!")
 
 # BOT
 bot = Client(command_prefix=get_prefix,
@@ -116,6 +120,5 @@ if __name__ == "__main__":
     # I.E its not being imported from another python file run this
     # When running this file, if it is the 'main' file
     # I.E its not being imported from another python file run this
-    
+
     bot.run(os.getenv("BOT_TOKEN"))
-    
